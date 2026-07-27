@@ -1,1 +1,8 @@
 node_modules
+
+# FrameRef cache directory
+/.frameref
+
+# Server build output & environment
+server/public/
+server/.env

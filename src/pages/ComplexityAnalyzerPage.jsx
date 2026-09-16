@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import Editor from '@monaco-editor/react';
 
@@ -116,7 +116,7 @@ function analyzeCodeComplexity(code) {
   if (declaredFunctions.length > 0) {
     declaredFunctions.forEach(fnName => {
       // Find matches of the function name inside the code excluding declaration index
-      const escapeFnName = fnName.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+      const escapeFnName = fnName.replace(/[-\\^$*+?.()|[\]{}]/g, '\\$&');
       const callRegex = new RegExp(`\\b${escapeFnName}\\b`, 'g');
       const matchesCount = (code.match(callRegex) || []).length;
       // If matchesCount > 1, it calls itself (once for declaration, rest are calls)
@@ -469,7 +469,7 @@ function ComplexityAnalyzerPage() {
           </svg>
           Complexity Growth Chart
         </h3>
-        <p className="text-sm text-slate-400 mb-6">Plot demonstrating operations ($T$) vs input elements ($N$). The curve corresponding to the code's estimated time complexity (<strong className="text-indigo-300">{analysis.timeComplexity}</strong>) is highlighted.</p>
+        <p className="text-sm text-slate-400 mb-6">Plot demonstrating operations ($T$) vs input elements ($N$). The curve corresponding to the code&apos;s estimated time complexity (<strong className="text-indigo-300">{analysis.timeComplexity}</strong>) is highlighted.</p>
 
         <div className="grid gap-6 grid-cols-1 lg:grid-cols-[1.3fr_0.7fr]">
           

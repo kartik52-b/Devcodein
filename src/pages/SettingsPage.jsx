@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useProfile } from '../context/ProfileContext';
 
 function SettingsPage() {
-  const { activeProfile, updateActiveProfile, switchProfile, profiles, resetAllProfiles } = useProfile();
+  const { activeProfile, updateActiveProfile, resetAllProfiles } = useProfile();
   
   const [activeTab, setActiveTab] = useState('account'); // account, appearance, security, notifications, danger
 

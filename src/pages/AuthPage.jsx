@@ -12,7 +12,7 @@ function AuthPage() {
   const [password, setPassword] = useState('');
   const [otp, setOtp] = useState(initialOtp);
   const [countdown, setCountdown] = useState(300);
-  const [activeField, setActiveField] = useState(0);
+  const [, setActiveField] = useState(0);
   const refs = useRef([]);
 
   useEffect(() => {
@@ -70,7 +70,6 @@ function AuthPage() {
     }
     await register({ name, email, password });
   };
-
   const handleGoogle = async () => {
     await googleSignIn({ email, name });
   };

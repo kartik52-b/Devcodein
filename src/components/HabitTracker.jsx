@@ -65,7 +65,7 @@ function HabitTracker() {
               {days.map((day) => <span key={day} className="w-10 text-center">{day}</span>)}
             </div>
             <div className="flex gap-2">
-              {contributionData.map((item, index) => (
+              {contributionData.map((item) => (
                 <div key={item.day} className="flex flex-col items-center gap-2">
                   <div className={`h-10 w-10 rounded-xl transition-all duration-500 ${item.value > 6 ? 'bg-gradient-to-br from-emerald-400 to-cyan-400' : item.value > 4 ? 'bg-gradient-to-br from-indigo-400 to-violet-400' : 'bg-slate-800'}`} style={{ opacity: 0.6 + item.value / 10 }} />
                   <span className="text-xs text-slate-500">{item.day}</span>

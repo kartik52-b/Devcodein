@@ -240,7 +240,6 @@ function DsaBattleArena() {
           <div className="space-y-4">
             <div className="grid gap-4 lg:grid-cols-2">
               {[current.left, current.right].map((side, index) => {
-                const highlight = activeAction === 'Insertion' ? 0 : activeAction === 'Deletion' ? 1 : 2;
                 return (
                   <div key={side.name} className="rounded-[1.5rem] border border-white/10 bg-slate-950/60 p-5">
                     <div className={`mb-4 h-1.5 w-24 rounded-full bg-gradient-to-r ${side.accent}`} />

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const sampleCode = `function findTarget(arr, target) {
   for (let i = 0; i < arr.length; i++) {
@@ -53,10 +53,8 @@ function ComplexityAnalyzer() {
   const [code, setCode] = useState(sampleCode);
   const [analysis, setAnalysis] = useState(() => analyzeCode(sampleCode));
 
-  const metrics = useMemo(() => {
-    const result = analyzeCode(code);
-    setAnalysis(result);
-    return result;
+  useEffect(() => {
+    setAnalysis(analyzeCode(code));
   }, [code]);
 
   const performanceBars = [

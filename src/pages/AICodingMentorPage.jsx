@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ArrowRight, Bot, BrainCircuit, Compass, MessageSquareText, Sparkles } from 'lucide-react';
+import { Bot, BrainCircuit } from 'lucide-react';
 import { useProfile } from '../context/ProfileContext';
 
 const quickActions = [

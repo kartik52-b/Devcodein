@@ -1,8 +1,5 @@
 import { Link } from 'react-router-dom';
 import AICodingMentor from '../components/AICodingMentor';
-import AlgorithmVisualizer from '../components/AlgorithmVisualizer';
-import CodingChallengePlatform from '../components/CodingChallengePlatform';
-import ComplexityAnalyzer from '../components/ComplexityAnalyzer';
 import DailyMissionSystem from '../components/DailyMissionSystem';
 import DsaBattleArena from '../components/DsaBattleArena';
 import HabitTracker from '../components/HabitTracker';

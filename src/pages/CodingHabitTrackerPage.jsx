@@ -30,7 +30,7 @@ const initialAchievements = [
 function CodingHabitTrackerPage() {
   const { activeProfile, updateActiveProfile } = useProfile();
   
-  const [achievements, setAchievements] = useState(initialAchievements);
+  const [achievements] = useState(initialAchievements);
   const [logHours, setLogHours] = useState('1');
   const [hoveredCell, setHoveredCell] = useState(null);
 

@@ -5,13 +5,17 @@ import { useAuth } from '../context/AuthContext';
 const initialOtp = ['', '', '', '', '', ''];
 
 function AuthPage() {
-  const { login, register, verifyOtp, resendOtp, changeEmail, googleSignIn, isLoading, error, success, user, otpPending, otpEmail, isAuthenticated, isEmailVerified } = useAuth();
-  const [mode, setMode] = useState('login');
+  const { login, register, verifyOtp, resendOtp, changeEmail, googleSignIn, isLoading, error, success, user, otpPending, otpEmail, devOtp, otpDelivery, isAuthenticated, isEmailVerified } = useAuth();
+  const [mode, setMode] = useState(() => {
+    const requested = new URLSearchParams(window.location.search).get('mode');
+    return requested === 'register' || requested === 'signup' ? 'register' : 'login';
+  });
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [otp, setOtp] = useState(initialOtp);
   const [countdown, setCountdown] = useState(300);
+  const [googlePending, setGooglePending] = useState(false);
   const [, setActiveField] = useState(0);
   const refs = useRef([]);
 
@@ -71,7 +75,9 @@ function AuthPage() {
     await register({ name, email, password });
   };
   const handleGoogle = async () => {
-    await googleSignIn({ email, name });
+    if (isLoading || googlePending) return;
+    setGooglePending(true);
+    await googleSignIn();
   };
 
   const primaryLabel = useMemo(() => (mode === 'login' ? 'Log in to DevVerse' : 'Create your DevVerse account'), [mode]);
@@ -137,6 +143,26 @@ function AuthPage() {
                     ))}
                   </div>
 
+                  {otpDelivery === 'development' && devOtp ? (
+                    <div className="mt-5 rounded-2xl border border-amber-400/30 bg-amber-400/10 p-4 text-sm text-amber-100">
+                      <p className="font-semibold uppercase tracking-[0.2em] text-amber-300">
+                        Development notice
+                      </p>
+                      <p className="mt-2 text-amber-100/90">
+                        Email delivery is not configured on this server, so no message was sent.
+                        Your verification code is{' '}
+                        <button
+                          type="button"
+                          onClick={() => setOtp(devOtp.split(''))}
+                          className="font-mono text-base font-bold underline decoration-dotted"
+                        >
+                          {devOtp}
+                        </button>{' '}
+                        — click it to fill the boxes.
+                      </p>
+                    </div>
+                  ) : null}
+
                   <button onClick={submitOtp} disabled={otp.join('').length !== 6 || isLoading} className="mt-6 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-400 to-indigo-500 px-4 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60">
                     {isLoading ? 'Verifying…' : 'Verify code'} <ArrowRight size={16} />
                   </button>
@@ -166,14 +192,33 @@ function AuthPage() {
                   {error ? <p className="rounded-2xl border border-rose-400/20 bg-rose-400/10 px-3 py-2 text-sm text-rose-300">{error}</p> : null}
                   {success ? <p className="rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-3 py-2 text-sm text-cyan-300">{success}</p> : null}
 
-                  <button className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-400 to-indigo-500 px-4 py-3 text-sm font-semibold text-white">
-                    {isLoading ? 'Please wait…' : mode === 'login' ? 'Continue with email' : 'Create account'} <ArrowRight size={16} />
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-400 to-indigo-500 px-4 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    {isLoading
+                      ? mode === 'login'
+                        ? 'Signing in…'
+                        : 'Creating account…'
+                      : mode === 'login'
+                        ? 'Continue with email'
+                        : 'Create account'}{' '}
+                    <ArrowRight size={16} />
                   </button>
                 </form>
               )}
 
               <div className="mt-6 flex flex-col gap-3">
-                <button onClick={handleGoogle} className="flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-200"> <Sparkles size={16} /> Continue with Google</button>
+                <button
+                  type="button"
+                  onClick={handleGoogle}
+                  disabled={isLoading || googlePending}
+                  className="flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  <Sparkles size={16} />{' '}
+                  {googlePending ? 'Connecting to Google…' : 'Continue with Google'}
+                </button>
                 <div className="flex items-center justify-center gap-2 text-sm text-slate-500">
                   <span>{mode === 'login' ? 'Need an account?' : 'Already have one?'}</span>
                   <button onClick={() => setMode(mode === 'login' ? 'register' : 'login')} className="font-semibold text-cyan-300">{mode === 'login' ? 'Register' : 'Sign in'}</button>

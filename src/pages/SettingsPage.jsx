@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useProfile } from '../context/ProfileContext';
+import { useAuth } from '../context/AuthContext';
 
 function SettingsPage() {
   const { activeProfile, updateActiveProfile, resetAllProfiles } = useProfile();
-  
+  const { user } = useAuth();
+
   const [activeTab, setActiveTab] = useState('account'); // account, appearance, security, notifications, danger
 
   // Form states loaded from activeProfile context
@@ -43,8 +45,11 @@ function SettingsPage() {
     setNotifyEmail(activeProfile.settings.notifyEmail);
     setNotifyPush(activeProfile.settings.notifyPush);
     setNotifySound(activeProfile.settings.notifySound);
-    setEmail(activeProfile.id === 'aarav' ? 'aarav.singh@devverse.app' : 'learner@devverse.app');
-  }, [activeProfile.id]);
+    setEmail(
+      user?.email ||
+        (activeProfile.id === 'aarav' ? 'aarav.singh@devverse.app' : 'learner@devverse.app')
+    );
+  }, [activeProfile.id, user?.email]);
 
   const handleSaveProfile = (e) => {
     e.preventDefault();
@@ -225,7 +230,7 @@ function SettingsPage() {
                     className="w-full text-sm rounded-xl border border-white/10 bg-slate-950/60 p-3 text-slate-400 outline-none cursor-not-allowed"
                     disabled
                   />
-                  <p className="text-[10px] text-slate-500 mt-1">Registered email within the DevVerse sandbox environment.</p>
+                  <p className="text-[10px] text-slate-500 mt-1">Registered email for this DevVerse account.</p>
                 </div>
 
                 <div>

@@ -1,47 +1,102 @@
 import { useState, useEffect } from 'react';
 import { useProfile } from '../context/ProfileContext';
+import {
+  dailyMissions,
+  weeklyMissions,
+  monthlyGoals,
+  dailyMissionTotalXp
+} from '../data/missionsData';
+import { profileApi } from '../services/profileApi';
+import { isUnavailable } from '../services/api';
 
-const initialTodayTasks = [
-  { id: 1, title: 'Solve 2 coding challenges', xp: 180, completed: false, category: 'Algorithm' },
-  { id: 2, title: 'Review one data structure', xp: 120, completed: false, category: 'Conceptual' },
-  { id: 3, title: 'Debug the AI Mentor code suggestion', xp: 220, completed: false, category: 'AI Lab' }
-];
+/* Local completion of the checklist is a UI concern and lives in localStorage
+   (keyed by day). The XP *reward* for claiming is decided by the server. */
+const todayKey = () => new Date().toISOString().slice(0, 10);
+const storageKey = `devverse_missions_${todayKey()}`;
 
-const initialWeeklyTasks = [
-  { id: 101, title: 'Maintain a 5-day coding streak', xp: 500, current: 4, target: 5, claimed: false },
-  { id: 102, title: 'Spend 5 hours in the Algorithm Visualizer', xp: 350, current: 3.5, target: 5, claimed: false },
-  { id: 103, title: 'Complete 3 database roadmaps milestones', xp: 400, current: 3, target: 3, claimed: false }
-];
+const readLocalState = () => {
+  try {
+    return JSON.parse(window.localStorage.getItem(storageKey)) || null;
+  } catch {
+    return null;
+  }
+};
 
-const initialMonthlyGoals = [
-  { id: 201, title: 'Solve 30 challenges in practice room', xp: 1500, current: 24, target: 30 },
-  { id: 202, title: 'Earn 5 new badges', xp: 1000, current: 4, target: 5 },
-  { id: 203, title: 'Unlock the "Binary Beast" Achievement', xp: 2000, current: 0, target: 1 }
-];
+const writeLocalState = (state) => {
+  try {
+    window.localStorage.setItem(storageKey, JSON.stringify(state));
+  } catch {
+    /* storage disabled */
+  }
+};
+
+const buildDailyTasks = (completedIds = []) =>
+  dailyMissions.map((mission) => ({ ...mission, completed: completedIds.includes(mission.id) }));
+
+const buildWeeklyTasks = (claimedIds = []) =>
+  weeklyMissions.map((mission) => ({
+    ...mission,
+    current: mission.initial,
+    claimed: claimedIds.includes(mission.id)
+  }));
 
 function DailyMissionsPage() {
-  const { activeProfile, addXp, updateActiveProfile } = useProfile();
-  
-  const [todayTasks, setTodayTasks] = useState(initialTodayTasks);
-  const [weeklyTasks, setWeeklyTasks] = useState(initialWeeklyTasks);
-  const [hasClaimedToday, setHasClaimedToday] = useState(false);
+  const { activeProfile, addXp, updateActiveProfile, applyServerProgress } = useProfile();
+
+  const [restored] = useState(readLocalState);
+  const [todayTasks, setTodayTasks] = useState(() =>
+    buildDailyTasks(restored?.completedDaily ?? (activeProfile.xp > 0 ? dailyMissions.slice(0, 2).map((m) => m.id) : []))
+  );
+  const [weeklyTasks, setWeeklyTasks] = useState(() => buildWeeklyTasks(restored?.claimedWeekly || []));
+  const [hasClaimedToday, setHasClaimedToday] = useState(Boolean(restored?.claimedDaily));
   const [showUnlockNotification, setShowUnlockNotification] = useState(false);
   const [unlockMessage, setUnlockMessage] = useState('');
+  const [claimState, setClaimState] = useState({ busy: false, error: '' });
+  const [serverState, setServerState] = useState({ online: true, message: '' });
 
-  // Handle fresh vs. Aarav presets
+  // Persist the checklist so a refresh never loses progress.
   useEffect(() => {
-    // If it's a new user, reset claimed rewards
-    if (activeProfile.xp === 0) {
-      setHasClaimedToday(false);
-      setTodayTasks(initialTodayTasks);
-      setWeeklyTasks(initialWeeklyTasks.map(t => ({ ...t, current: 0, claimed: false })));
-    } else {
-      // Aarav default
-      setHasClaimedToday(false);
-      setTodayTasks(initialTodayTasks.map((t, idx) => idx < 2 ? { ...t, completed: true } : t));
-      setWeeklyTasks(initialWeeklyTasks);
-    }
-  }, [activeProfile.id]);
+    writeLocalState({
+      completedDaily: todayTasks.filter((task) => task.completed).map((task) => task.id),
+      claimedWeekly: weeklyTasks.filter((task) => task.claimed).map((task) => task.id),
+      claimedDaily: hasClaimedToday
+    });
+  }, [todayTasks, weeklyTasks, hasClaimedToday]);
+
+  // Restore which rewards the server has already settled for this period.
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const data = await profileApi.missions();
+        if (cancelled) return;
+        const claims = data.claims || [];
+        const dailyClaimed = dailyMissions.every((m) => claims.includes(`daily:${m.id}:${data.today}`));
+        const claimedWeeklyIds = weeklyMissions
+          .filter((m) => claims.includes(`weekly:${m.id}:${data.week}`))
+          .map((m) => m.id);
+
+        if (dailyClaimed) setHasClaimedToday(true);
+        if (claimedWeeklyIds.length) {
+          setWeeklyTasks((prev) =>
+            prev.map((task) => (claimedWeeklyIds.includes(task.id) ? { ...task, claimed: true } : task))
+          );
+        }
+        setServerState({ online: true, message: '' });
+      } catch (error) {
+        if (cancelled) return;
+        setServerState({
+          online: !isUnavailable(error),
+          message: isUnavailable(error)
+            ? 'Rewards will be recorded locally until the API is reachable.'
+            : error?.message || 'Unable to sync mission claims.'
+        });
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const completedCount = todayTasks.filter(t => t.completed).length;
   const progressPercent = Math.round((completedCount / todayTasks.length) * 100);
@@ -54,55 +109,95 @@ function DailyMissionsPage() {
     );
   };
 
-  const handleClaimTodayReward = () => {
-    if (progressPercent < 100) return;
-    if (hasClaimedToday) return;
-
-    const claimedXp = todayTasks.reduce((sum, t) => sum + t.xp, 0);
-    const { leveledUp, level } = addXp(claimedXp);
-    setHasClaimedToday(true);
-
-    // Create achievements & history updates
-    const rewardMsg = `Claimed Daily rewards +${claimedXp} XP.`;
-    setUnlockMessage(leveledUp ? `Leveled up to Level ${level}! ${rewardMsg}` : rewardMsg);
+  const celebrate = (message) => {
+    setUnlockMessage(message);
     setShowUnlockNotification(true);
-
-    const historyItem = {
-      id: Date.now(),
-      label: 'Claimed Daily Mission Rewards',
-      time: 'Just now',
-      reward: `+${claimedXp} XP`
-    };
-
-    updateActiveProfile(prev => ({
+    updateActiveProfile((prev) => ({
       ...prev,
-      history: [historyItem, ...prev.history],
-      recentActivity: ['Claimed daily rewards', ...prev.recentActivity].slice(0, 10)
+      history: [
+        { id: Date.now(), label: message, time: 'Just now', reward: message.match(/\+\d+ XP/)?.[0] || 'Reward' },
+        ...prev.history
+      ],
+      recentActivity: [message, ...prev.recentActivity].slice(0, 10)
     }));
   };
 
-  const handleClaimWeekly = (id, xp) => {
-    setWeeklyTasks(prev =>
-      prev.map(t => (t.id === id ? { ...t, claimed: true } : t))
-    );
-    const { leveledUp, level } = addXp(xp);
+  const handleClaimTodayReward = async () => {
+    if (progressPercent < 100 || hasClaimedToday || claimState.busy) return;
 
-    const rewardMsg = `Weekly Milestone +${xp} XP.`;
-    setUnlockMessage(leveledUp ? `Leveled up to Level ${level}! ${rewardMsg}` : rewardMsg);
-    setShowUnlockNotification(true);
+    const localXp = dailyMissionTotalXp;
+    setClaimState({ busy: true, error: '' });
 
-    const historyItem = {
-      id: Date.now(),
-      label: 'Claimed Weekly Challenge Reward',
-      time: 'Just now',
-      reward: `+${xp} XP`
-    };
+    try {
+      const payload = await profileApi.claimDaily();
+      setHasClaimedToday(true);
+      if (payload.user) applyServerProgress(payload.user);
 
-    updateActiveProfile(prev => ({
-      ...prev,
-      history: [historyItem, ...prev.history],
-      recentActivity: ['Claimed weekly milestone', ...prev.recentActivity].slice(0, 10)
-    }));
+      const awarded = payload.awardedXp || 0;
+      celebrate(
+        payload.alreadyClaimed || awarded === 0
+          ? 'Daily rewards were already claimed today.'
+          : payload.leveledUp
+            ? `Leveled up! Claimed daily rewards +${awarded} XP.`
+            : `Claimed daily rewards +${awarded} XP.`
+      );
+      setServerState({ online: true, message: '' });
+    } catch (error) {
+      if (isUnavailable(error)) {
+        // Offline fallback: award locally, clearly stating it is not synced.
+        const { leveledUp, level } = addXp(localXp);
+        setHasClaimedToday(true);
+        setServerState({
+          online: false,
+          message: 'The API is unreachable — this reward is stored locally and not yet synced.'
+        });
+        celebrate(
+          leveledUp
+            ? `Leveled up to Level ${level}! Daily rewards +${localXp} XP (local).`
+            : `Claimed daily rewards +${localXp} XP (local).`
+        );
+      } else {
+        setClaimState({ busy: false, error: error?.message || 'Unable to claim that reward.' });
+        setUnlockMessage(error?.message || 'Unable to claim that reward.');
+        setShowUnlockNotification(true);
+      }
+    } finally {
+      setClaimState((prev) => ({ ...prev, busy: false }));
+    }
+  };
+
+  const handleClaimWeekly = async (id, xp) => {
+    if (claimState.busy) return;
+    setClaimState({ busy: true, error: '' });
+
+    try {
+      const payload = await profileApi.claimMission({ type: 'weekly', id });
+      setWeeklyTasks((prev) => prev.map((task) => (task.id === id ? { ...task, claimed: true } : task)));
+      if (payload.user) applyServerProgress(payload.user);
+      const awarded = payload.awardedXp || 0;
+      celebrate(
+        payload.alreadyClaimed || awarded === 0
+          ? 'That weekly reward was already claimed.'
+          : `Weekly milestone +${awarded} XP.`
+      );
+      setServerState({ online: true, message: '' });
+    } catch (error) {
+      if (isUnavailable(error)) {
+        const { leveledUp, level } = addXp(xp);
+        setWeeklyTasks((prev) => prev.map((task) => (task.id === id ? { ...task, claimed: true } : task)));
+        setServerState({
+          online: false,
+          message: 'The API is unreachable — this reward is stored locally and not yet synced.'
+        });
+        celebrate(leveledUp ? `Leveled up to Level ${level}! Weekly milestone +${xp} XP (local).` : `Weekly milestone +${xp} XP (local).`);
+      } else {
+        setClaimState({ busy: false, error: error?.message || 'Unable to claim that reward.' });
+        setUnlockMessage(error?.message || 'Unable to claim that reward.');
+        setShowUnlockNotification(true);
+      }
+    } finally {
+      setClaimState((prev) => ({ ...prev, busy: false }));
+    }
   };
 
   useEffect(() => {
@@ -168,6 +263,12 @@ function DailyMissionsPage() {
         </div>
       </div>
 
+      {!serverState.online || serverState.message ? (
+        <div className="rounded-2xl border border-amber-400/25 bg-amber-400/10 px-4 py-3 text-sm text-amber-100">
+          {serverState.message || 'Mission rewards are not syncing with the server.'}
+        </div>
+      ) : null}
+
       <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
         {/* Left Column: Today's Tasks & Weekly Progress */}
         <div className="space-y-6">
@@ -183,7 +284,7 @@ function DailyMissionsPage() {
                   {progressPercent}% Complete
                 </span>
                 <button
-                  disabled={progressPercent < 100 || hasClaimedToday}
+                  disabled={progressPercent < 100 || hasClaimedToday || claimState.busy}
                   onClick={handleClaimTodayReward}
                   className={`rounded-full px-5 py-2 text-sm font-semibold transition-all duration-300 ${
                     progressPercent === 100 && !hasClaimedToday
@@ -336,7 +437,7 @@ function DailyMissionsPage() {
           <div className="glass rounded-[2rem] border border-white/10 p-6 card-hover-premium">
             <h3 className="mb-4 text-xl font-semibold text-white">Monthly Goals</h3>
             <div className="space-y-4">
-              {initialMonthlyGoals.map((goal) => {
+              {monthlyGoals.map((goal) => {
                 const isNew = activeProfile.xp === 0;
                 const curr = isNew ? 0 : goal.current;
                 const percent = Math.min(100, Math.round((curr / goal.target) * 100));

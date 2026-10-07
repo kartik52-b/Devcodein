@@ -30,6 +30,7 @@ const AARAV_PROFILE = {
     { id: 303, label: 'Unlocked bug hunter badge', time: '2 days ago', reward: 'Badge' }
   ],
   avatar: '💻',
+  serverSolvedIds: [],
   completedMilestones: ['fe-m1', 'fe-m2', 'fe-m3', 'be-m1', 'be-m2', 'py-m1', 'py-m2', 'py-m3', 'ja-m1', 'an-m1', 'cs-m1', 'cs-m2'],
   settings: {
     darkMode: true,
@@ -68,6 +69,7 @@ const FRESH_PROFILE = {
   recentActivity: [],
   history: [],
   avatar: '👤',
+  serverSolvedIds: [],
   completedMilestones: [],
   settings: {
     darkMode: true,
@@ -158,6 +160,30 @@ export function ProfileProvider({ children }) {
   const resetAllProfiles = () => {
     setProfiles([AARAV_PROFILE]);
     setActiveProfileId('aarav');
+  };
+
+  /**
+   * Applies progression the server has confirmed (challenge XP, streaks,
+   * solved counts). Used after login and after a submission so the UI never
+   * drifts from the backend's authoritative numbers.
+   */
+  const applyServerProgress = (progress) => {
+    if (!progress) return;
+    updateActiveProfile((prev) => ({
+      ...prev,
+      xp: typeof progress.xp === 'number' ? progress.xp : prev.xp,
+      level: typeof progress.level === 'number' ? progress.level : prev.level,
+      streak: typeof progress.streak === 'number' ? progress.streak : prev.streak,
+      longestStreak:
+        typeof progress.longestStreak === 'number'
+          ? Math.max(progress.longestStreak, prev.longestStreak || 0)
+          : prev.longestStreak,
+      solvedCount:
+        typeof progress.solvedProblems === 'number' ? progress.solvedProblems : prev.solvedCount,
+      serverSolvedIds: Array.isArray(progress.solvedProblemIds)
+        ? progress.solvedProblemIds
+        : prev.serverSolvedIds || []
+    }));
   };
 
   const updateActiveProfile = (updater) => {
@@ -281,6 +307,7 @@ export function ProfileProvider({ children }) {
         upsertProfile,
         updateActiveProfile,
         resetAllProfiles,
+        applyServerProgress,
         addXp,
         addSolvedChallenge,
         toggleBookmark,

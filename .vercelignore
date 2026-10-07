@@ -1,0 +1,10 @@
+# Never upload local environment files or build artifacts
+.env
+.env.*
+*.env
+server/.env
+server/.env.*
+node_modules
+dist
+.git
+.vly-run

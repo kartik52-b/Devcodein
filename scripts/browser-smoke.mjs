@@ -205,6 +205,42 @@ const run = async () => {
       afterSubmit.slice(0, 300)
     );
 
+    // --------------------------------------- challenge deep link (/practice/:id)
+    console.log('\nChallenge deep link');
+    const secondTitle = await page.evaluate(() => {
+      const candidates = [...document.querySelectorAll('button')].filter(
+        (b) => (b.innerText || '').trim().length > 20
+      );
+      const target = candidates[1] || null;
+      if (!target) return null;
+      const title = target.innerText.split('\n')[0].trim();
+      target.click();
+      return title;
+    });
+    await sleep(600);
+    const deepPath = new URL(page.url()).pathname;
+    check(
+      'selecting a challenge puts its id in the URL',
+      /\/modules\/practice\/[^/]+$/.test(deepPath),
+      deepPath
+    );
+    await goto(deepPath); // full document load = direct URL / refresh
+    // Wait for the challenge catalog to render before asserting its title.
+    await page
+      .waitForFunction(
+        () => /active challenges|Unable to reach the challenges API/.test(document.body.innerText),
+        { timeout: 20000 }
+      )
+      .catch(() => {});
+    const deepBody = await text();
+    check(
+      'direct URL + refresh keep the challenge page open',
+      page.url().includes('/modules/practice/') &&
+        !deepBody.includes('This page does not exist.') &&
+        (secondTitle ? deepBody.includes(secondTitle) : false),
+      page.url()
+    );
+
     // ------------------------------------------------------ leaderboard
     console.log('\nLeaderboard');
     await goto('/Devcodein/modules/leaderboard');
@@ -251,6 +287,23 @@ const run = async () => {
         check('dashboard greets the learner', body.includes('Welcome back'), body.slice(0, 120));
       }
     }
+
+    // ------------------------------------------- roadmap deep link (:roadmapId)
+    console.log('\nRoadmap deep link');
+    await goto('/Devcodein/modules/roadmaps');
+    await page.evaluate(() => {
+      const btn = [...document.querySelectorAll('button')].find((b) => /Backend/.test(b.innerText || ''));
+      btn?.click();
+    });
+    await sleep(500);
+    check('selecting a roadmap updates the URL', page.url().includes('roadmaps/backend'), page.url());
+    await goto('/Devcodein/modules/roadmaps/backend');
+    const roadmapBody = await text();
+    check(
+      'roadmap deep link opens directly (no 404)',
+      page.url().includes('roadmaps/backend') && !roadmapBody.includes('This page does not exist.'),
+      page.url()
+    );
 
     // ------------------------------------------------------ logout flow
     console.log('\nLogout');

@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowRight, BookOpen, CheckCircle2, Compass, Sparkles, Target } from 'lucide-react';
 import { useProfile } from '../context/ProfileContext';
 
@@ -240,7 +241,24 @@ const initialRoadmaps = [
 
 function RoadmapsPage() {
   const { activeProfile, toggleMilestone, addXp } = useProfile();
-  const [selectedRoadmapId, setSelectedRoadmapId] = useState('frontend');
+  // Deep link: /modules/roadmaps/:roadmapId opens that roadmap directly.
+  const { roadmapId } = useParams();
+  const navigate = useNavigate();
+  const [selectedRoadmapId, setSelectedRoadmapId] = useState(
+    initialRoadmaps.some((r) => r.id === roadmapId) ? roadmapId : 'frontend'
+  );
+
+  // Keep the selection in sync with the URL (deep links + refresh).
+  useEffect(() => {
+    if (roadmapId && initialRoadmaps.some((r) => r.id === roadmapId)) {
+      setSelectedRoadmapId(roadmapId);
+    }
+  }, [roadmapId]);
+
+  const selectRoadmap = (id) => {
+    setSelectedRoadmapId(id);
+    navigate(`/modules/roadmaps/${id}`, { replace: true });
+  };
 
   const roadmapData = useMemo(() => {
     return initialRoadmaps.map((r) => {
@@ -304,7 +322,7 @@ function RoadmapsPage() {
               {roadmapData.map((roadmap) => {
                 const isActive = roadmap.id === selectedRoadmapId;
                 return (
-                  <button key={roadmap.id} onClick={() => setSelectedRoadmapId(roadmap.id)} className={`w-full rounded-[1.25rem] border p-4 text-left transition-all ${isActive ? 'border-[#5ed29c]/40 bg-[#5ed29c]/10 shadow-lg shadow-[#07100c]' : 'border-white/10 bg-slate-950/60 hover:border-white/20 hover:bg-white/5'}`}>
+                  <button key={roadmap.id} onClick={() => selectRoadmap(roadmap.id)} className={`w-full rounded-[1.25rem] border p-4 text-left transition-all ${isActive ? 'border-[#5ed29c]/40 bg-[#5ed29c]/10 shadow-lg shadow-[#07100c]' : 'border-white/10 bg-slate-950/60 hover:border-white/20 hover:bg-white/5'}`}>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <span className={`h-2.5 w-2.5 rounded-full bg-gradient-to-r ${roadmap.accent}`} />

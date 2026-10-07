@@ -51,6 +51,7 @@ function ModuleRoutes() {
       {/* AI + Roadmaps */}
       <Route path="/modules/ai-mentor" element={<AICodingMentorPage />} />
       <Route path="/modules/roadmaps" element={<RoadmapsPage />} />
+      <Route path="/modules/roadmaps/:roadmapId" element={<RoadmapsPage />} />
 
       {/* Dashboard / gamification */}
       <Route path="/modules/missions" element={<DailyMissionsPage />} />

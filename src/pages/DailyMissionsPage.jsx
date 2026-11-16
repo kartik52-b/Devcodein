@@ -223,10 +223,10 @@ function DailyMissionsPage() {
   });
 
   return (
-    <div className="space-y-6 p-4 md:p-6 lg:p-8 animate-fade-in text-slate-100">
+    <div className="space-y-6 p-4 md:p-6 lg:p-8 animate-fade-in text-slate-200">
       {/* Achievement Unlock Popup */}
       {showUnlockNotification && (
-        <div className="fixed bottom-6 right-6 z-50 flex max-w-sm items-center gap-4 rounded-2xl border border-amber-400/30 bg-slate-900/95 p-4 shadow-2xl shadow-amber-950/20 backdrop-blur animate-slide-up">
+        <div className="fixed bottom-6 right-6 z-50 flex max-w-sm items-center gap-4 rounded-lg border border-amber-400/30 bg-slate-900/95 p-4 shadow-2xl shadow-amber-950/20 backdrop-blur animate-slide-up">
           <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-amber-400/20 text-2xl text-amber-300">
             👑
           </div>
@@ -236,7 +236,7 @@ function DailyMissionsPage() {
           </div>
           <button
             onClick={() => setShowUnlockNotification(false)}
-            className="ml-auto text-slate-400 hover:text-white"
+ className="ml-auto text-slate-400 hover:text-white"
           >
             ✕
           </button>
@@ -244,16 +244,16 @@ function DailyMissionsPage() {
       )}
 
       {/* Header section */}
-      <div className="glass rounded-[2rem] border border-white/10 p-6 md:p-8">
+      <div className="glass rounded-2xl border border-white/10 p-6 md:p-8">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="max-w-2xl">
-            <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">Daily Missions</p>
+            <p className="eyebrow">Daily Missions</p>
             <h1 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">Turn your daily practice into a rewarding streak.</h1>
             <p className="mt-2 text-slate-400">Complete tasks to gain XP, unlock custom badges, and show off your consistency in the ecosystem.</p>
           </div>
-          <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-slate-950/60 p-4">
+          <div className="flex items-center gap-4 rounded-lg border border-white/10 bg-slate-950/60 p-4">
             <div className="text-right">
-              <p className="text-xs uppercase tracking-wider text-slate-400">Total XP</p>
+              <p className="text-xs tracking-label text-slate-400">Total XP</p>
               <p className="text-2xl font-semibold text-white">{activeProfile.xp.toLocaleString()}</p>
             </div>
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-500/20 text-xl">
@@ -264,7 +264,7 @@ function DailyMissionsPage() {
       </div>
 
       {!serverState.online || serverState.message ? (
-        <div className="rounded-2xl border border-amber-400/25 bg-amber-400/10 px-4 py-3 text-sm text-amber-100">
+        <div className="rounded-lg border border-amber-400/25 bg-amber-400/10 px-4 py-3 text-sm text-amber-300">
           {serverState.message || 'Mission rewards are not syncing with the server.'}
         </div>
       ) : null}
@@ -273,14 +273,14 @@ function DailyMissionsPage() {
         {/* Left Column: Today's Tasks & Weekly Progress */}
         <div className="space-y-6">
           {/* Today's Tasks */}
-          <div className="glass rounded-[2rem] border border-white/10 p-6 card-hover-premium">
+          <div className="glass rounded-2xl border border-white/10 p-6 card-hover-premium">
             <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <h3 className="text-xl font-semibold text-white">Today&apos;s Missions</h3>
+                <h2 className="text-xl font-semibold text-white">Today&apos;s Missions</h2>
                 <p className="text-sm text-slate-400">July 21, 2026</p>
               </div>
               <div className="flex items-center gap-3">
-                <span className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-sm text-cyan-200">
+                <span className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-sm text-cyan-300">
                   {progressPercent}% Complete
                 </span>
                 <button
@@ -291,7 +291,7 @@ function DailyMissionsPage() {
                       ? 'bg-gradient-to-r from-amber-400 to-orange-500 text-slate-950 shadow-lg shadow-orange-500/20 hover:scale-105 active:scale-95 btn-micro'
                       : hasClaimedToday
                       ? 'border border-emerald-400/20 bg-emerald-500/10 text-emerald-300'
-                      : 'border border-white/10 bg-white/5 text-slate-500 cursor-not-allowed'
+                      : 'border border-white/10 bg-white/5 text-slate-400 cursor-not-allowed'
                   }`}
                 >
                   {hasClaimedToday ? '✓ Claimed' : 'Claim Daily Reward'}
@@ -302,7 +302,7 @@ function DailyMissionsPage() {
             {/* Progress Bar visualizer */}
             <div className="mb-6 h-3.5 w-full overflow-hidden rounded-full bg-slate-950/70 p-0.5 border border-white/5">
               <div
-                className="h-full rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 transition-all duration-500"
+ className="h-full rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 transition-all duration-500"
                 style={{ width: `${progressPercent}%` }}
               />
             </div>
@@ -312,7 +312,7 @@ function DailyMissionsPage() {
                 <div
                   key={task.id}
                   onClick={() => toggleTask(task.id)}
-                  className={`flex cursor-pointer items-center justify-between rounded-xl border p-4 transition-all duration-300 ${
+                  className={`flex cursor-pointer items-center justify-between rounded-md border p-4 transition-all duration-300 ${
                     task.completed
                       ? 'border-emerald-500/30 bg-emerald-950/10 text-slate-300'
                       : 'border-white/10 bg-slate-950/40 hover:border-white/20'
@@ -320,7 +320,7 @@ function DailyMissionsPage() {
                 >
                   <div className="flex items-center gap-4">
                     <div
-                      className={`flex h-6 w-6 items-center justify-center rounded-md border transition-all ${
+                      className={`flex h-6 w-6 items-center justify-center rounded-sm border transition-all ${
                         task.completed
                           ? 'border-emerald-400 bg-emerald-400/20 text-emerald-300'
                           : 'border-white/30 hover:border-white/60'
@@ -329,16 +329,16 @@ function DailyMissionsPage() {
                       {task.completed && '✓'}
                     </div>
                     <div>
-                      <p className={`font-medium transition-all ${task.completed ? 'line-through text-slate-500' : 'text-white'}`}>
+                      <p className={`font-medium transition-all ${task.completed ? 'line-through text-slate-400' : 'text-white'}`}>
                         {task.title}
                       </p>
-                      <span className="mt-1 inline-block rounded bg-indigo-500/10 px-2 py-0.5 text-xs text-indigo-300">
+                      <span className="mt-1 inline-block rounded-sm bg-indigo-500/10 px-2 py-0.5 text-xs text-indigo-300">
                         {task.category}
                       </span>
                     </div>
                   </div>
                   <div className="text-right">
-                    <span className={`font-semibold ${task.completed ? 'text-emerald-400' : 'text-slate-300'}`}>
+                    <span className={`font-semibold ${task.completed ? 'text-emerald-300' : 'text-slate-300'}`}>
                       +{task.xp} XP
                     </span>
                   </div>
@@ -348,15 +348,15 @@ function DailyMissionsPage() {
           </div>
 
           {/* Weekly Tasks */}
-          <div className="glass rounded-[2rem] border border-white/10 p-6 card-hover-premium">
-            <h3 className="mb-2 text-xl font-semibold text-white">Weekly Objectives</h3>
+          <div className="glass rounded-2xl border border-white/10 p-6 card-hover-premium">
+            <h2 className="mb-2 text-xl font-semibold text-white">Weekly Objectives</h2>
             <p className="mb-6 text-sm text-slate-400">Complete before week cycle ends on Sunday.</p>
 
             <div className="space-y-4">
               {weeklyTasks.map((task) => {
                 const isComplete = task.current >= task.target;
                 return (
-                  <div key={task.id} className="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+                  <div key={task.id} className="rounded-lg border border-white/10 bg-slate-950/40 p-4">
                     <div className="mb-2 flex items-center justify-between text-sm">
                       <div>
                         <h4 className="font-semibold text-white">{task.title}</h4>
@@ -365,13 +365,13 @@ function DailyMissionsPage() {
                       <div className="text-right">
                         {isComplete ? (
                           task.claimed ? (
-                            <span className="rounded bg-emerald-500/10 px-2 py-1 text-xs text-emerald-300 border border-emerald-500/20">
+                            <span className="rounded-sm bg-emerald-500/10 px-2 py-1 text-xs text-emerald-300 border border-emerald-500/20">
                               Claimed
                             </span>
                           ) : (
                             <button
                               onClick={() => handleClaimWeekly(task.id, task.xp)}
-                              className="rounded bg-gradient-to-r from-amber-400 to-amber-500 px-3 py-1 text-xs font-semibold text-slate-950 shadow hover:scale-105 btn-micro"
+ className="btn btn-primary btn-sm"
                             >
                               Claim
                             </button>
@@ -385,7 +385,7 @@ function DailyMissionsPage() {
                     </div>
                     <div className="h-2 w-full rounded-full bg-slate-800">
                       <div
-                        className="h-2 rounded-full bg-gradient-to-r from-indigo-500 to-cyan-400 transition-all"
+ className="h-2 rounded-full bg-gradient-to-r from-indigo-500 to-cyan-400 transition-all"
                         style={{ width: `${Math.min(100, (task.current / task.target) * 100)}%` }}
                       />
                     </div>
@@ -399,16 +399,16 @@ function DailyMissionsPage() {
         {/* Right Column: Calendar, History, Monthly Goals */}
         <div className="space-y-6">
           {/* Calendar Grid */}
-          <div className="glass rounded-[2rem] border border-white/10 p-6 card-hover-premium">
+          <div className="glass rounded-2xl border border-white/10 p-6 card-hover-premium">
             <div className="mb-4 flex items-center justify-between">
-              <h3 className="text-xl font-semibold text-white">Active Calendar</h3>
-              <span className="rounded bg-indigo-500/10 px-2 py-1 text-xs text-indigo-300">
+              <h2 className="text-xl font-semibold text-white">Active Calendar</h2>
+              <span className="rounded-sm bg-indigo-500/10 px-2 py-1 text-xs text-indigo-300">
                 {currentMonth}
               </span>
             </div>
             <p className="mb-4 text-xs text-slate-400">Glow indicate days you successfully cleared all today missions.</p>
 
-            <div className="grid grid-cols-7 gap-2 text-center text-xs font-medium text-slate-500">
+            <div className="grid grid-cols-7 gap-2 text-center text-xs font-medium text-slate-400">
               <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
             </div>
 
@@ -416,11 +416,11 @@ function DailyMissionsPage() {
               {calendarDays.map((dayObj) => (
                 <div
                   key={dayObj.day}
-                  className={`flex aspect-square items-center justify-center rounded-lg border text-sm font-semibold transition-all relative ${
+                  className={`flex aspect-square items-center justify-center rounded-md border text-sm font-semibold transition-all relative ${
                     dayObj.completed
-                      ? 'border-emerald-400/40 bg-gradient-to-br from-emerald-500/20 to-teal-400/10 text-emerald-200 shadow-md shadow-emerald-950/20 scale-105'
+                      ? 'border-emerald-400/40 bg-gradient-to-br from-emerald-500/20 to-teal-400/10 text-emerald-300 shadow-md shadow-emerald-950/20 scale-105'
                       : dayObj.today
-                      ? 'border-indigo-400 bg-indigo-500/20 text-indigo-200'
+                      ? 'border-indigo-400 bg-indigo-500/20 text-indigo-300'
                       : 'border-white/5 bg-slate-950/60 text-slate-400 hover:border-white/10'
                   }`}
                 >
@@ -434,8 +434,8 @@ function DailyMissionsPage() {
           </div>
 
           {/* Monthly Goals */}
-          <div className="glass rounded-[2rem] border border-white/10 p-6 card-hover-premium">
-            <h3 className="mb-4 text-xl font-semibold text-white">Monthly Goals</h3>
+          <div className="glass rounded-2xl border border-white/10 p-6 card-hover-premium">
+            <h2 className="mb-4 text-xl font-semibold text-white">Monthly Goals</h2>
             <div className="space-y-4">
               {monthlyGoals.map((goal) => {
                 const isNew = activeProfile.xp === 0;
@@ -449,11 +449,11 @@ function DailyMissionsPage() {
                     </div>
                     <div className="h-1.5 w-full rounded-full bg-slate-800">
                       <div
-                        className="h-1.5 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500"
+ className="h-1.5 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500"
                         style={{ width: `${percent}%` }}
                       />
                     </div>
-                    <p className="text-[11px] text-slate-500">Reward: +{goal.xp} XP</p>
+                    <p className="text-[11px] text-slate-400">Reward: +{goal.xp} XP</p>
                   </div>
                 );
               })}
@@ -461,23 +461,23 @@ function DailyMissionsPage() {
           </div>
 
           {/* History log */}
-          <div className="glass rounded-[2rem] border border-white/10 p-6 card-hover-premium">
-            <h3 className="mb-4 text-xl font-semibold text-white">Mission History</h3>
+          <div className="glass rounded-2xl border border-white/10 p-6 card-hover-premium">
+            <h2 className="mb-4 text-xl font-semibold text-white">Mission History</h2>
             <div className="space-y-3 max-h-56 overflow-y-auto pr-1">
               {activeProfile.history.length > 0 ? (
                 activeProfile.history.map((item) => (
-                  <div key={item.id} className="flex items-center justify-between rounded-xl border border-white/5 bg-white/5 p-3 text-xs">
+                  <div key={item.id} className="flex items-center justify-between rounded-md border border-white/5 bg-white/5 p-3 text-xs">
                     <div>
                       <p className="font-semibold text-white">{item.label}</p>
                       <p className="mt-0.5 text-slate-400">{item.time}</p>
                     </div>
-                    <span className="rounded bg-cyan-500/10 px-2 py-0.5 font-medium text-cyan-300 border border-cyan-400/20">
+                    <span className="rounded-sm bg-cyan-500/10 px-2 py-0.5 font-medium text-cyan-300 border border-cyan-400/20">
                       {item.reward}
                     </span>
                   </div>
                 ))
               ) : (
-                <p className="text-xs text-slate-500 italic text-center py-4">No claimed missions in history logs.</p>
+                <p className="text-xs text-slate-400 italic text-center py-4">No claimed missions in history logs.</p>
               )}
             </div>
           </div>

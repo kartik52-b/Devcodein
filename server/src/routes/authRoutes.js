@@ -273,6 +273,88 @@ router.post('/change-email', protect, requireDb, async (req, res, next) => {
   }
 });
 
+// --------------------------------------------------- Supabase bridge
+//
+// The production frontend authenticates against Supabase (Postgres + Auth).
+// Learning data still lives in MongoDB, so this endpoint lets the SPA trade a
+// Supabase access token for the API's own JWT. The token is verified against
+// Supabase itself — the server never trusts an email or user id sent by the
+// browser, and no Supabase secret is exposed to the client.
+
+router.post('/supabase', requireDb, async (req, res, next) => {
+  try {
+    const supabaseUrl = String(process.env.SUPABASE_URL || '').replace(/\/+$/, '');
+    const anonKey = process.env.SUPABASE_ANON_KEY;
+    if (!supabaseUrl || !anonKey) {
+      return res.status(501).json({
+        message: 'Supabase authentication bridging is not configured on this server.'
+      });
+    }
+
+    const accessToken = String(req.body?.accessToken || '');
+    if (!accessToken || accessToken.length > 4096) {
+      return res.status(400).json({ message: 'A Supabase access token is required' });
+    }
+
+    let response;
+    try {
+      response = await fetch(`${supabaseUrl}/auth/v1/user`, {
+        headers: { apikey: anonKey, Authorization: `Bearer ${accessToken}` }
+      });
+    } catch (error) {
+      return res.status(503).json({ message: 'The authentication provider is unreachable.' });
+    }
+
+    if (!response.ok) {
+      return res.status(401).json({ message: 'That session is invalid or has expired. Please sign in again.' });
+    }
+
+    const claims = await response.json().catch(() => null);
+    if (!claims?.id || !claims?.email) {
+      return res.status(401).json({ message: 'That session is invalid or has expired. Please sign in again.' });
+    }
+    if (!claims.email_confirmed_at && !claims.confirmed_at) {
+      return res.status(403).json({ message: 'Confirm your email address before continuing.' });
+    }
+
+    const email = String(claims.email).toLowerCase().trim();
+    const displayName = String(
+      claims.user_metadata?.full_name || claims.user_metadata?.name || email.split('@')[0]
+    )
+      .trim()
+      .slice(0, 80);
+    const avatar = claims.user_metadata?.avatar_url || claims.user_metadata?.picture || '';
+
+    let user = await User.findOne({ email });
+    if (!user) {
+      user = await User.create({
+        name: displayName || 'Learner',
+        email,
+        provider: claims.app_metadata?.provider === 'google' ? 'google' : 'supabase',
+        avatar,
+        isEmailVerified: true
+      });
+    } else if (!user.isActive) {
+      return res.status(403).json({ message: 'This account has been deactivated' });
+    } else {
+      let dirty = false;
+      if (!user.avatar && avatar) {
+        user.avatar = avatar;
+        dirty = true;
+      }
+      if (!user.isEmailVerified) {
+        user.isEmailVerified = true;
+        dirty = true;
+      }
+      if (dirty) await user.save({ validateBeforeSave: false });
+    }
+
+    res.json({ token: signToken(user), user: publicUser(user) });
+  } catch (error) {
+    next(error);
+  }
+});
+
 // ------------------------------------------------------- Google OAuth
 //
 // Authorization-code flow, entirely server-side: the browser is redirected to

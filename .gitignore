@@ -7,3 +7,9 @@ dist
 # Server build output & environment
 server/public/
 server/.env
+
+# Local environment files (never commit real credentials)
+.env
+.env.local
+.env.*.local
+!.env.example

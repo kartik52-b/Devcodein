@@ -67,31 +67,31 @@ function ComplexityAnalyzer() {
     <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
       <div className="mb-8 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">Complexity analyzer</p>
+          <p className="eyebrow">Complexity analyzer</p>
           <h2 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">Estimate performance in seconds with a polished code dashboard.</h2>
         </div>
         <p className="max-w-2xl text-slate-400">Paste code, inspect loops and recursion, and receive practical suggestions that feel like a real performance review for your logic.</p>
       </div>
 
       <div className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
-        <div className="glass rounded-[2rem] border border-white/10 p-5 shadow-2xl shadow-indigo-950/40">
+        <div className="glass rounded-2xl border border-white/10 p-5 shadow-2xl shadow-indigo-950/40">
           <div className="mb-4 flex items-center justify-between">
             <div>
               <p className="text-sm text-slate-400">Code input</p>
               <p className="text-lg font-semibold text-white">Paste and analyze</p>
             </div>
-            <div className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-sm text-cyan-200">Live analysis</div>
+            <div className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-sm text-cyan-300">Live analysis</div>
           </div>
           <textarea
             value={code}
             onChange={(event) => setCode(event.target.value)}
-            className="min-h-[280px] w-full rounded-[1.25rem] border border-white/10 bg-slate-950/80 p-4 font-mono text-sm text-slate-200 outline-none"
+ className="min-h-[280px] w-full rounded-lg border border-white/10 bg-slate-950/80 p-4 font-mono text-sm text-slate-200 outline-none"
             spellCheck={false}
           />
         </div>
 
         <div className="space-y-4">
-          <div className="glass rounded-[1.75rem] border border-white/10 p-6">
+          <div className="glass rounded-2xl border border-white/10 p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-400">Performance score</p>
@@ -114,14 +114,14 @@ function ComplexityAnalyzer() {
             </div>
           </div>
 
-          <div className="glass rounded-[1.75rem] border border-white/10 p-6">
+          <div className="glass rounded-2xl border border-white/10 p-6">
             <p className="text-sm text-slate-400">Estimated complexity</p>
             <div className="mt-4 grid gap-3">
-              <div className="rounded-[1rem] border border-white/10 bg-slate-950/60 p-4 text-sm text-slate-300">
+              <div className="rounded-lg border border-white/10 bg-slate-950/60 p-4 text-sm text-slate-300">
                 <p className="text-slate-400">Time complexity</p>
                 <p className="mt-1 text-lg font-semibold text-white">{analysis.timeComplexity}</p>
               </div>
-              <div className="rounded-[1rem] border border-white/10 bg-slate-950/60 p-4 text-sm text-slate-300">
+              <div className="rounded-lg border border-white/10 bg-slate-950/60 p-4 text-sm text-slate-300">
                 <p className="text-slate-400">Space complexity</p>
                 <p className="mt-1 text-lg font-semibold text-white">{analysis.spaceComplexity}</p>
               </div>
@@ -131,15 +131,15 @@ function ComplexityAnalyzer() {
       </div>
 
       <div className="mt-8 grid gap-6 lg:grid-cols-3">
-        <div className="glass rounded-[1.75rem] border border-white/10 p-6">
+        <div className="glass rounded-2xl border border-white/10 p-6">
           <p className="text-sm text-slate-400">Loops detected</p>
           <p className="mt-3 text-3xl font-semibold text-white">{analysis.loopCount}</p>
         </div>
-        <div className="glass rounded-[1.75rem] border border-white/10 p-6">
+        <div className="glass rounded-2xl border border-white/10 p-6">
           <p className="text-sm text-slate-400">Recursion detected</p>
           <p className="mt-3 text-3xl font-semibold text-white">{analysis.recursion}</p>
         </div>
-        <div className="glass rounded-[1.75rem] border border-white/10 p-6">
+        <div className="glass rounded-2xl border border-white/10 p-6">
           <p className="text-sm text-slate-400">Optimization suggestions</p>
           <ul className="mt-3 space-y-2 text-sm leading-7 text-slate-300">
             {analysis.suggestions.map((suggestion) => (

@@ -153,13 +153,13 @@ function SettingsPage() {
 
   if (isDeleted) {
     return (
-      <div className="mx-auto max-w-xl p-8 text-center glass rounded-[2rem] border border-red-500/20 my-12 animate-fade-in text-slate-100">
+      <div className="mx-auto max-w-xl p-8 text-center glass rounded-2xl border border-red-500/20 my-12 animate-fade-in text-slate-200">
         <span className="text-5xl block mb-4">⚠️</span>
-        <h2 className="text-2xl font-bold text-red-400">Account Deleted / Sandbox Reset</h2>
+        <h2 className="text-2xl font-bold text-rose-300">Account Deleted / Sandbox Reset</h2>
         <p className="mt-3 text-sm text-slate-400">Your profile data has been wiped from the sandbox. Re-initializing default sandbox environment.</p>
         <button
           onClick={() => window.location.reload()}
-          className="mt-6 rounded-xl bg-slate-800 px-6 py-2.5 text-xs text-white hover:bg-slate-700 transition btn-micro"
+ className="btn btn-tertiary btn-sm mt-6"
         >
           Re-initialize Sandbox
         </button>
@@ -168,10 +168,10 @@ function SettingsPage() {
   }
 
   return (
-    <div className="space-y-6 p-4 md:p-6 lg:p-8 animate-fade-in text-slate-100">
+    <div className="space-y-6 p-4 md:p-6 lg:p-8 animate-fade-in text-slate-200">
       
       {/* Header section */}
-      <div className="glass rounded-[2rem] border border-white/10 p-6 md:p-8">
+      <div className="glass rounded-2xl border border-white/10 p-6 md:p-8">
         <h1 className="text-3xl font-semibold text-white">Settings Workspace</h1>
         <p className="mt-2 text-slate-400">Manage account safety, interface parameters, toggles, notifications, and profile details.</p>
       </div>
@@ -180,7 +180,7 @@ function SettingsPage() {
       <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
         
         {/* Navigation Tabs on the left */}
-        <div className="glass rounded-[2rem] border border-white/10 p-6 h-fit space-y-2 card-hover-premium">
+        <div className="glass rounded-2xl border border-white/10 p-6 h-fit space-y-2 card-hover-premium">
           {[
             { id: 'account', label: '👤 Account Profile' },
             { id: 'appearance', label: '🎨 Appearance / Theme' },
@@ -191,7 +191,7 @@ function SettingsPage() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`w-full text-left rounded-xl px-4 py-3 text-xs font-semibold transition-all btn-micro ${
+              className={`w-full text-left rounded-md px-4 py-3 text-xs font-semibold transition-all btn-micro ${
                 activeTab === tab.id
                   ? 'bg-gradient-to-r from-indigo-500 to-cyan-400 text-white border-l-2 border-cyan-400'
                   : 'text-slate-400 border-l-2 border-transparent hover:bg-white/5 hover:text-white'
@@ -203,7 +203,7 @@ function SettingsPage() {
         </div>
 
         {/* Configurations forms on the right */}
-        <div className="glass rounded-[2rem] border border-white/10 p-6 min-h-[400px] card-hover-premium">
+        <div className="glass rounded-2xl border border-white/10 p-6 min-h-[400px] card-hover-premium">
           
           {/* 1. Account Settings */}
           {activeTab === 'account' && (
@@ -212,33 +212,33 @@ function SettingsPage() {
               
               <div className="space-y-4">
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-slate-400 mb-1">Username display</label>
+                  <label className="block text-xs tracking-label text-slate-400 mb-1">Username display</label>
                   <input
-                    type="text"
+ type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    className="w-full text-sm rounded-xl border border-white/10 bg-slate-950/60 p-3 text-white outline-none focus:border-cyan-400/40"
+ className="w-full text-sm rounded-md border border-white/10 bg-slate-950/60 p-3 text-white outline-none focus:border-cyan-400/40"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-slate-400 mb-1">Email address</label>
+                  <label className="block text-xs tracking-label text-slate-400 mb-1">Email address</label>
                   <input
-                    type="email"
+ type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full text-sm rounded-xl border border-white/10 bg-slate-950/60 p-3 text-slate-400 outline-none cursor-not-allowed"
+ className="w-full text-sm rounded-md border border-white/10 bg-slate-950/60 p-3 text-slate-400 outline-none cursor-not-allowed"
                     disabled
                   />
-                  <p className="text-[10px] text-slate-500 mt-1">Registered email for this DevVerse account.</p>
+                  <p className="text-[10px] text-slate-400 mt-1">Registered email for this DevVerse account.</p>
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-slate-400 mb-1">System Language</label>
+                  <label className="block text-xs tracking-label text-slate-400 mb-1">System Language</label>
                   <select
                     value={language}
                     onChange={(e) => setLanguage(e.target.value)}
-                    className="w-full text-sm rounded-xl border border-white/10 bg-slate-950/60 p-3 text-white outline-none focus:border-cyan-400/40"
+ className="w-full text-sm rounded-md border border-white/10 bg-slate-950/60 p-3 text-white outline-none focus:border-cyan-400/40"
                   >
                     <option>English</option>
                     <option>Spanish (Español)</option>
@@ -249,16 +249,16 @@ function SettingsPage() {
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-slate-400 mb-1">Privacy Level</label>
+                  <label className="block text-xs tracking-label text-slate-400 mb-1">Privacy Level</label>
                   <div className="mt-2 grid grid-cols-3 gap-2">
                     {['public', 'friends-only', 'private'].map((opt) => (
                       <button
                         key={opt}
-                        type="button"
+ type="button"
                         onClick={() => setPrivacyLevel(opt)}
-                        className={`rounded-lg py-2 text-xs font-semibold border transition btn-micro ${
+                        className={`rounded-md py-2 text-xs font-semibold border transition btn-micro ${
                           privacyLevel === opt
-                            ? 'border-cyan-400 bg-cyan-400/10 text-cyan-200 shadow'
+                            ? 'border-cyan-400 bg-cyan-400/10 text-cyan-300 shadow'
                             : 'border-white/5 bg-slate-950/40 text-slate-400 hover:text-white'
                         }`}
                       >
@@ -270,8 +270,8 @@ function SettingsPage() {
               </div>
 
               <button
-                type="submit"
-                className="rounded-xl bg-indigo-500 hover:bg-indigo-400 text-white px-5 py-2.5 text-xs font-semibold transition active:scale-95 btn-micro"
+ type="submit"
+ className="btn btn-primary btn-sm"
               >
                 Save Settings
               </button>
@@ -285,9 +285,9 @@ function SettingsPage() {
               
               <div className="space-y-5">
                 {/* Dark Mode toggle */}
-                <div className="flex items-center justify-between bg-slate-950/40 p-4 rounded-xl border border-white/5">
+                <div className="flex items-center justify-between bg-slate-950/40 p-4 rounded-md border border-white/5">
                   <div>
-                    <h4 className="text-xs font-bold text-white uppercase tracking-wider">Forced Dark Mode</h4>
+                    <h4 className="text-xs font-bold text-white tracking-label">Forced Dark Mode</h4>
                     <p className="text-[10px] text-slate-400 mt-0.5">Maintain low luminosity palette structures.</p>
                   </div>
                   <button
@@ -304,7 +304,7 @@ function SettingsPage() {
 
                 {/* Curated Theme selection */}
                 <div>
-                  <span className="block text-xs uppercase tracking-wider text-slate-400 mb-3">Color Accent Palettes</span>
+                  <span className="block text-xs tracking-label text-slate-400 mb-3">Color Accent Palettes</span>
                   <div className="grid gap-3 sm:grid-cols-2">
                     {[
                       { name: 'Indigo Cyber', desc: 'Futuristic digital neon purple glows', accent: 'bg-indigo-500' },
@@ -315,7 +315,7 @@ function SettingsPage() {
                       <div
                         key={theme.name}
                         onClick={() => handleUpdateTheme(theme.name)}
-                        className={`cursor-pointer rounded-2xl border p-4 transition-all duration-300 flex items-center justify-between ${
+                        className={`cursor-pointer rounded-lg border p-4 transition-all duration-300 flex items-center justify-between ${
                           selectedTheme === theme.name
                             ? 'border-cyan-400 bg-cyan-400/10 shadow-lg shadow-cyan-950/20'
                             : 'border-white/5 bg-slate-950/40 hover:border-white/10'
@@ -340,9 +340,9 @@ function SettingsPage() {
               <h3 className="text-lg font-semibold text-white border-b border-white/10 pb-3">Security & Shielding</h3>
 
               {/* 2FA Toggle */}
-              <div className="flex items-center justify-between bg-slate-950/40 p-4 rounded-xl border border-white/5 mb-6">
+              <div className="flex items-center justify-between bg-slate-950/40 p-4 rounded-md border border-white/5 mb-6">
                 <div>
-                  <h4 className="text-xs font-bold text-white uppercase tracking-wider">Double Factor Authentication (2FA)</h4>
+                  <h4 className="text-xs font-bold text-white tracking-label">Double Factor Authentication (2FA)</h4>
                   <p className="text-[10px] text-slate-400 mt-0.5">Secure logins with verification codes emailed to credentials.</p>
                 </div>
                 <button
@@ -359,52 +359,52 @@ function SettingsPage() {
 
               {/* Password update form */}
               <form onSubmit={handlePasswordChange} className="space-y-4">
-                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Alter Password Credentials</h4>
+                <h4 className="text-xs font-bold text-slate-400 tracking-label mb-2">Alter Password Credentials</h4>
                 
                 {pwError && (
-                  <div className="rounded-lg bg-rose-500/10 border border-rose-500/20 p-3 text-xs text-rose-400">
+                  <div className="rounded-md bg-rose-500/10 border border-rose-500/20 p-3 text-xs text-rose-300">
                     ❌ {pwError}
                   </div>
                 )}
                 {pwSuccess && (
-                  <div className="rounded-lg bg-emerald-500/10 border border-emerald-500/20 p-3 text-xs text-emerald-400">
+                  <div className="rounded-md bg-emerald-500/10 border border-emerald-500/20 p-3 text-xs text-emerald-300">
                     ✓ Password updated successfully in mock sandbox database.
                   </div>
                 )}
 
                 <div>
-                  <label className="block text-[10px] uppercase tracking-wider text-slate-400 mb-1">Old password</label>
+                  <label className="block text-[10px] tracking-label text-slate-400 mb-1">Old password</label>
                   <input
-                    type="password"
+ type="password"
                     value={oldPassword}
                     onChange={(e) => setOldPassword(e.target.value)}
-                    className="w-full text-xs rounded-xl border border-white/10 bg-slate-950/60 p-2.5 text-white outline-none focus:border-cyan-400/40"
+ className="w-full text-xs rounded-md border border-white/10 bg-slate-950/60 p-2.5 text-white outline-none focus:border-cyan-400/40"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[10px] uppercase tracking-wider text-slate-400 mb-1">New password</label>
+                  <label className="block text-[10px] tracking-label text-slate-400 mb-1">New password</label>
                   <input
-                    type="password"
+ type="password"
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
-                    className="w-full text-xs rounded-xl border border-white/10 bg-slate-950/60 p-2.5 text-white outline-none focus:border-cyan-400/40"
+ className="w-full text-xs rounded-md border border-white/10 bg-slate-950/60 p-2.5 text-white outline-none focus:border-cyan-400/40"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[10px] uppercase tracking-wider text-slate-400 mb-1">Confirm new password</label>
+                  <label className="block text-[10px] tracking-label text-slate-400 mb-1">Confirm new password</label>
                   <input
-                    type="password"
+ type="password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="w-full text-xs rounded-xl border border-white/10 bg-slate-950/60 p-2.5 text-white outline-none focus:border-cyan-400/40"
+ className="w-full text-xs rounded-md border border-white/10 bg-slate-950/60 p-2.5 text-white outline-none focus:border-cyan-400/40"
                   />
                 </div>
 
                 <button
-                  type="submit"
-                  className="rounded-xl bg-indigo-500 hover:bg-indigo-400 text-white px-5 py-2.5 text-xs font-semibold transition active:scale-95 btn-micro"
+ type="submit"
+ className="btn btn-primary btn-sm"
                 >
                   Save Credentials
                 </button>
@@ -423,9 +423,9 @@ function SettingsPage() {
                   { title: 'Push banners', state: notifyPush, toggle: () => handleToggleNotification('push'), desc: 'Receive instant alerts on achievement unlocks.' },
                   { title: 'Audio notifications', state: notifySound, toggle: () => handleToggleNotification('sound'), desc: 'Trigger subtle audio sounds on completing missions.' }
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-center justify-between bg-slate-950/40 p-4 rounded-xl border border-white/5">
+                  <div key={idx} className="flex items-center justify-between bg-slate-950/40 p-4 rounded-md border border-white/5">
                     <div>
-                      <h4 className="text-xs font-bold text-white uppercase tracking-wider">{item.title}</h4>
+                      <h4 className="text-xs font-bold text-white tracking-label">{item.title}</h4>
                       <p className="text-[10px] text-slate-400 mt-0.5">{item.desc}</p>
                     </div>
                     <button
@@ -447,18 +447,18 @@ function SettingsPage() {
           {/* 5. Danger Zone settings */}
           {activeTab === 'danger' && (
             <div className="space-y-6">
-              <h3 className="text-lg font-semibold text-rose-400 border-b border-rose-500/20 pb-3">Caution Core Danger zone</h3>
+              <h3 className="text-lg font-semibold text-rose-300 border-b border-rose-500/20 pb-3">Caution Core Danger zone</h3>
               
-              <div className="rounded-2xl border border-red-500/20 bg-red-500/5 p-4 space-y-4">
-                <h4 className="text-xs font-bold text-red-300 uppercase tracking-widest">Wipe Account Data Details</h4>
+              <div className="rounded-lg border border-red-500/20 bg-red-500/5 p-4 space-y-4">
+                <h4 className="text-xs font-bold text-rose-300 tracking-label">Wipe Account Data Details</h4>
                 <p className="text-xs text-slate-300 leading-relaxed">
                   Deleting your profile immediately terminates all current streaks, earned badges, custom roadmaps progress, and claimed XP rewards. This sequence is permanent and cannot be rolled back.
                 </p>
 
                 <button
-                  type="button"
+ type="button"
                   onClick={() => setShowDeleteModal(true)}
-                  className="rounded-xl bg-red-600 hover:bg-red-500 text-white px-5 py-2.5 text-xs font-semibold transition active:scale-95 btn-micro"
+ className="btn btn-danger btn-sm"
                 >
                   Delete Account Profile
                 </button>
@@ -472,20 +472,20 @@ function SettingsPage() {
       {/* Delete account caution modal */}
       {showDeleteModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-4 backdrop-blur-sm">
-          <div className="glass max-w-md w-full rounded-[2rem] border border-red-500/20 p-6 space-y-6 animate-slide-up">
+          <div className="glass max-w-md w-full rounded-2xl border border-red-500/20 p-6 space-y-6 animate-slide-up">
             <div>
               <h3 className="text-lg font-bold text-white">Confirm Account Deletion</h3>
               <p className="text-xs text-slate-400 mt-2 leading-relaxed">
-                To confirm deletion, please type the word <strong className="text-red-400">delete</strong> in the text container input below.
+                To confirm deletion, please type the word <strong className="text-rose-300">delete</strong> in the text container input below.
               </p>
             </div>
 
             <input
-              type="text"
+ type="text"
               value={deleteConfirmText}
               onChange={(e) => setDeleteConfirmText(e.target.value)}
-              placeholder="Type delete to confirm..."
-              className="w-full text-xs rounded-xl border border-white/10 bg-slate-950/60 p-3 text-white outline-none focus:border-red-400/40"
+ placeholder="Type delete to confirm..."
+ className="w-full text-xs rounded-md border border-white/10 bg-slate-950/60 p-3 text-white outline-none focus:border-red-400/40"
             />
 
             <div className="flex gap-3 justify-end text-xs">
@@ -494,13 +494,13 @@ function SettingsPage() {
                   setShowDeleteModal(false);
                   setDeleteConfirmText('');
                 }}
-                className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-slate-300 hover:text-white transition btn-micro"
+ className="btn btn-tertiary"
               >
                 Cancel Action
               </button>
               <button
                 onClick={handleDeleteAccount}
-                className="rounded-xl bg-red-600 hover:bg-red-500 px-4 py-2 text-white font-semibold transition active:scale-95 btn-micro"
+ className="btn btn-danger"
               >
                 Confirm Delete
               </button>

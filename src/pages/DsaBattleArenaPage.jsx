@@ -190,7 +190,7 @@ function DsaBattleArenaPage() {
   };
 
   return (
-    <div className="space-y-6 p-4 md:p-6 lg:p-8 animate-fade-in text-slate-100 min-h-screen relative">
+    <div className="space-y-6 p-4 md:p-6 lg:p-8 animate-fade-in text-slate-200 min-h-screen relative">
       
       {/* Confetti canvas animation */}
       {isConfettiActive && (
@@ -198,7 +198,7 @@ function DsaBattleArenaPage() {
           {confettiCoords.map((c, i) => (
             <div
               key={i}
-              className="confetti-particle"
+ className="confetti-particle"
               style={{
                 left: c.x,
                 backgroundColor: c.color,
@@ -213,17 +213,17 @@ function DsaBattleArenaPage() {
       {currentView === 'map' && (
         <div className="space-y-8">
           {/* Header */}
-          <div className="glass rounded-[2rem] border border-white/10 p-6 md:p-8">
+          <div className="glass rounded-2xl border border-white/10 p-6 md:p-8">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
               <div className="max-w-2xl">
-                <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">DSA Academy</p>
+                <p className="eyebrow">DSA Academy</p>
                 <h1 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">Interactive Battle Arena</h1>
                 <p className="mt-2 text-slate-400">Level up your DSA knowledge like a game. Complete quizzes, visual checks, and live coding modules to unlock the path.</p>
               </div>
               <div className="flex gap-2 shrink-0">
                 <button
                   onClick={() => setCurrentView('battle')}
-                  className="rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-400 px-5 py-3 text-xs font-semibold text-white hover:scale-105 transition btn-micro"
+ className="btn btn-primary btn-lg"
                 >
                   ⚔️ Open Battle Comparison Mode
                 </button>
@@ -232,20 +232,20 @@ function DsaBattleArenaPage() {
           </div>
 
           {/* Gamified Road Map Nodes */}
-          <div className="glass rounded-[2rem] border border-white/10 p-8 flex flex-col items-center space-y-6">
-            <h3 className="text-lg font-bold text-white text-center uppercase tracking-widest text-slate-500">🗺️ Academy Quest Map</h3>
+          <div className="glass rounded-2xl border border-white/10 p-8 flex flex-col items-center space-y-6">
+            <h3 className="text-lg font-bold text-white text-center tracking-label text-slate-400">🗺️ Academy Quest Map</h3>
             
             {/* The vertical node track */}
             <div className="relative flex flex-col items-center gap-12 w-full max-w-md pt-4">
               
               {/* Vertical connecting line */}
-              <div className="absolute top-8 bottom-8 w-1 bg-slate-800 rounded z-0" />
+              <div className="absolute top-8 bottom-8 w-1 bg-slate-800 rounded-sm z-0" />
 
               {dsaLevels.map((lvl, index) => {
                 const isUnlocked = unlockedLevelIds.includes(lvl.id);
                 const isCompleted = activeProfile.completedMilestones.includes(lvl.id);
                 
-                let nodeStyle = 'border-slate-800 bg-slate-900 text-slate-600 cursor-not-allowed';
+                let nodeStyle = 'border-slate-800 bg-slate-900 text-slate-400 cursor-not-allowed';
                 if (isUnlocked) nodeStyle = 'border-indigo-400 bg-indigo-500/10 text-indigo-300 hover:scale-105 shadow';
                 if (isCompleted) nodeStyle = 'border-emerald-400 bg-emerald-500/15 text-emerald-300 hover:scale-105';
 
@@ -261,8 +261,8 @@ function DsaBattleArenaPage() {
                       {isCompleted ? '✓' : index + 1}
                     </button>
                     <div className="max-w-[200px]">
-                      <h4 className={`text-sm font-bold ${isUnlocked ? 'text-white' : 'text-slate-500'}`}>{lvl.name}</h4>
-                      <p className="text-[10px] text-slate-500 mt-0.5 leading-relaxed">{lvl.desc}</p>
+                      <h4 className={`text-sm font-bold ${isUnlocked ? 'text-white' : 'text-slate-400'}`}>{lvl.name}</h4>
+                      <p className="text-[10px] text-slate-400 mt-0.5 leading-relaxed">{lvl.desc}</p>
                     </div>
                   </div>
                 );
@@ -276,16 +276,16 @@ function DsaBattleArenaPage() {
       {currentView === 'lesson' && (
         <div className="space-y-6">
           {/* Header lesson bar */}
-          <div className="glass rounded-[2rem] border border-white/10 p-6 flex justify-between items-center">
+          <div className="glass rounded-2xl border border-white/10 p-6 flex justify-between items-center">
             <div>
-              <p className="text-xs uppercase tracking-wider text-slate-500">Lesson Workspace</p>
+              <p className="text-xs tracking-label text-slate-400">Lesson Workspace</p>
               <h2 className="text-xl font-bold text-white mt-1">
                 {dsaLevels.find(l => l.id === selectedLevelId)?.name} Module
               </h2>
             </div>
             <button
               onClick={() => setCurrentView('map')}
-              className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold text-slate-300 hover:bg-white/10 btn-micro"
+ className="btn btn-tertiary btn-sm"
             >
               ← Back to Map
             </button>
@@ -294,15 +294,15 @@ function DsaBattleArenaPage() {
           <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
             
             {/* Left Column: Lesson Flow Step components */}
-            <div className="glass rounded-[2rem] border border-white/10 p-6 space-y-6 flex flex-col justify-between min-h-[500px]">
+            <div className="glass rounded-2xl border border-white/10 p-6 space-y-6 flex flex-col justify-between min-h-[500px]">
               <div>
                 {/* Lesson Steps Indicators */}
                 <div className="flex justify-between border-b border-white/10 pb-4 mb-4 text-xs font-bold text-slate-400">
-                  <span className={lessonStep >= 1 ? 'text-indigo-400' : ''}>1. Learn</span>
-                  <span className={lessonStep >= 2 ? 'text-indigo-400' : ''}>2. Watch</span>
-                  <span className={lessonStep >= 3 ? 'text-indigo-400' : ''}>3. Practice Quiz</span>
-                  <span className={lessonStep >= 4 ? 'text-indigo-400' : ''}>4. Code</span>
-                  <span className={lessonStep >= 5 ? 'text-indigo-400' : ''}>5. Mini Boss</span>
+                  <span className={lessonStep >= 1 ? 'text-indigo-300' : ''}>1. Learn</span>
+                  <span className={lessonStep >= 2 ? 'text-indigo-300' : ''}>2. Watch</span>
+                  <span className={lessonStep >= 3 ? 'text-indigo-300' : ''}>3. Practice Quiz</span>
+                  <span className={lessonStep >= 4 ? 'text-indigo-300' : ''}>4. Code</span>
+                  <span className={lessonStep >= 5 ? 'text-indigo-300' : ''}>5. Mini Boss</span>
                 </div>
 
                 {/* Step 1: Learn Theory */}
@@ -312,7 +312,7 @@ function DsaBattleArenaPage() {
                     <p className="text-sm text-slate-300 leading-relaxed">
                       Structures within this data domain represent arrays of elements mapped in sequential coordinates. They allow instantaneous element access via index offset lookups because the compiler immediately computes target addresses directly in memory.
                     </p>
-                    <div className="rounded-xl bg-slate-900/60 p-4 border border-white/5 space-y-2">
+                    <div className="rounded-md bg-slate-900/60 p-4 border border-white/5 space-y-2">
                       <p className="text-xs text-slate-400 font-bold">Key Characteristics:</p>
                       <ul className="text-xs text-slate-400 space-y-1 list-disc pl-4">
                         <li>Index access is O(1) constant bounds.</li>
@@ -338,7 +338,7 @@ function DsaBattleArenaPage() {
                           )}
                           <div
                             onClick={() => setSelectedVisualizerIndex(idx)}
-                            className={`w-12 rounded-t-lg transition-all duration-300 flex items-center justify-center text-xs font-bold text-slate-950 ${
+                            className={`w-12 rounded-t-md transition-all duration-300 flex items-center justify-center text-xs font-bold text-slate-950 ${
                               selectedVisualizerIndex === idx
                                 ? 'bg-cyan-300 scale-105 border-2 border-cyan-400 shadow-lg'
                                 : 'bg-gradient-to-t from-indigo-500 to-cyan-400 hover:from-cyan-300'
@@ -347,24 +347,24 @@ function DsaBattleArenaPage() {
                           >
                             {val}
                           </div>
-                          <span className="text-[10px] text-slate-500">[{idx}]</span>
+                          <span className="text-[10px] text-slate-400">[{idx}]</span>
                         </div>
                       ))}
                     </div>
 
                     <div className="flex gap-2 flex-wrap">
-                      <button onClick={handleVisualizerInsert} className="rounded-lg bg-indigo-500/20 border border-indigo-400/20 px-3 py-1.5 text-xs text-indigo-300 hover:bg-indigo-500/30 transition btn-micro">Insert Node</button>
-                      <button onClick={handleVisualizerDelete} className="rounded-lg bg-rose-500/20 border border-rose-400/20 px-3 py-1.5 text-xs text-rose-300 hover:bg-rose-500/30 transition btn-micro">Delete Node</button>
-                      <button onClick={handleVisualizerSearch} className="rounded-lg bg-cyan-400 text-slate-950 px-3.5 py-1.5 text-xs font-semibold hover:scale-105 transition btn-micro">Linear Search</button>
-                      <div className="flex items-center gap-1.5 ml-auto text-xs text-slate-500">
+                      <button onClick={handleVisualizerInsert} className="btn btn-tertiary btn-sm">Insert Node</button>
+                      <button onClick={handleVisualizerDelete} className="btn btn-danger btn-sm">Delete Node</button>
+                      <button onClick={handleVisualizerSearch} className="btn btn-primary btn-sm">Linear Search</button>
+                      <div className="flex items-center gap-1.5 ml-auto text-xs text-slate-400">
                         <span>Speed</span>
                         <input
-                          type="range"
-                          min="300"
-                          max="2000"
+ type="range"
+ min="300"
+ max="2000"
                           value={visualSpeed}
                           onChange={(e) => setVisualSpeed(parseInt(e.target.value))}
-                          className="w-16"
+ className="w-16"
                         />
                       </div>
                     </div>
@@ -385,9 +385,9 @@ function DsaBattleArenaPage() {
                             <button
                               key={idx}
                               onClick={() => setQuizSelection(idx)}
-                              className={`w-full text-left rounded-xl p-3.5 text-xs transition border ${
+                              className={`w-full text-left rounded-md p-3.5 text-xs transition border ${
                                 quizSelection === idx
-                                  ? 'border-cyan-400 bg-cyan-500/10 text-cyan-200 font-bold'
+                                  ? 'border-cyan-400 bg-cyan-500/10 text-cyan-300 font-bold'
                                   : 'border-white/5 bg-slate-950/40 text-slate-300 hover:bg-slate-900'
                               }`}
                             >
@@ -397,7 +397,7 @@ function DsaBattleArenaPage() {
                         </div>
                       </div>
                     ) : (
-                      <p className="text-xs text-slate-500 italic">No quiz for this level. Proceed to coding.</p>
+                      <p className="text-xs text-slate-400 italic">No quiz for this level. Proceed to coding.</p>
                     )}
                   </div>
                 )}
@@ -407,14 +407,14 @@ function DsaBattleArenaPage() {
                   <div className="space-y-4 animate-slide-up">
                     <div className="flex justify-between items-center">
                       <h3 className="text-lg font-bold text-white">Coding Sandbox Challenge</h3>
-                      <span className="text-[10px] text-slate-500 uppercase tracking-widest font-semibold">JavaScript Compiler</span>
+                      <span className="text-[10px] text-slate-400 tracking-label font-semibold">JavaScript Compiler</span>
                     </div>
 
-                    <div className="overflow-hidden rounded-xl border border-white/10 bg-slate-950/80 p-1">
+                    <div className="overflow-hidden rounded-md border border-white/10 bg-slate-950/80 p-1">
                       <Editor
-                        height="260px"
-                        language="javascript"
-                        theme="vs-dark"
+ height="260px"
+ language="javascript"
+ theme="vs-dark"
                         value={codeDraft}
                         onChange={(val) => setCodeDraft(val || '')}
                         options={{
@@ -429,7 +429,7 @@ function DsaBattleArenaPage() {
 
                     <button
                       onClick={() => setRunLogs('Evaluating code...\n✓ Test cases passed successfully.')}
-                      className="rounded-lg bg-indigo-500 px-4 py-2 text-xs font-semibold text-white hover:bg-indigo-400 transition btn-micro"
+ className="btn btn-primary btn-sm"
                     >
                       Compile Code
                     </button>
@@ -442,7 +442,7 @@ function DsaBattleArenaPage() {
                     <h3 className="text-lg font-bold text-white">Mini Boss Visual Duel</h3>
                     <p className="text-xs text-slate-400">Click the array element bars in ascending order to resolve pointer bounds.</p>
                     
-                    <div className="flex justify-center items-end gap-3 h-28 border border-white/5 rounded-2xl bg-slate-950/40 p-4">
+                    <div className="flex justify-center items-end gap-3 h-28 border border-white/5 rounded-lg bg-slate-950/40 p-4">
                       {visualizerData.map((val, idx) => (
                         <button
                           key={idx}
@@ -450,10 +450,10 @@ function DsaBattleArenaPage() {
                             setRunLogs(`Selected bar element ${val} at index ${idx}.`);
                             setSelectedVisualizerIndex(idx);
                           }}
-                          className={`w-10 rounded-t transition-all flex items-center justify-center text-xs font-bold ${
+                          className={`w-10 rounded-t-sm transition-all flex items-center justify-center text-xs font-bold ${
                             selectedVisualizerIndex === idx
                               ? 'bg-amber-400 text-slate-950'
-                              : 'bg-indigo-500/30 text-indigo-200 border border-indigo-400/20 hover:bg-indigo-500/50'
+                              : 'bg-indigo-500/30 text-indigo-300 border border-indigo-400/20 hover:bg-indigo-500/50'
                           }`}
                           style={{ height: `${val}%` }}
                         >
@@ -470,8 +470,8 @@ function DsaBattleArenaPage() {
                 <button
                   disabled={lessonStep === 1}
                   onClick={() => setLessonStep(prev => prev - 1)}
-                  className={`rounded-xl px-4 py-2 text-xs font-semibold transition ${
-                    lessonStep === 1 ? 'text-slate-600 cursor-not-allowed' : 'text-slate-300 hover:text-white btn-micro'
+                  className={`rounded-md px-4 py-2 text-xs font-semibold transition ${
+                    lessonStep === 1 ? 'text-slate-400 cursor-not-allowed' : 'text-slate-300 hover:text-white btn-micro'
                   }`}
                 >
                   ← Previous Step
@@ -486,14 +486,14 @@ function DsaBattleArenaPage() {
                       }
                       setLessonStep(prev => prev + 1);
                     }}
-                    className="rounded-xl bg-indigo-500 px-5 py-2.5 text-xs font-semibold text-white hover:bg-indigo-400 transition btn-micro"
+ className="btn btn-primary btn-sm"
                   >
                     Next Step →
                   </button>
                 ) : (
                   <button
                     onClick={handleLessonSuccess}
-                    className="rounded-xl bg-gradient-to-r from-emerald-400 to-cyan-400 px-5 py-2.5 text-xs font-semibold text-slate-950 shadow-lg shadow-emerald-500/20 hover:scale-105 transition btn-micro animate-pulse"
+ className="btn btn-primary btn-sm"
                   >
                     Complete Lesson ✓
                   </button>
@@ -502,17 +502,17 @@ function DsaBattleArenaPage() {
             </div>
 
             {/* Right Column: Console output logs & details */}
-            <div className="glass rounded-[2rem] border border-white/10 p-6 card-hover-premium flex flex-col justify-between">
+            <div className="glass rounded-2xl border border-white/10 p-6 card-hover-premium flex flex-col justify-between">
               <div>
                 <h3 className="text-base font-semibold text-white mb-2">Workspace Console Outputs</h3>
                 <p className="text-xs text-slate-400 mb-4">Diagnostics feedback of sandbox scripts execution.</p>
                 
-                <pre className="w-full rounded-2xl border border-white/5 bg-slate-950/70 p-4 font-mono text-xs text-cyan-300 whitespace-pre-wrap min-h-[220px]">
+                <pre className="w-full rounded-lg border border-white/5 bg-slate-950/70 p-4 font-mono text-xs text-cyan-300 whitespace-pre-wrap min-h-[220px]">
                   {runLogs}
                 </pre>
               </div>
 
-              <div className="mt-6 border-t border-white/5 pt-4 text-xs text-slate-500 leading-relaxed">
+              <div className="mt-6 border-t border-white/5 pt-4 text-xs text-slate-400 leading-relaxed">
                 🧠 <strong>Interactive Flow Tip</strong>: Solve practice quizzes and visual checks before advancing to the final mini-boss compiler checks.
               </div>
             </div>
@@ -525,14 +525,14 @@ function DsaBattleArenaPage() {
       {currentView === 'battle' && (
         <div className="space-y-6">
           {/* Header */}
-          <div className="glass rounded-[2rem] border border-white/10 p-6 flex justify-between items-center">
+          <div className="glass rounded-2xl border border-white/10 p-6 flex justify-between items-center">
             <div>
-              <p className="text-xs uppercase tracking-wider text-slate-500">Comparison Arena</p>
+              <p className="text-xs tracking-label text-slate-400">Comparison Arena</p>
               <h2 className="text-xl font-bold text-white mt-1">Battle Mode</h2>
             </div>
             <button
               onClick={() => setCurrentView('map')}
-              className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold text-slate-300 hover:bg-white/10 btn-micro"
+ className="btn btn-tertiary btn-sm"
             >
               ← Back to Map
             </button>
@@ -540,12 +540,12 @@ function DsaBattleArenaPage() {
 
           {/* Select comparison targets */}
           <div className="grid gap-6 md:grid-cols-2">
-            <div className="glass rounded-[2rem] border border-white/10 p-6 space-y-4">
-              <label className="block text-xs uppercase tracking-wider text-slate-400 mb-1">Left Data Structure</label>
+            <div className="glass rounded-2xl border border-white/10 p-6 space-y-4">
+              <label className="block text-xs tracking-label text-slate-400 mb-1">Left Data Structure</label>
               <select
                 value={battleLeft}
                 onChange={(e) => setBattleLeft(e.target.value)}
-                className="w-full text-sm rounded-xl border border-white/10 bg-slate-950/60 p-3 text-white outline-none"
+ className="w-full text-sm rounded-md border border-white/10 bg-slate-950/60 p-3 text-white outline-none"
               >
                 <option value="array">Array</option>
                 <option value="stack">Stack</option>
@@ -554,12 +554,12 @@ function DsaBattleArenaPage() {
               </select>
             </div>
             
-            <div className="glass rounded-[2rem] border border-white/10 p-6 space-y-4">
-              <label className="block text-xs uppercase tracking-wider text-slate-400 mb-1">Right Data Structure</label>
+            <div className="glass rounded-2xl border border-white/10 p-6 space-y-4">
+              <label className="block text-xs tracking-label text-slate-400 mb-1">Right Data Structure</label>
               <select
                 value={battleRight}
                 onChange={(e) => setBattleRight(e.target.value)}
-                className="w-full text-sm rounded-xl border border-white/10 bg-slate-950/60 p-3 text-white outline-none"
+ className="w-full text-sm rounded-md border border-white/10 bg-slate-950/60 p-3 text-white outline-none"
               >
                 <option value="linkedlist">Linked List</option>
                 <option value="queue">Queue</option>
@@ -572,24 +572,24 @@ function DsaBattleArenaPage() {
           {/* Visualizers side-by-side comparison */}
           <div className="grid gap-6 lg:grid-cols-2">
             {/* Left visualizer */}
-            <div className="glass rounded-[2rem] border border-white/10 p-6 text-center space-y-4 card-hover-premium">
-              <h4 className="text-sm font-bold text-white uppercase tracking-wider">{battleLeft.toUpperCase()} Visualizer</h4>
-              <div className="flex gap-2 justify-center items-end h-28 border border-white/5 bg-slate-950/30 rounded-xl p-3">
+            <div className="glass rounded-2xl border border-white/10 p-6 text-center space-y-4 card-hover-premium">
+              <h4 className="text-sm font-bold text-white tracking-label">{battleLeft.toUpperCase()} Visualizer</h4>
+              <div className="flex gap-2 justify-center items-end h-28 border border-white/5 bg-slate-950/30 rounded-md p-3">
                 {[30, 45, 60, 75].map((val, idx) => (
-                  <div key={idx} className="w-8 bg-indigo-500 rounded-t" style={{ height: `${val}%` }} />
+                  <div key={idx} className="w-8 bg-indigo-500 rounded-t-sm" style={{ height: `${val}%` }} />
                 ))}
               </div>
               <p className="text-xs text-slate-400">Contiguous offset allocation.</p>
             </div>
 
             {/* Right visualizer */}
-            <div className="glass rounded-[2rem] border border-white/10 p-6 text-center space-y-4 card-hover-premium">
-              <h4 className="text-sm font-bold text-white uppercase tracking-wider">{battleRight.toUpperCase()} Visualizer</h4>
-              <div className="flex gap-4 justify-center items-center h-28 border border-white/5 bg-slate-950/30 rounded-xl p-3">
+            <div className="glass rounded-2xl border border-white/10 p-6 text-center space-y-4 card-hover-premium">
+              <h4 className="text-sm font-bold text-white tracking-label">{battleRight.toUpperCase()} Visualizer</h4>
+              <div className="flex gap-4 justify-center items-center h-28 border border-white/5 bg-slate-950/30 rounded-md p-3">
                 {[1, 2, 3].map((val, idx) => (
                   <div key={idx} className="flex items-center gap-1.5">
-                    <div className="h-10 w-10 rounded-full border border-cyan-400/40 bg-cyan-500/10 flex items-center justify-center text-xs font-bold text-cyan-200">N</div>
-                    {idx < 2 && <span className="text-slate-500">→</span>}
+                    <div className="h-10 w-10 rounded-full border border-cyan-400/40 bg-cyan-500/10 flex items-center justify-center text-xs font-bold text-cyan-300">N</div>
+                    {idx < 2 && <span className="text-slate-400">→</span>}
                   </div>
                 ))}
               </div>
@@ -598,15 +598,15 @@ function DsaBattleArenaPage() {
           </div>
 
           {/* Metrics comparison cards */}
-          <div className="glass rounded-[2rem] border border-white/10 p-6 md:p-8 card-hover-premium space-y-6">
+          <div className="glass rounded-2xl border border-white/10 p-6 md:p-8 card-hover-premium space-y-6">
             <div className="flex justify-between items-center border-b border-white/10 pb-3">
               <h3 className="text-lg font-bold text-white">Technical Complexities Face-Off</h3>
-              <div className="flex rounded-lg bg-slate-950/60 p-1 text-xs">
+              <div className="flex rounded-md bg-slate-950/60 p-1 text-xs">
                 {['speed', 'memory', 'complexity'].map((metric) => (
                   <button
                     key={metric}
                     onClick={() => setBattleMetricActive(metric)}
-                    className={`rounded px-3 py-1 font-semibold transition ${
+                    className={`rounded-sm px-3 py-1 font-semibold transition ${
                       battleMetricActive === metric ? 'bg-white text-slate-950' : 'text-slate-400 hover:text-white'
                     }`}
                   >
@@ -617,20 +617,20 @@ function DsaBattleArenaPage() {
             </div>
 
             <div className="grid gap-4 sm:grid-cols-3">
-              <div className="rounded-xl border border-white/5 bg-slate-950/40 p-4">
-                <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Access Lookup</span>
+              <div className="rounded-md border border-white/5 bg-slate-950/40 p-4">
+                <span className="text-[10px] font-bold text-slate-400 tracking-label">Access Lookup</span>
                 <p className="text-lg font-bold text-cyan-300 mt-1">O(1) vs O(N)</p>
                 <p className="text-[10px] text-slate-400 mt-1">Array offset indices vs sequential node tracking.</p>
               </div>
 
-              <div className="rounded-xl border border-white/5 bg-slate-950/40 p-4">
-                <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Node Insertion</span>
+              <div className="rounded-md border border-white/5 bg-slate-950/40 p-4">
+                <span className="text-[10px] font-bold text-slate-400 tracking-label">Node Insertion</span>
                 <p className="text-lg font-bold text-cyan-300 mt-1">O(N) vs O(1)</p>
                 <p className="text-[10px] text-slate-400 mt-1">Requires shifting cells vs local pointer re-linking.</p>
               </div>
 
-              <div className="rounded-xl border border-white/5 bg-slate-950/40 p-4">
-                <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Memory Allocation</span>
+              <div className="rounded-md border border-white/5 bg-slate-950/40 p-4">
+                <span className="text-[10px] font-bold text-slate-400 tracking-label">Memory Allocation</span>
                 <p className="text-lg font-bold text-cyan-300 mt-1">Static vs Dynamic</p>
                 <p className="text-[10px] text-slate-400 mt-1">Fixed array sizing blocks vs dynamic heap sizes.</p>
               </div>

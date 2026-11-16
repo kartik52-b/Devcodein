@@ -40,9 +40,9 @@ function NavigationShell({ children }) {
 
   return (
     <div className="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-6 lg:flex-row lg:px-8">
-      <aside className="glass w-full rounded-[2rem] border border-white/10 p-5 lg:w-72 lg:sticky lg:top-6 lg:h-fit">
+      <aside className="glass w-full rounded-2xl border border-white/10 p-5 lg:w-72 lg:sticky lg:top-6 lg:h-fit">
         <div className="mb-6">
-          <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">DevVerse</p>
+          <p className="eyebrow">DevVerse</p>
           <h3 className="mt-2 text-xl font-semibold text-white">Learning Navigation</h3>
         </div>
         <div className="space-y-3">
@@ -50,14 +50,14 @@ function NavigationShell({ children }) {
             <div key={section.title}>
               <button
                 onClick={() => setActiveSection(section.title)}
-                className={`w-full rounded-[1rem] px-3 py-2 text-left text-sm font-medium transition ${activeSection === section.title ? 'bg-gradient-to-r from-indigo-500/20 to-cyan-400/20 text-white' : 'text-slate-300 hover:bg-white/5 hover:text-white'}`}
+                className={`w-full rounded-lg px-3 py-2 text-left text-sm font-medium transition ${activeSection === section.title ? 'bg-gradient-to-r from-indigo-500/20 to-cyan-400/20 text-white' : 'text-slate-300 hover:bg-white/5 hover:text-white'}`}
               >
                 {section.title}
               </button>
               {activeSection === section.title && (
                 <div className="mt-2 space-y-1 pl-3">
                   {section.items.map((item) => (
-                    <div key={item} className="rounded-[0.8rem] px-2 py-1.5 text-sm text-slate-400 hover:bg-white/5 hover:text-slate-200">
+                    <div key={item} className="rounded-md px-2 py-1.5 text-sm text-slate-400 hover:bg-white/5 hover:text-slate-200">
                       {item}
                     </div>
                   ))}

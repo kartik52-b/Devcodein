@@ -7,10 +7,11 @@ const OTP_TTL_MINUTES = 10;
 const userSchema = new mongoose.Schema({
     name: { type: String, required: true, trim: true },
     email: { type: String, required: true, unique: true, lowercase: true, trim: true },
-    // Google-only accounts have no password; local accounts always do.
+    // Google-only and Supabase-bridged accounts have no password; local
+    // accounts always do. Supabase hashes and stores its own credentials.
     password: {
         type: String,
-        required: function() { return this.provider !== 'google'; },
+        required: function() { return this.provider === 'local'; },
         minlength: 6,
         select: false
     },
@@ -19,7 +20,7 @@ const userSchema = new mongoose.Schema({
     // `providerId` is the stable Google subject id; matching accounts by
     // verified email prevents duplicate users when the same person switches
     // between password and Google sign-in.
-    provider: { type: String, enum: ['local', 'google'], default: 'local' },
+    provider: { type: String, enum: ['local', 'google', 'supabase'], default: 'local' },
     providerId: { type: String, select: false },
 
     // Welcome email is sent once, at account creation, and recorded here so

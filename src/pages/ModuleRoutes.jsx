@@ -63,12 +63,12 @@ function ModuleRoutes() {
 
       {/* Community */}
       <Route
-        path="/modules/community"
+ path="/modules/community"
         element={
           <ModulePage
-            title="Community"
-            eyebrow="Community"
-            description="Stay motivated through leaderboards, streaks, achievements, and a stronger sense of progress."
+ title="Community"
+ eyebrow="Community"
+ description="Stay motivated through leaderboards, streaks, achievements, and a stronger sense of progress."
           >
             <ProfileLeaderboard />
             <HabitTracker />
@@ -76,24 +76,24 @@ function ModuleRoutes() {
         }
       />
       <Route
-        path="/modules/learn"
+ path="/modules/learn"
         element={
           <ModulePage
-            title="AI Mentor"
-            eyebrow="AI"
-            description="Work through debugging, code review, and guided problem-solving with an always-on mentor experience."
+ title="AI Mentor"
+ eyebrow="AI"
+ description="Work through debugging, code review, and guided problem-solving with an always-on mentor experience."
           >
             <AICodingMentor />
           </ModulePage>
         }
       />
       <Route
-        path="/modules/roadmap-preview"
+ path="/modules/roadmap-preview"
         element={
           <ModulePage
-            title="Roadmaps"
-            eyebrow="Roadmaps"
-            description="Follow curated pathways for frontend, backend, full stack, AI, DevOps, mobile, and security."
+ title="Roadmaps"
+ eyebrow="Roadmaps"
+ description="Follow curated pathways for frontend, backend, full stack, AI, DevOps, mobile, and security."
           >
             <RoadmapSection />
           </ModulePage>

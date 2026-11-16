@@ -96,7 +96,7 @@ function AlgorithmVisualizer() {
     <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
       <div className="mb-8 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">Algorithm visualizer</p>
+          <p className="eyebrow">Algorithm visualizer</p>
           <h2 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">See how classic algorithms behave in motion.</h2>
         </div>
         <p className="max-w-2xl text-slate-400">Play, pause, and reset each algorithm as it steps through its logic with a premium educational experience designed for modern learners.</p>
@@ -115,21 +115,21 @@ function AlgorithmVisualizer() {
       </div>
 
       <div className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
-        <div className="glass rounded-[2rem] border border-white/10 p-6 shadow-2xl shadow-indigo-950/40 lg:p-8">
+        <div className="glass rounded-2xl border border-white/10 p-6 shadow-2xl shadow-indigo-950/40 lg:p-8">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
               <p className="text-sm text-slate-400">Selected algorithm</p>
               <h3 className="text-2xl font-semibold text-white">{current.name}</h3>
             </div>
             <div className="flex flex-wrap gap-2">
-              <button onClick={() => setIsPlaying((prev) => !prev)} className="rounded-full bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-400 px-4 py-2 text-sm font-medium text-white transition hover:scale-[1.01]">
+              <button onClick={() => setIsPlaying((prev) => !prev)} className="btn btn-primary rounded-full">
                 {isPlaying ? 'Pause' : 'Play'}
               </button>
-              <button onClick={handleReset} className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300 transition hover:bg-white/10">Reset</button>
+              <button onClick={handleReset} className="btn btn-tertiary rounded-full">Reset</button>
             </div>
           </div>
 
-          <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-slate-950/70 p-5">
+          <div className="mt-6 rounded-xl border border-white/10 bg-slate-950/70 p-5">
             <div className="mb-4 flex items-center justify-between">
               <p className="text-sm text-slate-400">Playback speed</p>
               <select value={playbackSpeed} onChange={(event) => setPlaybackSpeed(Number(event.target.value))} className="rounded-full border border-white/10 bg-slate-900 px-3 py-2 text-sm text-slate-200">
@@ -140,46 +140,46 @@ function AlgorithmVisualizer() {
               </select>
             </div>
 
-            <div className="flex min-h-[180px] items-end justify-center gap-3 rounded-[1.25rem] border border-white/10 bg-gradient-to-br from-slate-900 to-slate-800 p-6">
+            <div className="flex min-h-[180px] items-end justify-center gap-3 rounded-lg border border-white/10 bg-gradient-to-br from-slate-900 to-slate-800 p-6">
               {arrayValues.map((value, index) => (
                 <div key={`${value}-${index}`} className="flex flex-1 flex-col items-center gap-2">
-                  <div className="w-full rounded-t-[1rem] bg-gradient-to-t from-cyan-500 via-violet-500 to-fuchsia-400" style={{ height: `${value * 16}px`, minHeight: '36px' }} />
+                  <div className="w-full rounded-t-lg bg-gradient-to-t from-cyan-500 via-violet-500 to-fuchsia-400" style={{ height: `${value * 16}px`, minHeight: '36px' }} />
                   <span className="text-sm font-medium text-slate-300">{value}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="mt-6 rounded-[1.25rem] border border-white/10 bg-slate-950/60 p-4">
+          <div className="mt-6 rounded-lg border border-white/10 bg-slate-950/60 p-4">
             <p className="text-sm text-slate-400">Current step</p>
             <p className="mt-2 text-lg font-semibold text-white">{activeLabel}</p>
           </div>
         </div>
 
         <div className="space-y-4">
-          <div className="glass rounded-[1.75rem] border border-white/10 p-6">
+          <div className="glass rounded-2xl border border-white/10 p-6">
             <p className="text-sm text-slate-400">Explanation panel</p>
             <p className="mt-3 leading-7 text-slate-300">{current.description}</p>
             <div className="mt-5 space-y-3">
               {current.steps.map((step) => (
-                <div key={step} className="rounded-[1rem] border border-white/10 bg-slate-950/60 p-3 text-sm text-slate-300">
+                <div key={step} className="rounded-lg border border-white/10 bg-slate-950/60 p-3 text-sm text-slate-300">
                   {step}
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="glass rounded-[1.75rem] border border-white/10 p-6">
+          <div className="glass rounded-2xl border border-white/10 p-6">
             <p className="text-sm text-slate-400">Complexity panel</p>
-            <div className="mt-4 rounded-[1rem] border border-white/10 bg-slate-950/60 p-4 text-sm text-slate-300">
+            <div className="mt-4 rounded-lg border border-white/10 bg-slate-950/60 p-4 text-sm text-slate-300">
               <p className="font-medium text-white">{current.complexity}</p>
             </div>
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-[1rem] border border-white/10 bg-slate-950/60 p-4 text-sm text-slate-300">
+              <div className="rounded-lg border border-white/10 bg-slate-950/60 p-4 text-sm text-slate-300">
                 <p className="text-slate-400">Best case</p>
                 <p className="mt-1 text-lg font-semibold text-white">Very efficient</p>
               </div>
-              <div className="rounded-[1rem] border border-white/10 bg-slate-950/60 p-4 text-sm text-slate-300">
+              <div className="rounded-lg border border-white/10 bg-slate-950/60 p-4 text-sm text-slate-300">
                 <p className="text-slate-400">Worst case</p>
                 <p className="mt-1 text-lg font-semibold text-white">Needs caution</p>
               </div>

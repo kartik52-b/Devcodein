@@ -116,7 +116,7 @@ function renderVisual(values, layout, accent, activeAction, isActive) {
         {values.map((value, index) => (
           <div
             key={`${value}-${index}`}
-            className={`rounded-2xl border border-white/10 px-3 py-2 text-center text-sm font-medium transition-all duration-500 ${isActive && index === values.length - 1 ? 'translate-y-0 scale-[1.02] bg-gradient-to-r ' + accent + ' text-slate-950' : 'bg-slate-950/70 text-slate-200'}`}
+            className={`rounded-lg border border-white/10 px-3 py-2 text-center text-sm font-medium transition-all duration-500 ${isActive && index === values.length - 1 ? 'translate-y-0 scale-[1.02] bg-gradient-to-r ' + accent + ' text-slate-950' : 'bg-slate-950/70 text-slate-200'}`}
           >
             {value}
           </div>
@@ -131,7 +131,7 @@ function renderVisual(values, layout, accent, activeAction, isActive) {
         {values.map((value, index) => (
           <div
             key={`${value}-${index}`}
-            className={`rounded-2xl border border-white/10 px-3 py-2 text-sm font-medium transition-all duration-500 ${isActive && index === 0 ? 'scale-[1.02] bg-gradient-to-r ' + accent + ' text-slate-950' : 'bg-slate-950/70 text-slate-200'}`}
+            className={`rounded-lg border border-white/10 px-3 py-2 text-sm font-medium transition-all duration-500 ${isActive && index === 0 ? 'scale-[1.02] bg-gradient-to-r ' + accent + ' text-slate-950' : 'bg-slate-950/70 text-slate-200'}`}
           >
             {value}
           </div>
@@ -145,10 +145,10 @@ function renderVisual(values, layout, accent, activeAction, isActive) {
       <div className="flex flex-wrap items-center gap-2 text-sm text-slate-300">
         {values.map((value, index) => (
           <div key={`${value}-${index}`} className="flex items-center gap-2">
-            <div className={`rounded-2xl border border-white/10 px-3 py-2 transition-all duration-500 ${isActive && index === 0 ? 'bg-gradient-to-r ' + accent + ' text-slate-950' : 'bg-slate-950/70 text-slate-200'}`}>
+            <div className={`rounded-lg border border-white/10 px-3 py-2 transition-all duration-500 ${isActive && index === 0 ? 'bg-gradient-to-r ' + accent + ' text-slate-950' : 'bg-slate-950/70 text-slate-200'}`}>
               {value}
             </div>
-            {index < values.length - 1 && <span className="text-slate-500">→</span>}
+            {index < values.length - 1 && <span className="text-slate-400">→</span>}
           </div>
         ))}
       </div>
@@ -161,7 +161,7 @@ function renderVisual(values, layout, accent, activeAction, isActive) {
         {values.map((value, index) => (
           <div
             key={`${value}-${index}`}
-            className={`rounded-2xl border border-white/10 px-3 py-3 text-sm transition-all duration-500 ${isActive && index === 0 ? 'bg-gradient-to-r ' + accent + ' text-slate-950' : 'bg-slate-950/70 text-slate-200'}`}
+            className={`rounded-lg border border-white/10 px-3 py-3 text-sm transition-all duration-500 ${isActive && index === 0 ? 'bg-gradient-to-r ' + accent + ' text-slate-950' : 'bg-slate-950/70 text-slate-200'}`}
           >
             {value}
           </div>
@@ -175,7 +175,7 @@ function renderVisual(values, layout, accent, activeAction, isActive) {
       {values.map((value, index) => (
         <div
           key={`${value}-${index}`}
-          className={`rounded-2xl border border-white/10 px-3 py-2 text-sm font-medium transition-all duration-500 ${isActive && index === 1 ? 'scale-[1.02] bg-gradient-to-r ' + accent + ' text-slate-950' : 'bg-slate-950/70 text-slate-200'}`}
+          className={`rounded-lg border border-white/10 px-3 py-2 text-sm font-medium transition-all duration-500 ${isActive && index === 1 ? 'scale-[1.02] bg-gradient-to-r ' + accent + ' text-slate-950' : 'bg-slate-950/70 text-slate-200'}`}
         >
           {value}
         </div>
@@ -196,7 +196,7 @@ function DsaBattleArena() {
     <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
       <div className="mb-8 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">DSA battle arena</p>
+          <p className="eyebrow">DSA battle arena</p>
           <h2 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">Visualize the battle between core data structures.</h2>
         </div>
         <p className="max-w-2xl text-slate-400">Compare how each structure behaves under insertion, deletion, and search operations with animated visuals and clear complexity insights.</p>
@@ -217,7 +217,7 @@ function DsaBattleArena() {
         ))}
       </div>
 
-      <div className="glass rounded-[2rem] border border-white/10 p-6 shadow-2xl shadow-indigo-950/40 lg:p-8">
+      <div className="glass rounded-2xl border border-white/10 p-6 shadow-2xl shadow-indigo-950/40 lg:p-8">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
           <div>
             <p className="text-sm text-slate-400">{current.tagline}</p>
@@ -241,14 +241,14 @@ function DsaBattleArena() {
             <div className="grid gap-4 lg:grid-cols-2">
               {[current.left, current.right].map((side, index) => {
                 return (
-                  <div key={side.name} className="rounded-[1.5rem] border border-white/10 bg-slate-950/60 p-5">
+                  <div key={side.name} className="rounded-xl border border-white/10 bg-slate-950/60 p-5">
                     <div className={`mb-4 h-1.5 w-24 rounded-full bg-gradient-to-r ${side.accent}`} />
                     <div className="flex items-center justify-between">
                       <h4 className="text-lg font-semibold text-white">{side.name}</h4>
-                      <span className="rounded-full border border-white/10 px-3 py-1 text-xs uppercase tracking-[0.25em] text-slate-400">{actionLabel}</span>
+                      <span className="shrink-0 whitespace-nowrap rounded-full border border-white/10 px-3 py-1 text-xs tracking-label text-slate-400">{actionLabel}</span>
                     </div>
                     <p className="mt-3 text-sm leading-7 text-slate-400">{side.note}</p>
-                    <div className="mt-4 rounded-[1.25rem] border border-white/10 bg-slate-900/70 p-4">
+                    <div className="mt-4 rounded-lg border border-white/10 bg-slate-900/70 p-4">
                       {renderVisual(side.values, side.layout, side.accent, activeAction, index === 0 || index === 1)}
                     </div>
                     <div className="mt-4 flex items-center justify-between text-sm text-slate-400">
@@ -262,7 +262,7 @@ function DsaBattleArena() {
           </div>
 
           <div className="space-y-4">
-            <div className="rounded-[1.5rem] border border-white/10 bg-slate-950/60 p-5">
+            <div className="rounded-xl border border-white/10 bg-slate-950/60 p-5">
               <p className="text-sm text-slate-400">Speed comparison</p>
               <div className="mt-4 space-y-4">
                 {[
@@ -287,11 +287,11 @@ function DsaBattleArena() {
               </div>
             </div>
 
-            <div className="rounded-[1.5rem] border border-white/10 bg-slate-950/60 p-5">
+            <div className="rounded-xl border border-white/10 bg-slate-950/60 p-5">
               <p className="text-sm text-slate-400">Time & space complexity</p>
               <div className="mt-4 space-y-3">
                 {current.stats.map(([metric, value]) => (
-                  <div key={metric} className="rounded-[1rem] border border-white/10 bg-slate-900/70 p-3 text-sm text-slate-300">
+                  <div key={metric} className="rounded-lg border border-white/10 bg-slate-900/70 p-3 text-sm text-slate-300">
                     <div className="flex items-center justify-between">
                       <span className="font-medium text-white">{metric}</span>
                       <span>{value}</span>

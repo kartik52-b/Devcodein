@@ -23,11 +23,11 @@ const challenges = [
     solved: false,
     bookmarked: false,
     statement: 'Validate whether a string of brackets is balanced.',
-    input: 's = "()[]{}"',
+ input: 's = "()[]{}"',
     output: 'true',
-    examples: ['Example 1: "()[]{}" -> true'],
+ examples: ['Example 1: "()[]{}" -> true'],
     hints: ['A stack is ideal for matching pairs.'],
-    testCases: ['Input: "([{}])" -> Output: true']
+ testCases: ['Input: "([{}])" -> Output: true']
   },
   {
     id: 3,
@@ -72,7 +72,7 @@ function CodingChallengePlatform() {
     <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
       <div className="mb-8 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">Coding challenge platform</p>
+          <p className="eyebrow">Coding challenge platform</p>
           <h2 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">Sharpen problem-solving with a premium challenge experience.</h2>
         </div>
         <p className="max-w-2xl text-slate-400">From daily drills to ranked problems, DevVerse turns practice into a beautiful ritual with XP, bookmarks, and polished submission flow.</p>
@@ -88,7 +88,7 @@ function CodingChallengePlatform() {
 
       <div className="grid gap-6 xl:grid-cols-[0.95fr_1.05fr]">
         <div className="space-y-4">
-          <div className="glass rounded-[2rem] border border-white/10 p-5">
+          <div className="glass rounded-2xl border border-white/10 p-5">
             <div className="mb-4 flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-400">Daily challenge</p>
@@ -96,12 +96,12 @@ function CodingChallengePlatform() {
               </div>
               <div className="rounded-full border border-amber-400/20 bg-amber-500/10 px-3 py-1 text-sm text-amber-300">Live today</div>
             </div>
-            <div className="rounded-[1.25rem] border border-white/10 bg-slate-950/60 p-4 text-sm text-slate-300">
+            <div className="rounded-lg border border-white/10 bg-slate-950/60 p-4 text-sm text-slate-300">
               <p>Earn bonus XP by completing today’s challenge before midnight.</p>
             </div>
           </div>
 
-          <div className="glass rounded-[2rem] border border-white/10 p-5">
+          <div className="glass rounded-2xl border border-white/10 p-5">
             <div className="mb-4 flex items-center justify-between">
               <p className="text-lg font-semibold text-white">Problem list</p>
               <p className="text-sm text-slate-400">{xp} XP</p>
@@ -111,7 +111,7 @@ function CodingChallengePlatform() {
                 <button
                   key={challenge.id}
                   onClick={() => setSelectedChallenge(challenge)}
-                  className={`w-full rounded-[1.25rem] border p-4 text-left transition ${selectedChallenge.id === challenge.id ? 'border-cyan-400/40 bg-cyan-500/10' : 'border-white/10 bg-slate-950/60 hover:bg-slate-900/70'}`}
+                  className={`w-full rounded-lg border p-4 text-left transition ${selectedChallenge.id === challenge.id ? 'border-cyan-400/40 bg-cyan-500/10' : 'border-white/10 bg-slate-950/60 hover:bg-slate-900/70'}`}
                 >
                   <div className="flex items-center justify-between">
                     <div>
@@ -130,7 +130,7 @@ function CodingChallengePlatform() {
         </div>
 
         <div className="space-y-4">
-          <div className="glass rounded-[2rem] border border-white/10 p-6">
+          <div className="glass rounded-2xl border border-white/10 p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-400">Selected problem</p>
@@ -139,26 +139,26 @@ function CodingChallengePlatform() {
               <div className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">{selectedChallenge.difficulty}</div>
             </div>
             <div className="mt-5 grid gap-3 md:grid-cols-2">
-              <div className="rounded-[1.25rem] border border-white/10 bg-slate-950/60 p-4">
+              <div className="rounded-lg border border-white/10 bg-slate-950/60 p-4">
                 <p className="text-sm text-slate-400">Problem statement</p>
                 <p className="mt-2 leading-7 text-slate-300">{selectedChallenge.statement}</p>
               </div>
-              <div className="rounded-[1.25rem] border border-white/10 bg-slate-950/60 p-4">
+              <div className="rounded-lg border border-white/10 bg-slate-950/60 p-4">
                 <p className="text-sm text-slate-400">Input</p>
                 <p className="mt-2 text-sm text-slate-300">{selectedChallenge.input}</p>
               </div>
-              <div className="rounded-[1.25rem] border border-white/10 bg-slate-950/60 p-4">
+              <div className="rounded-lg border border-white/10 bg-slate-950/60 p-4">
                 <p className="text-sm text-slate-400">Output</p>
                 <p className="mt-2 text-sm text-slate-300">{selectedChallenge.output}</p>
               </div>
-              <div className="rounded-[1.25rem] border border-white/10 bg-slate-950/60 p-4">
+              <div className="rounded-lg border border-white/10 bg-slate-950/60 p-4">
                 <p className="text-sm text-slate-400">Examples</p>
                 <p className="mt-2 text-sm text-slate-300">{selectedChallenge.examples[0]}</p>
               </div>
             </div>
           </div>
 
-          <div className="glass rounded-[2rem] border border-white/10 p-6">
+          <div className="glass rounded-2xl border border-white/10 p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-400">Code editor</p>
@@ -169,21 +169,21 @@ function CodingChallengePlatform() {
             <textarea
               value={code}
               onChange={(event) => setCode(event.target.value)}
-              className="mt-4 min-h-[220px] w-full rounded-[1.25rem] border border-white/10 bg-slate-950/80 p-4 font-mono text-sm text-slate-200 outline-none"
+ className="mt-4 min-h-[220px] w-full rounded-lg border border-white/10 bg-slate-950/80 p-4 font-mono text-sm text-slate-200 outline-none"
               spellCheck={false}
             />
             <div className="mt-4 flex flex-wrap gap-3">
-              <button onClick={handleRun} className="rounded-full bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-400 px-4 py-2 text-sm font-medium text-white transition hover:scale-[1.01]">Run Code</button>
-              <button onClick={handleSubmit} className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300 transition hover:bg-white/10">Submit Code</button>
+              <button onClick={handleRun} className="btn btn-primary rounded-full">Run Code</button>
+              <button onClick={handleSubmit} className="btn btn-tertiary rounded-full">Submit Code</button>
             </div>
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
-            <div className="glass rounded-[1.75rem] border border-white/10 p-5">
+            <div className="glass rounded-2xl border border-white/10 p-5">
               <p className="text-sm text-slate-400">Hints</p>
               <p className="mt-3 text-sm leading-7 text-slate-300">{selectedChallenge.hints[0]}</p>
             </div>
-            <div className="glass rounded-[1.75rem] border border-white/10 p-5">
+            <div className="glass rounded-2xl border border-white/10 p-5">
               <p className="text-sm text-slate-400">Test cases</p>
               <p className="mt-3 text-sm leading-7 text-slate-300">{selectedChallenge.testCases[0]}</p>
             </div>
@@ -192,19 +192,19 @@ function CodingChallengePlatform() {
       </div>
 
       <div className="mt-8 grid gap-6 lg:grid-cols-3">
-        <div className="glass rounded-[1.75rem] border border-white/10 p-6">
+        <div className="glass rounded-2xl border border-white/10 p-6">
           <p className="text-sm text-slate-400">Bookmarks</p>
           <div className="mt-3 space-y-2">
             {bookmarks.length ? bookmarks.map((item) => <p key={item.id} className="text-sm text-slate-300">• {item.title}</p>) : <p className="text-sm text-slate-400">No bookmarks yet.</p>}
           </div>
         </div>
-        <div className="glass rounded-[1.75rem] border border-white/10 p-6">
+        <div className="glass rounded-2xl border border-white/10 p-6">
           <p className="text-sm text-slate-400">Recently solved</p>
           <div className="mt-3 space-y-2">
             {recentlySolved.map((item) => <p key={item.id} className="text-sm text-slate-300">• {item.title}</p>)}
           </div>
         </div>
-        <div className="glass rounded-[1.75rem] border border-white/10 p-6">
+        <div className="glass rounded-2xl border border-white/10 p-6">
           <p className="text-sm text-slate-400">Success animation</p>
           <div className="mt-3 flex items-center gap-3">
             <div className="h-3 w-3 animate-pulse rounded-full bg-emerald-400" />

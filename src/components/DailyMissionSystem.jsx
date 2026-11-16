@@ -27,18 +27,18 @@ function DailyMissionSystem() {
   return (
     <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
       <div className="mb-8 max-w-3xl">
-        <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">Daily Mission System</p>
+        <p className="eyebrow">Daily Mission System</p>
         <h2 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">Turn your daily practice into a rewarding streak of progress.</h2>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-        <div className="glass rounded-[2rem] border border-white/10 p-6 sm:p-8">
+        <div className="glass rounded-2xl border border-white/10 p-6 sm:p-8">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm uppercase tracking-[0.25em] text-slate-400">Today&apos;s mission</p>
+              <p className="text-sm tracking-label text-slate-400">Today&apos;s mission</p>
               <h3 className="mt-2 text-2xl font-semibold text-white">Stay in motion</h3>
             </div>
-            <div className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-sm text-cyan-200">
+            <div className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-sm text-cyan-300">
               {progress}% complete
             </div>
           </div>
@@ -48,16 +48,16 @@ function DailyMissionSystem() {
               <svg viewBox="0 0 120 120" className="h-36 w-36 -rotate-90">
                 <circle cx="60" cy="60" r="48" stroke="rgba(255,255,255,0.1)" strokeWidth="10" fill="none" />
                 <circle
-                  cx="60"
-                  cy="60"
-                  r="48"
-                  stroke="url(#missionGradient)"
-                  strokeWidth="10"
-                  strokeLinecap="round"
-                  fill="none"
+ cx="60"
+ cy="60"
+ r="48"
+ stroke="url(#missionGradient)"
+ strokeWidth="10"
+ strokeLinecap="round"
+ fill="none"
                   strokeDasharray={301.59}
                   strokeDashoffset={301.59 * (1 - progress / 100)}
-                  className="transition-all duration-700"
+ className="transition-all duration-700"
                 />
                 <defs>
                   <linearGradient id="missionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -74,7 +74,7 @@ function DailyMissionSystem() {
 
             <div className="flex-1 space-y-3">
               {todayMissions.map((mission) => (
-                <div key={mission.title} className="rounded-[1rem] border border-white/10 bg-slate-950/60 p-3">
+                <div key={mission.title} className="rounded-lg border border-white/10 bg-slate-950/60 p-3">
                   <div className="flex items-center justify-between gap-3">
                     <div>
                       <p className="font-medium text-white">{mission.title}</p>
@@ -89,28 +89,28 @@ function DailyMissionSystem() {
             </div>
           </div>
 
-          <div className="mt-6 rounded-[1.25rem] border border-white/10 bg-slate-950/70 p-4">
+          <div className="mt-6 rounded-lg border border-white/10 bg-slate-950/70 p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm uppercase tracking-[0.25em] text-slate-400">Mission timer</p>
+                <p className="text-sm tracking-label text-slate-400">Mission timer</p>
                 <p className="mt-2 text-xl font-semibold text-white">02:18:36</p>
               </div>
-              <div className="rounded-full border border-violet-400/20 bg-violet-400/10 px-3 py-1 text-sm text-violet-200">
+              <div className="rounded-full border border-violet-400/20 bg-violet-400/10 px-3 py-1 text-sm text-indigo-300">
                 Focus sprint
               </div>
             </div>
           </div>
         </div>
 
-        <div className="glass rounded-[2rem] border border-white/10 p-6 sm:p-8">
+        <div className="glass rounded-2xl border border-white/10 p-6 sm:p-8">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm uppercase tracking-[0.25em] text-slate-400">Weekly mission</p>
+              <p className="text-sm tracking-label text-slate-400">Weekly mission</p>
               <h3 className="mt-2 text-2xl font-semibold text-white">Build momentum</h3>
             </div>
             <button
               onClick={() => setClaimed(true)}
-              className="rounded-full bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-400 px-4 py-2 text-sm font-semibold text-white transition hover:scale-[1.01]"
+ className="btn btn-primary rounded-full"
             >
               {claimed ? 'Claimed' : 'Claim reward'}
             </button>
@@ -118,7 +118,7 @@ function DailyMissionSystem() {
 
           <div className="mt-6 grid gap-4">
             {weeklyMissions.map((mission) => (
-              <div key={mission.title} className="rounded-[1.25rem] border border-white/10 bg-slate-950/65 p-4">
+              <div key={mission.title} className="rounded-lg border border-white/10 bg-slate-950/65 p-4">
                 <div className="flex items-center justify-between gap-3">
                   <div>
                     <p className="font-medium text-white">{mission.title}</p>
@@ -132,28 +132,28 @@ function DailyMissionSystem() {
             ))}
           </div>
 
-          <div className="mt-6 rounded-[1.25rem] border border-white/10 bg-slate-950/70 p-4">
+          <div className="mt-6 rounded-lg border border-white/10 bg-slate-950/70 p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm uppercase tracking-[0.25em] text-slate-400">Achievements</p>
+                <p className="text-sm tracking-label text-slate-400">Achievements</p>
                 <p className="mt-2 text-lg font-semibold text-white">3 unlocked this week</p>
               </div>
-              <div className="rounded-full border border-amber-400/20 bg-amber-400/10 px-3 py-1 text-sm text-amber-200">
+              <div className="rounded-full border border-amber-400/20 bg-amber-400/10 px-3 py-1 text-sm text-amber-300">
                 +{totalXp} XP total
               </div>
             </div>
           </div>
 
-          <div className="mt-6 rounded-[1.25rem] border border-white/10 bg-slate-950/70 p-4">
-            <p className="text-sm uppercase tracking-[0.25em] text-slate-400">Mission history</p>
+          <div className="mt-6 rounded-lg border border-white/10 bg-slate-950/70 p-4">
+            <p className="text-sm tracking-label text-slate-400">Mission history</p>
             <div className="mt-3 space-y-3">
               {missionHistory.map((item) => (
-                <div key={item.label} className="flex items-center justify-between rounded-[1rem] border border-white/10 bg-white/5 px-3 py-2">
+                <div key={item.label} className="flex items-center justify-between rounded-lg border border-white/10 bg-white/5 px-3 py-2">
                   <div>
                     <p className="text-sm font-medium text-white">{item.label}</p>
                     <p className="text-xs text-slate-400">{item.time}</p>
                   </div>
-                  <span className="text-sm text-cyan-200">{item.reward}</span>
+                  <span className="text-sm text-cyan-300">{item.reward}</span>
                 </div>
               ))}
             </div>

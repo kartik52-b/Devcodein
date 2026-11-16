@@ -287,10 +287,10 @@ function CodingChallengesPage() {
   /* ---------------------------------------------------------- states */
   if (loading) {
     return (
-      <div className="min-h-[60vh] px-4 py-10 text-slate-100 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl space-y-4 rounded-[2rem] border border-white/10 bg-slate-950/70 p-10 text-center">
+      <div className="min-h-[60vh] px-4 py-10 text-slate-200 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl space-y-4 rounded-2xl border border-white/10 bg-slate-950/70 p-10 text-center">
           <p className="animate-pulse text-lg text-slate-300">Loading challenges…</p>
-          <p className="text-sm text-slate-500">Fetching the problem catalog from the API.</p>
+          <p className="text-sm text-slate-400">Fetching the problem catalog from the API.</p>
         </div>
       </div>
     );
@@ -298,13 +298,13 @@ function CodingChallengesPage() {
 
   if (catalog.length === 0) {
     return (
-      <div className="min-h-[60vh] px-4 py-10 text-slate-100 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl space-y-4 rounded-[2rem] border border-white/10 bg-slate-950/70 p-10 text-center">
+      <div className="min-h-[60vh] px-4 py-10 text-slate-200 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl space-y-4 rounded-2xl border border-white/10 bg-slate-950/70 p-10 text-center">
           <p className="text-lg text-white">No challenges available yet.</p>
           <p className="text-sm text-slate-400">{loadError || 'The catalog is empty. Please check back soon.'}</p>
           <button
             onClick={() => setReloadKey((key) => key + 1)}
-            className="rounded-full bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-400 px-5 py-2.5 text-sm font-semibold text-white"
+ className="btn btn-primary rounded-full"
           >
             Try again
           </button>
@@ -314,12 +314,12 @@ function CodingChallengesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(99,102,241,0.18),_transparent_52%)] px-4 py-10 text-slate-100 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(99,102,241,0.18),_transparent_52%)] px-4 py-10 text-slate-200 sm:px-6 lg:px-8">
       <div className="mx-auto flex max-w-7xl flex-col gap-6">
-        <section className="rounded-[2rem] border border-white/10 bg-slate-950/70 p-8 shadow-2xl shadow-indigo-950/50 backdrop-blur">
+        <section className="rounded-2xl border border-white/10 bg-slate-950/70 p-8 shadow-2xl shadow-indigo-950/50 backdrop-blur">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
-              <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">Coding challenges</p>
+              <p className="eyebrow">Coding challenges</p>
               <h1 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">
                 Train with focused problems, instant feedback, and guided solutions.
               </h1>
@@ -328,7 +328,7 @@ function CodingChallengesPage() {
                 without leaving the experience.
               </p>
             </div>
-            <div className="rounded-[1.2rem] border border-emerald-400/20 bg-emerald-500/10 px-5 py-4 text-sm text-emerald-200">
+            <div className="rounded-lg border border-emerald-400/20 bg-emerald-500/10 px-5 py-4 text-sm text-emerald-300">
               <p className="text-slate-300">Current status</p>
               <p className="mt-1 text-lg font-semibold text-white">
                 {submitState.status === 'submitting'
@@ -349,7 +349,7 @@ function CodingChallengesPage() {
           </div>
 
           {loadError ? (
-            <div className="mt-6 rounded-2xl border border-amber-400/25 bg-amber-400/10 px-4 py-3 text-sm text-amber-100">
+            <div className="mt-6 rounded-lg border border-amber-400/25 bg-amber-400/10 px-4 py-3 text-sm text-amber-300">
               {loadError}{' '}
               <button className="font-semibold underline" onClick={() => setReloadKey((key) => key + 1)}>
                 Retry
@@ -360,10 +360,10 @@ function CodingChallengesPage() {
 
         <section className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
           {/* ------------------------------------------------- list */}
-          <div className="rounded-[1.8rem] border border-white/10 bg-slate-950/70 p-5 backdrop-blur">
+          <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-5 backdrop-blur">
             <div className="mb-4 flex items-center justify-between">
               <div>
-                <p className="text-sm uppercase tracking-[0.3em] text-slate-400">Problem list</p>
+                <p className="text-sm tracking-label text-slate-400">Problem list</p>
                 <h2 className="mt-1 text-xl font-semibold text-white">
                   {filteredChallenges.length} active challenges
                 </h2>
@@ -374,21 +374,21 @@ function CodingChallengesPage() {
             </div>
 
             <div className="mb-4 grid gap-3 md:grid-cols-3">
-              <label className="rounded-2xl border border-white/10 bg-white/5 p-3 text-sm text-slate-300">
-                <span className="mb-2 block text-xs uppercase tracking-[0.25em] text-slate-500">Search</span>
+              <label className="rounded-lg border border-white/10 bg-white/5 p-3 text-sm text-slate-300">
+                <span className="mb-2 block text-xs tracking-label text-slate-400">Search</span>
                 <input
                   value={searchTerm}
                   onChange={(event) => setSearchTerm(event.target.value)}
-                  placeholder="Search problems"
-                  className="w-full border-none bg-transparent text-sm text-white outline-none"
+ placeholder="Search problems"
+ className="w-full border-none bg-transparent text-sm text-white outline-none"
                 />
               </label>
-              <label className="rounded-2xl border border-white/10 bg-white/5 p-3 text-sm text-slate-300">
-                <span className="mb-2 block text-xs uppercase tracking-[0.25em] text-slate-500">Difficulty</span>
+              <label className="rounded-lg border border-white/10 bg-white/5 p-3 text-sm text-slate-300">
+                <span className="mb-2 block text-xs tracking-label text-slate-400">Difficulty</span>
                 <select
                   value={difficulty}
                   onChange={(event) => setDifficulty(event.target.value)}
-                  className="w-full border-none bg-transparent text-sm text-white outline-none"
+ className="w-full border-none bg-transparent text-sm text-white outline-none"
                 >
                   {['All', 'Easy', 'Medium', 'Hard'].map((value) => (
                     <option key={value} value={value} className="bg-slate-900">
@@ -397,12 +397,12 @@ function CodingChallengesPage() {
                   ))}
                 </select>
               </label>
-              <label className="rounded-2xl border border-white/10 bg-white/5 p-3 text-sm text-slate-300">
-                <span className="mb-2 block text-xs uppercase tracking-[0.25em] text-slate-500">Category</span>
+              <label className="rounded-lg border border-white/10 bg-white/5 p-3 text-sm text-slate-300">
+                <span className="mb-2 block text-xs tracking-label text-slate-400">Category</span>
                 <select
                   value={category}
                   onChange={(event) => setCategory(event.target.value)}
-                  className="w-full border-none bg-transparent text-sm text-white outline-none"
+ className="w-full border-none bg-transparent text-sm text-white outline-none"
                 >
                   {categories.map((value) => (
                     <option key={value} value={value} className="bg-slate-900">
@@ -414,7 +414,7 @@ function CodingChallengesPage() {
             </div>
 
             {filteredChallenges.length === 0 ? (
-              <div className="rounded-[1.2rem] border border-dashed border-white/15 bg-white/5 p-8 text-center">
+              <div className="rounded-lg border border-dashed border-white/15 bg-white/5 p-8 text-center">
                 <p className="text-white">No challenges match those filters.</p>
                 <button
                   onClick={() => {
@@ -422,7 +422,7 @@ function CodingChallengesPage() {
                     setDifficulty('All');
                     setCategory('All');
                   }}
-                  className="mt-3 text-sm font-semibold text-cyan-300"
+ className="mt-3 text-sm font-semibold text-cyan-300"
                 >
                   Clear filters
                 </button>
@@ -436,7 +436,7 @@ function CodingChallengesPage() {
                       setSelectedId(challenge.id);
                       navigate(`/modules/practice/${challenge.id}`, { replace: true });
                     }}
-                    className={`w-full rounded-[1.2rem] border p-4 text-left transition ${
+                    className={`w-full rounded-lg border p-4 text-left transition ${
                       selectedChallenge?.id === challenge.id
                         ? 'border-cyan-400/40 bg-cyan-500/10'
                         : 'border-white/10 bg-white/5 hover:bg-white/10'
@@ -452,7 +452,7 @@ function CodingChallengesPage() {
                         <p className="mt-1 text-cyan-300">+{challenge.xp} XP</p>
                       </div>
                     </div>
-                    <div className="mt-3 flex items-center justify-between text-xs uppercase tracking-[0.25em] text-slate-500">
+                    <div className="mt-3 flex items-center justify-between text-xs tracking-label text-slate-400">
                       <span>{challenge.category}</span>
                       <span>{bookmarks.includes(challenge.id) ? 'Bookmarked' : 'Save'}</span>
                     </div>
@@ -464,11 +464,11 @@ function CodingChallengesPage() {
 
           {/* ----------------------------------------------- editor */}
           {selectedChallenge ? (
-            <div className="rounded-[1.8rem] border border-white/10 bg-slate-950/70 p-5 backdrop-blur">
+            <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-5 backdrop-blur">
               <div className="flex flex-col gap-4 border-b border-white/10 pb-5">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
-                    <p className="text-sm uppercase tracking-[0.3em] text-slate-400">Selected problem</p>
+                    <p className="text-sm tracking-label text-slate-400">Selected problem</p>
                     <h2 className="mt-2 text-2xl font-semibold text-white">{selectedChallenge.title}</h2>
                   </div>
                   <div className="flex items-center gap-2">
@@ -476,13 +476,13 @@ function CodingChallengesPage() {
                       onClick={handleToggleBookmark}
                       className={`rounded-full border px-3 py-2 text-sm ${
                         isBookmarked
-                          ? 'border-amber-400/40 bg-amber-500/10 text-amber-200'
+                          ? 'border-amber-400/40 bg-amber-500/10 text-amber-300'
                           : 'border-white/10 bg-white/5 text-slate-300'
                       }`}
                     >
                       {isBookmarked ? '★ Bookmarked' : '☆ Bookmark'}
                     </button>
-                    <div className="rounded-full border border-cyan-400/20 bg-cyan-500/10 px-3 py-2 text-sm text-cyan-200">
+                    <div className="rounded-full border border-cyan-400/20 bg-cyan-500/10 px-3 py-2 text-sm text-cyan-300">
                       +{selectedChallenge.xp} XP
                     </div>
                   </div>
@@ -495,7 +495,7 @@ function CodingChallengesPage() {
                     {selectedChallenge.category}
                   </span>
                   {source === 'demo' ? (
-                    <span className="rounded-full border border-amber-400/30 bg-amber-400/10 px-3 py-1 text-amber-200">
+                    <span className="rounded-full border border-amber-400/30 bg-amber-400/10 px-3 py-1 text-amber-300">
                       Demo catalog
                     </span>
                   ) : null}
@@ -511,13 +511,13 @@ function CodingChallengesPage() {
                       {selectedChallenge.examples.slice(0, 2).map((example, index) => (
                         <div
                           key={index}
-                          className="rounded-xl border border-white/10 bg-slate-950/60 p-3 font-mono text-xs text-slate-300"
+ className="rounded-md border border-white/10 bg-slate-950/60 p-3 font-mono text-xs text-slate-300"
                         >
                           <p>
-                            <span className="text-slate-500">Input:</span> {example.input}
+                            <span className="text-slate-400">Input:</span> {example.input}
                           </p>
                           <p>
-                            <span className="text-slate-500">Output:</span> {example.output}
+                            <span className="text-slate-400">Output:</span> {example.output}
                           </p>
                         </div>
                       ))}
@@ -527,23 +527,23 @@ function CodingChallengesPage() {
                   <div className="mt-5 flex flex-wrap gap-3">
                     <button
                       onClick={handleRun}
-                      className="rounded-full bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-400 px-4 py-2 text-sm font-semibold text-white"
+ className="btn btn-primary rounded-full"
                     >
                       Run Code
                     </button>
                     <button
                       onClick={handleSubmit}
                       disabled={submitState.status === 'submitting'}
-                      className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-slate-100 disabled:opacity-60"
+ className="btn btn-secondary disabled:opacity-60 rounded-full"
                     >
                       {submitState.status === 'submitting' ? 'Submitting…' : 'Submit Code'}
                     </button>
                   </div>
 
-                  <div className="mt-4 rounded-[1.3rem] border border-white/10 bg-slate-900/80 p-4">
+                  <div className="mt-4 rounded-lg border border-white/10 bg-slate-900/80 p-4">
                     <div className="mb-3 flex items-center justify-between">
                       <h3 className="text-lg font-semibold text-white">Your solution</h3>
-                      <span className="text-xs uppercase tracking-[0.25em] text-slate-500">
+                      <span className="text-xs tracking-label text-slate-400">
                         Monaco editor
                       </span>
                     </div>
@@ -553,14 +553,14 @@ function CodingChallengesPage() {
                           value={code}
                           onChange={(event) => setCode(event.target.value)}
                           spellCheck={false}
-                          className="min-h-[260px] w-full rounded-[1rem] border border-white/10 bg-slate-950/80 p-4 font-mono text-sm text-slate-200 outline-none"
+ className="min-h-[260px] w-full rounded-lg border border-white/10 bg-slate-950/80 p-4 font-mono text-sm text-slate-200 outline-none"
                         />
                       }
                     >
                       <Editor
-                        height="260px"
-                        language="javascript"
-                        theme="vs-dark"
+ height="260px"
+ language="javascript"
+ theme="vs-dark"
                         value={code}
                         onChange={(value) => setCode(value ?? '')}
                         loading={<div className="p-4 text-sm text-slate-400">Loading editor…</div>}
@@ -577,10 +577,10 @@ function CodingChallengesPage() {
 
                   {/* ------------------------------------------------ results */}
                   {runOutcome ? (
-                    <div className="mt-4 rounded-[1.3rem] border border-white/10 bg-slate-950/70 p-4">
+                    <div className="mt-4 rounded-lg border border-white/10 bg-slate-950/70 p-4">
                       <h3 className="text-base font-semibold text-white">Local test results</h3>
                       {runOutcome.crashed ? (
-                        <p className="mt-2 rounded-xl border border-rose-400/20 bg-rose-400/10 p-3 text-sm text-rose-200">
+                        <p className="mt-2 rounded-md border border-rose-400/20 bg-rose-400/10 p-3 text-sm text-rose-300">
                           {runOutcome.crashed}
                         </p>
                       ) : (
@@ -588,10 +588,10 @@ function CodingChallengesPage() {
                           {runOutcome.results.map((result) => (
                             <li
                               key={result.label}
-                              className={`rounded-xl border p-3 ${
+                              className={`rounded-md border p-3 ${
                                 result.passed
-                                  ? 'border-emerald-400/25 bg-emerald-400/10 text-emerald-100'
-                                  : 'border-rose-400/25 bg-rose-400/10 text-rose-100'
+                                  ? 'border-emerald-400/25 bg-emerald-400/10 text-emerald-300'
+                                  : 'border-rose-400/25 bg-rose-400/10 text-rose-300'
                               }`}
                             >
                               <p className="font-semibold">
@@ -609,12 +609,12 @@ function CodingChallengesPage() {
 
                   {submitState.status !== 'idle' ? (
                     <div
-                      className={`mt-4 rounded-[1.3rem] border p-4 text-sm ${
+                      className={`mt-4 rounded-lg border p-4 text-sm ${
                         submitState.status === 'success'
-                          ? 'border-emerald-400/25 bg-emerald-400/10 text-emerald-100'
+                          ? 'border-emerald-400/25 bg-emerald-400/10 text-emerald-300'
                           : submitState.status === 'submitting'
                             ? 'border-white/10 bg-white/5 text-slate-300'
-                            : 'border-rose-400/25 bg-rose-400/10 text-rose-100'
+                            : 'border-rose-400/25 bg-rose-400/10 text-rose-300'
                       }`}
                     >
                       <p className="font-semibold">
@@ -638,41 +638,41 @@ function CodingChallengesPage() {
                 </div>
 
                 <div className="space-y-4">
-                  <div className="rounded-[1.3rem] border border-white/10 bg-white/5 p-4">
+                  <div className="rounded-lg border border-white/10 bg-white/5 p-4">
                     <h3 className="text-lg font-semibold text-white">Hints</h3>
                     <ul className="mt-3 space-y-2 text-sm leading-7 text-slate-300">
                       {selectedChallenge.hints.length ? (
                         selectedChallenge.hints.map((hint, index) => (
-                          <li key={index} className="rounded-xl border border-white/10 bg-slate-950/60 p-3">
+                          <li key={index} className="rounded-md border border-white/10 bg-slate-950/60 p-3">
                             {hint}
                           </li>
                         ))
                       ) : (
-                        <li className="rounded-xl border border-white/10 bg-slate-950/60 p-3 text-slate-500">
+                        <li className="rounded-md border border-white/10 bg-slate-950/60 p-3 text-slate-400">
                           No hints for this one — you have got this.
                         </li>
                       )}
                     </ul>
                   </div>
 
-                  <div className="rounded-[1.3rem] border border-white/10 bg-white/5 p-4">
+                  <div className="rounded-lg border border-white/10 bg-white/5 p-4">
                     <h3 className="text-lg font-semibold text-white">Solution</h3>
                     <p className="mt-3 text-sm leading-7 text-slate-300">
                       {selectedChallenge.solution || 'The official write-up unlocks after you submit.'}
                     </p>
                   </div>
 
-                  <div className="rounded-[1.3rem] border border-white/10 bg-white/5 p-4">
+                  <div className="rounded-lg border border-white/10 bg-white/5 p-4">
                     <h3 className="text-lg font-semibold text-white">Discussion</h3>
                     <ul className="mt-3 space-y-2 text-sm leading-7 text-slate-300">
                       {toDiscussionLines(selectedChallenge.discussion).length ? (
                         toDiscussionLines(selectedChallenge.discussion).map((line, index) => (
-                          <li key={index} className="rounded-xl border border-white/10 bg-slate-950/60 p-3">
+                          <li key={index} className="rounded-md border border-white/10 bg-slate-950/60 p-3">
                             {line}
                           </li>
                         ))
                       ) : (
-                        <li className="rounded-xl border border-white/10 bg-slate-950/60 p-3 text-slate-500">
+                        <li className="rounded-md border border-white/10 bg-slate-950/60 p-3 text-slate-400">
                           No discussion yet — be the first to share an approach.
                         </li>
                       )}

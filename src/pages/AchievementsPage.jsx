@@ -88,7 +88,7 @@ function AchievementsPage() {
 
   const Badge = ({ item, isUnlocked }) => (
     <li
-      className={`rounded-2xl border p-5 ${
+      className={`rounded-lg border p-5 ${
         isUnlocked
           ? 'border-amber-400/25 bg-amber-400/5'
           : 'border-white/10 bg-slate-950/60 opacity-80'
@@ -99,7 +99,7 @@ function AchievementsPage() {
         {isUnlocked ? (
           <Award size={16} className="text-amber-300" />
         ) : (
-          <Lock size={15} className="text-slate-500" />
+          <Lock size={15} className="text-slate-400" />
         )}
       </div>
       <p className="mt-3 font-semibold text-white">{item.title}</p>
@@ -107,7 +107,7 @@ function AchievementsPage() {
         <p className="mt-1 text-sm text-slate-400">{item.description}</p>
       ) : null}
       <div className="mt-3 flex items-center justify-between text-xs">
-        <span className={isUnlocked ? 'text-amber-300' : 'text-slate-500'}>
+        <span className={isUnlocked ? 'text-amber-300' : 'text-slate-400'}>
           {isUnlocked
             ? `Unlocked${item.earned ? ` · ${item.earned}` : ''}`
             : 'Locked'}
@@ -121,7 +121,7 @@ function AchievementsPage() {
     <div className="mx-auto max-w-7xl space-y-6 px-6 py-8 lg:px-8">
       <header className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-xs uppercase tracking-[0.35em] text-indigo-300">Community</p>
+          <p className="text-xs tracking-label text-indigo-300">Community</p>
           <h1 className="mt-2 flex items-center gap-3 text-3xl font-semibold text-white">
             <Trophy className="text-amber-300" size={26} /> Achievements
           </h1>
@@ -130,32 +130,32 @@ function AchievementsPage() {
           </p>
         </div>
         <Link
-          to="/modules/community"
-          className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur transition hover:bg-white/20"
+ to="/modules/community"
+ className="btn btn-secondary rounded-full"
         >
           Community
         </Link>
       </header>
 
       {state.status === 'loading' ? (
-        <p className="animate-pulse text-sm text-slate-500">Loading achievements…</p>
+        <p className="animate-pulse text-sm text-slate-400">Loading achievements…</p>
       ) : null}
 
       {state.status === 'unavailable' ? (
-        <p className="rounded-2xl border border-amber-400/25 bg-amber-400/10 px-4 py-3 text-sm text-amber-200">
+        <p className="rounded-lg border border-amber-400/25 bg-amber-400/10 px-4 py-3 text-sm text-amber-300">
           The achievements API is unreachable — showing your locally cached badges.
         </p>
       ) : null}
 
       {entries.length === 0 && state.status !== 'loading' ? (
-        <p className="rounded-2xl border border-dashed border-white/10 px-4 py-8 text-center text-sm text-slate-500">
+        <p className="rounded-lg border border-dashed border-white/10 px-4 py-8 text-center text-sm text-slate-400">
           No achievements available yet. Solve a challenge to unlock your first badge.
         </p>
       ) : null}
 
       {unlocked.length > 0 ? (
         <section>
-          <h2 className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-amber-300">
+          <h2 className="mb-3 text-sm font-semibold tracking-label text-amber-300">
             Unlocked ({unlocked.length})
           </h2>
           <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -168,7 +168,7 @@ function AchievementsPage() {
 
       {locked.length > 0 ? (
         <section>
-          <h2 className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">
+          <h2 className="mb-3 text-sm font-semibold tracking-label text-slate-400">
             Locked ({locked.length})
           </h2>
           <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

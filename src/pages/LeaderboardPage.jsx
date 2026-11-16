@@ -134,12 +134,12 @@ function LeaderboardPage() {
   const showXp = (value) => Math.round(value).toLocaleString();
 
   return (
-    <div className="space-y-6 p-4 md:p-6 lg:p-8 animate-fade-in text-slate-100">
+    <div className="space-y-6 p-4 md:p-6 lg:p-8 animate-fade-in text-slate-200">
       {/* Header section */}
-      <div className="glass rounded-[2rem] border border-white/10 p-6 md:p-8">
+      <div className="glass rounded-2xl border border-white/10 p-6 md:p-8">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-2xl">
-            <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">Arena Rankings</p>
+            <p className="eyebrow">Arena Rankings</p>
             <h1 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">Leaderboard</h1>
             <p className="mt-2 text-slate-400">
               See where you stack up. Global standings are live from the platform; other scopes show
@@ -148,12 +148,12 @@ function LeaderboardPage() {
           </div>
 
           <div className="flex flex-col gap-2 sm:flex-row shrink-0">
-            <div className="flex rounded-xl bg-slate-950/60 p-1 border border-white/5">
+            <div className="flex rounded-md bg-slate-950/60 p-1 border border-white/5">
               {['weekly', 'monthly'].map((period) => (
                 <button
                   key={period}
                   onClick={() => setActivePeriod(period)}
-                  className={`rounded-lg px-4 py-1.5 text-xs font-semibold transition ${
+                  className={`rounded-md px-4 py-1.5 text-xs font-semibold transition ${
                     activePeriod === period ? 'bg-white text-slate-950 shadow' : 'text-slate-400 hover:text-white'
                   }`}
                 >
@@ -162,7 +162,7 @@ function LeaderboardPage() {
               ))}
             </div>
 
-            <div className="flex flex-wrap rounded-xl bg-slate-950/60 p-1 border border-white/5">
+            <div className="flex flex-wrap rounded-md bg-slate-950/60 p-1 border border-white/5">
               {[
                 { id: 'global', label: 'Global' },
                 { id: 'country', label: 'Country' },
@@ -172,7 +172,7 @@ function LeaderboardPage() {
                 <button
                   key={grp.id}
                   onClick={() => setActiveBoard(grp.id)}
-                  className={`rounded-lg px-3.5 py-1.5 text-xs font-semibold transition ${
+                  className={`rounded-md px-3.5 py-1.5 text-xs font-semibold transition ${
                     activeBoard === grp.id
                       ? 'bg-gradient-to-r from-indigo-500 to-cyan-400 text-white shadow'
                       : 'text-slate-400 hover:text-white'
@@ -190,7 +190,7 @@ function LeaderboardPage() {
             className={`rounded-full border px-3 py-1 font-semibold ${
               isLive
                 ? 'border-emerald-400/30 bg-emerald-400/10 text-emerald-300'
-                : 'border-amber-400/30 bg-amber-400/10 text-amber-200'
+                : 'border-amber-400/30 bg-amber-400/10 text-amber-300'
             }`}
           >
             {isLive ? 'Live data · all-time XP' : 'Sample data · illustrative only'}
@@ -203,18 +203,18 @@ function LeaderboardPage() {
 
       {/* ------------------------------------------------------ states */}
       {isLive && live.status === 'loading' ? (
-        <div className="glass rounded-[2rem] border border-white/10 p-10 text-center">
+        <div className="glass rounded-2xl border border-white/10 p-10 text-center">
           <p className="animate-pulse text-slate-300">Loading the leaderboard…</p>
         </div>
       ) : null}
 
       {isLive && live.status === 'error' ? (
-        <div className="glass rounded-[2rem] border border-rose-400/25 bg-rose-400/10 p-8 text-center">
+        <div className="glass rounded-2xl border border-rose-400/25 bg-rose-400/10 p-8 text-center">
           <p className="text-white">Unable to load the leaderboard.</p>
-          <p className="mt-2 text-sm text-rose-200">{live.message}</p>
+          <p className="mt-2 text-sm text-rose-300">{live.message}</p>
           <button
             onClick={() => setReloadKey((key) => key + 1)}
-            className="mt-4 rounded-full bg-gradient-to-r from-indigo-500 to-cyan-400 px-5 py-2 text-sm font-semibold text-white"
+ className="btn btn-primary mt-4 rounded-full"
           >
             Try again
           </button>
@@ -222,7 +222,7 @@ function LeaderboardPage() {
       ) : null}
 
       {isLive && live.status === 'ready' && live.entries.length === 0 ? (
-        <div className="glass rounded-[2rem] border border-white/10 p-10 text-center">
+        <div className="glass rounded-2xl border border-white/10 p-10 text-center">
           <p className="text-white">No ranked learners yet.</p>
           <p className="mt-2 text-sm text-slate-400">
             Solve your first challenge and you will appear at the top of this board.
@@ -233,10 +233,10 @@ function LeaderboardPage() {
       {(isLive && live.status === 'ready' && live.entries.length > 0) || !isLive ? (
         <>
           {/* Podium */}
-          <div className="glass rounded-[2rem] border border-white/10 p-6 md:p-8 flex flex-col justify-end card-hover-premium">
-            <h3 className="text-base font-semibold text-white mb-8 text-center uppercase tracking-widest text-slate-500">
+          <div className="glass rounded-2xl border border-white/10 p-6 md:p-8 flex flex-col justify-end card-hover-premium">
+            <h2 className="text-base font-semibold text-white mb-8 text-center tracking-label text-slate-400">
               🏆 Top Contributors
-            </h3>
+            </h2>
 
             <div className="flex flex-col sm:flex-row justify-center items-end gap-6 sm:gap-12 min-h-[220px]">
               {currentPodium[1] ? (
@@ -247,7 +247,7 @@ function LeaderboardPage() {
                     {currentPodium[1].isMe ? ' (You)' : ''}
                   </p>
                   <p className="text-[10px] text-cyan-300 font-medium">{showXp(currentPodium[1].xp)} XP</p>
-                  <div className="w-24 sm:w-28 rounded-t-xl bg-gradient-to-t from-slate-900 via-indigo-950/60 to-indigo-900/60 border border-white/10 flex items-center justify-center mt-3 animate-podium-second shadow-lg shadow-indigo-950/30">
+                  <div className="w-24 sm:w-28 rounded-t-md bg-gradient-to-t from-slate-900 via-indigo-950/60 to-indigo-900/60 border border-white/10 flex items-center justify-center mt-3 animate-podium-second shadow-lg shadow-indigo-950/30">
                     <span className="text-2xl font-bold text-slate-400">#2</span>
                   </div>
                 </div>
@@ -262,9 +262,9 @@ function LeaderboardPage() {
                     {currentPodium[0].name}
                     {currentPodium[0].isMe ? ' (You)' : ''}
                   </p>
-                  <p className="text-[10px] text-amber-400 font-semibold">{showXp(currentPodium[0].xp)} XP</p>
-                  <div className="w-24 sm:w-28 rounded-t-xl bg-gradient-to-t from-slate-900 via-amber-950/60 to-amber-900/40 border border-amber-400/20 flex items-center justify-center mt-3 animate-podium-first shadow-xl shadow-amber-950/40">
-                    <span className="text-3xl font-extrabold text-amber-400">#1</span>
+                  <p className="text-[10px] text-amber-300 font-semibold">{showXp(currentPodium[0].xp)} XP</p>
+                  <div className="w-24 sm:w-28 rounded-t-md bg-gradient-to-t from-slate-900 via-amber-950/60 to-amber-900/40 border border-amber-400/20 flex items-center justify-center mt-3 animate-podium-first shadow-xl shadow-amber-950/40">
+                    <span className="text-3xl font-extrabold text-amber-300">#1</span>
                   </div>
                 </div>
               ) : null}
@@ -277,8 +277,8 @@ function LeaderboardPage() {
                     {currentPodium[2].isMe ? ' (You)' : ''}
                   </p>
                   <p className="text-[10px] text-cyan-300 font-medium">{showXp(currentPodium[2].xp)} XP</p>
-                  <div className="w-24 sm:w-28 rounded-t-xl bg-gradient-to-t from-slate-900 via-indigo-950/50 to-indigo-950/40 border border-white/5 flex items-center justify-center mt-3 animate-podium-third shadow shadow-indigo-950/20">
-                    <span className="text-xl font-bold text-slate-500">#3</span>
+                  <div className="w-24 sm:w-28 rounded-t-md bg-gradient-to-t from-slate-900 via-indigo-950/50 to-indigo-950/40 border border-white/5 flex items-center justify-center mt-3 animate-podium-third shadow shadow-indigo-950/20">
+                    <span className="text-xl font-bold text-slate-400">#3</span>
                   </div>
                 </div>
               ) : null}
@@ -287,14 +287,14 @@ function LeaderboardPage() {
 
           {/* Table + distribution */}
           <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-            <div className="glass rounded-[2rem] border border-white/10 p-6 overflow-hidden card-hover-premium">
+            <div className="glass rounded-2xl border border-white/10 p-6 overflow-hidden card-hover-premium">
               <div className="mb-4 flex items-center justify-between">
-                <h3 className="text-base font-semibold text-white">Full Leaderboard Rankings</h3>
+                <h2 className="text-base font-semibold text-white">Full Leaderboard Rankings</h2>
                 <span
                   className={`rounded-full px-2 py-0.5 text-[10px] font-bold border ${
                     isLive
                       ? 'bg-emerald-400/10 text-emerald-300 border-emerald-400/20'
-                      : 'bg-amber-400/10 text-amber-200 border-amber-400/20'
+                      : 'bg-amber-400/10 text-amber-300 border-amber-400/20'
                   }`}
                 >
                   {isLive ? 'Live API data' : 'Sample data'}
@@ -304,7 +304,7 @@ function LeaderboardPage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs border-collapse">
                   <thead>
-                    <tr className="border-b border-white/10 text-slate-500 uppercase tracking-wider">
+                    <tr className="border-b border-white/10 text-slate-400 tracking-label">
                       <th className="pb-3 font-semibold">Rank</th>
                       <th className="pb-3 font-semibold">Name</th>
                       <th className="pb-3 font-semibold">{activeBoard === 'college' ? 'College' : 'Country/Rel'}</th>
@@ -330,7 +330,7 @@ function LeaderboardPage() {
                           <tr
                             key={`${entry.rank}-${entry.name}`}
                             className={`border-b border-white/5 transition hover:bg-white/5 ${
-                              isYou ? 'bg-indigo-500/10 text-indigo-200 font-bold' : 'text-slate-300'
+                              isYou ? 'bg-indigo-500/10 text-indigo-300 font-bold' : 'text-slate-300'
                             }`}
                           >
                             <td className="py-3.5 font-bold">#{entry.rank}</td>
@@ -354,9 +354,9 @@ function LeaderboardPage() {
               </div>
             </div>
 
-            <div className="glass rounded-[2rem] border border-white/10 p-6 flex flex-col justify-between card-hover-premium">
+            <div className="glass rounded-2xl border border-white/10 p-6 flex flex-col justify-between card-hover-premium">
               <div>
-                <h3 className="text-base font-semibold text-white mb-2">XP Performance Curve</h3>
+                <h2 className="text-base font-semibold text-white mb-2">XP Performance Curve</h2>
                 <p className="text-xs text-slate-400 mb-6">Distribution scale of total claimed XP globally.</p>
 
                 <div className="space-y-4">
@@ -369,12 +369,12 @@ function LeaderboardPage() {
                     <div key={i} className="space-y-1">
                       <div className="flex justify-between text-xs">
                         <span className="font-semibold text-slate-300">{bar.label}</span>
-                        <span className="text-slate-500">{bar.range}</span>
+                        <span className="text-slate-400">{bar.range}</span>
                       </div>
                       <div className="flex items-center gap-3">
                         <div className="h-2 flex-1 rounded-full bg-slate-800 overflow-hidden">
                           <div
-                            className="h-full bg-gradient-to-r from-indigo-500 to-cyan-400 transition-all duration-1000"
+ className="h-full bg-gradient-to-r from-indigo-500 to-cyan-400 transition-all duration-1000"
                             style={{ width: `${bar.percent}%` }}
                           />
                         </div>
@@ -385,7 +385,7 @@ function LeaderboardPage() {
                 </div>
               </div>
 
-              <div className="mt-6 border-t border-white/5 pt-4 text-xs text-slate-500 leading-relaxed">
+              <div className="mt-6 border-t border-white/5 pt-4 text-xs text-slate-400 leading-relaxed">
                 🏆 <strong>Weekly Reset</strong>: Ranks update every Sunday at 00:00 UTC. Top 3 contenders
                 receive unique season trophy profile badges.
               </div>

@@ -291,16 +291,16 @@ function RoadmapsPage() {
   const nextMilestone = activeRoadmap.milestones.find((m) => !m.completed);
 
   return (
-    <div className="min-h-screen bg-[#050816] p-4 text-slate-100 md:p-6 lg:p-8">
+    <div className="min-h-[70vh] p-4 text-slate-200 md:p-6 lg:p-8">
       <div className="mx-auto max-w-7xl space-y-6">
-        <section className="glass rounded-[2rem] border border-white/10 p-6 md:p-8">
+        <section className="glass rounded-2xl border border-white/10 p-6 md:p-8">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
-              <p className="text-sm uppercase tracking-[0.35em] text-[#5ed29c]">Guided growth system</p>
+              <p className="text-sm tracking-label text-emerald-300">Guided growth system</p>
               <h1 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">Turn each milestone into a visible step toward your next engineering role</h1>
               <p className="mt-4 text-slate-400">Choose a path, track authentic checkpoints, and build confidence through structured practice instead of passive content consumption.</p>
             </div>
-            <div className="rounded-[1.2rem] border border-[#5ed29c]/20 bg-[#5ed29c]/10 px-4 py-3 text-sm text-[#5ed29c]">
+            <div className="rounded-lg border border-[#5ed29c]/20 bg-[#5ed29c]/10 px-4 py-3 text-sm text-emerald-300">
               <div className="flex items-center gap-2">
                 <Compass size={16} />
                 <span>{completedCount}/{activeRoadmap.milestones.length} checkpoints done</span>
@@ -310,10 +310,10 @@ function RoadmapsPage() {
         </section>
 
         <div className="grid gap-6 xl:grid-cols-[0.8fr_1.2fr]">
-          <section className="glass rounded-[2rem] border border-white/10 p-6">
+          <section className="glass rounded-2xl border border-white/10 p-6">
             <div className="mb-4 flex items-center justify-between">
               <div>
-                <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Choose a track</p>
+                <p className="text-xs tracking-label text-slate-400">Choose a track</p>
                 <h2 className="mt-2 text-xl font-semibold text-white">Learning pathways</h2>
               </div>
               <div className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-slate-300">{roadmapData.length} paths</div>
@@ -322,13 +322,13 @@ function RoadmapsPage() {
               {roadmapData.map((roadmap) => {
                 const isActive = roadmap.id === selectedRoadmapId;
                 return (
-                  <button key={roadmap.id} onClick={() => selectRoadmap(roadmap.id)} className={`w-full rounded-[1.25rem] border p-4 text-left transition-all ${isActive ? 'border-[#5ed29c]/40 bg-[#5ed29c]/10 shadow-lg shadow-[#07100c]' : 'border-white/10 bg-slate-950/60 hover:border-white/20 hover:bg-white/5'}`}>
+                  <button key={roadmap.id} onClick={() => selectRoadmap(roadmap.id)} className={`w-full rounded-lg border p-4 text-left transition-all ${isActive ? 'border-[#5ed29c]/40 bg-[#5ed29c]/10 shadow-lg shadow-[#07100c]' : 'border-white/10 bg-slate-950/60 hover:border-white/20 hover:bg-white/5'}`}>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <span className={`h-2.5 w-2.5 rounded-full bg-gradient-to-r ${roadmap.accent}`} />
                         <span className="text-sm font-semibold text-white">{roadmap.title}</span>
                       </div>
-                      <span className="text-xs font-semibold text-[#5ed29c]">{roadmap.progress}%</span>
+                      <span className="text-xs font-semibold text-emerald-300">{roadmap.progress}%</span>
                     </div>
                     <p className="mt-2 text-sm leading-7 text-slate-400">{roadmap.short}</p>
                   </button>
@@ -337,50 +337,50 @@ function RoadmapsPage() {
             </div>
           </section>
 
-          <section className="glass rounded-[2rem] border border-white/10 p-6">
-            <div className={`rounded-[1.5rem] border border-white/10 bg-gradient-to-br ${activeRoadmap.accent} p-[1px]`}>
-              <div className="rounded-[calc(1.5rem-1px)] bg-slate-950/85 p-6">
+          <section className="glass rounded-2xl border border-white/10 p-6">
+            <div className={`rounded-xl border border-white/10 bg-gradient-to-br ${activeRoadmap.accent} p-[1px]`}>
+              <div className="rounded-xl bg-slate-950/85 p-6">
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                   <div>
-                    <p className="text-xs uppercase tracking-[0.3em] text-slate-500">Selected path</p>
+                    <p className="text-xs tracking-label text-slate-400">Selected path</p>
                     <h2 className="mt-2 text-2xl font-semibold text-white">{activeRoadmap.title} engineering</h2>
                     <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-400">{activeRoadmap.short}</p>
                   </div>
-                  <div className="rounded-full border border-[#5ed29c]/20 bg-[#5ed29c]/10 px-3 py-2 text-sm text-[#5ed29c]">
+                  <div className="rounded-full border border-[#5ed29c]/20 bg-[#5ed29c]/10 px-3 py-2 text-sm text-emerald-300">
                     {activeRoadmap.progress}% complete
                   </div>
                 </div>
 
                 <div className="mt-6 grid gap-4 md:grid-cols-3">
-                  <div className="rounded-[1rem] border border-white/10 bg-white/5 p-4">
-                    <p className="text-[10px] uppercase tracking-[0.3em] text-slate-500">Timeline</p>
+                  <div className="rounded-lg border border-white/10 bg-white/5 p-4">
+                    <p className="text-[10px] tracking-label text-slate-400">Timeline</p>
                     <p className="mt-2 text-lg font-semibold text-white">{activeRoadmap.timeline}</p>
                   </div>
-                  <div className="rounded-[1rem] border border-white/10 bg-white/5 p-4">
-                    <p className="text-[10px] uppercase tracking-[0.3em] text-slate-500">Next milestone</p>
+                  <div className="rounded-lg border border-white/10 bg-white/5 p-4">
+                    <p className="text-[10px] tracking-label text-slate-400">Next milestone</p>
                     <p className="mt-2 text-sm text-slate-300">{nextMilestone ? nextMilestone.label : 'All milestones complete!'}</p>
                   </div>
-                  <div className="rounded-[1rem] border border-white/10 bg-white/5 p-4">
-                    <p className="text-[10px] uppercase tracking-[0.3em] text-slate-500">Certification</p>
+                  <div className="rounded-lg border border-white/10 bg-white/5 p-4">
+                    <p className="text-[10px] tracking-label text-slate-400">Certification</p>
                     <p className="mt-2 text-sm text-slate-300">{activeRoadmap.certification}</p>
                   </div>
                 </div>
 
-                <div className="mt-6 rounded-[1.25rem] border border-white/10 bg-slate-950/70 p-4">
+                <div className="mt-6 rounded-lg border border-white/10 bg-slate-950/70 p-4">
                   <div className="flex items-center gap-2">
-                    <Target size={16} className="text-[#5ed29c]" />
+                    <Target size={16} className="text-emerald-300" />
                     <h3 className="text-lg font-semibold text-white">Milestones</h3>
                   </div>
                   <div className="mt-4 space-y-3">
                     {activeRoadmap.milestones.map((milestone, index) => (
-                      <button key={milestone.id} onClick={() => handleToggleCheckpoint(milestone.id, milestone.completed)} className={`flex w-full items-center justify-between rounded-[1rem] border px-4 py-3 text-left transition ${milestone.completed ? 'border-[#5ed29c]/25 bg-[#5ed29c]/10' : 'border-white/10 bg-white/5 hover:border-white/20'}`}>
+                      <button key={milestone.id} onClick={() => handleToggleCheckpoint(milestone.id, milestone.completed)} className={`flex w-full items-center justify-between rounded-lg border px-4 py-3 text-left transition ${milestone.completed ? 'border-[#5ed29c]/25 bg-[#5ed29c]/10' : 'border-white/10 bg-white/5 hover:border-white/20'}`}>
                         <div className="flex items-center gap-3">
-                          <div className={`flex h-7 w-7 items-center justify-center rounded-full border ${milestone.completed ? 'border-[#5ed29c] bg-[#5ed29c]/10 text-[#5ed29c]' : 'border-white/10 text-slate-400'}`}>
+                          <div className={`flex h-7 w-7 items-center justify-center rounded-full border ${milestone.completed ? 'border-[#5ed29c] bg-[#5ed29c]/10 text-emerald-300' : 'border-white/10 text-slate-400'}`}>
                             {milestone.completed ? <CheckCircle2 size={14} /> : index + 1}
                           </div>
                           <div>
-                            <p className={`text-sm font-medium ${milestone.completed ? 'text-[#5ed29c]' : 'text-slate-200'}`}>{milestone.label}</p>
-                            <p className="text-xs text-slate-500">{milestone.completed ? 'Completed' : 'Tap to mark complete'}</p>
+                            <p className={`text-sm font-medium ${milestone.completed ? 'text-emerald-300' : 'text-slate-200'}`}>{milestone.label}</p>
+                            <p className="text-xs text-slate-400">{milestone.completed ? 'Completed' : 'Tap to mark complete'}</p>
                           </div>
                         </div>
                         <ArrowRight size={16} className="text-slate-400" />
@@ -390,30 +390,30 @@ function RoadmapsPage() {
                 </div>
 
                 <div className="mt-6 grid gap-6 lg:grid-cols-2">
-                  <div className="rounded-[1.25rem] border border-white/10 bg-slate-950/70 p-4">
+                  <div className="rounded-lg border border-white/10 bg-slate-950/70 p-4">
                     <div className="flex items-center gap-2">
-                      <BookOpen size={16} className="text-[#5ed29c]" />
+                      <BookOpen size={16} className="text-emerald-300" />
                       <h3 className="text-lg font-semibold text-white">Resources</h3>
                     </div>
                     <div className="mt-4 space-y-2">
                       {activeRoadmap.resources.map((resource) => (
-                        <a key={resource.name} href={resource.url} className="flex items-center justify-between rounded-[0.9rem] border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300 transition hover:border-[#5ed29c]/20 hover:bg-[#5ed29c]/10">
+                        <a key={resource.name} href={resource.url} className="flex items-center justify-between rounded-md border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300 transition hover:border-[#5ed29c]/20 hover:bg-[#5ed29c]/10">
                           <span>{resource.name}</span>
-                          <span className="text-xs uppercase tracking-[0.25em] text-slate-500">{resource.type}</span>
+                          <span className="text-xs tracking-label text-slate-400">{resource.type}</span>
                         </a>
                       ))}
                     </div>
                   </div>
-                  <div className="rounded-[1.25rem] border border-white/10 bg-slate-950/70 p-4">
+                  <div className="rounded-lg border border-white/10 bg-slate-950/70 p-4">
                     <div className="flex items-center gap-2">
-                      <Sparkles size={16} className="text-[#5ed29c]" />
+                      <Sparkles size={16} className="text-emerald-300" />
                       <h3 className="text-lg font-semibold text-white">Projects</h3>
                     </div>
                     <div className="mt-4 space-y-2">
                       {activeRoadmap.projects.map((project) => (
-                        <div key={project.name} className="flex items-center justify-between rounded-[0.9rem] border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">
+                        <div key={project.name} className="flex items-center justify-between rounded-md border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">
                           <span>{project.name}</span>
-                          <span className={`rounded-full px-2 py-1 text-[10px] uppercase tracking-[0.25em] ${project.difficulty === 'Easy' ? 'bg-emerald-500/10 text-emerald-300' : project.difficulty === 'Medium' ? 'bg-indigo-500/10 text-indigo-300' : 'bg-rose-500/10 text-rose-300'}`}>{project.difficulty}</span>
+                          <span className={`rounded-full px-2 py-1 text-[10px]  tracking-label ${project.difficulty === 'Easy' ? 'bg-emerald-500/10 text-emerald-300' : project.difficulty === 'Medium' ? 'bg-indigo-500/10 text-indigo-300' : 'bg-rose-500/10 text-rose-300'}`}>{project.difficulty}</span>
                         </div>
                       ))}
                     </div>

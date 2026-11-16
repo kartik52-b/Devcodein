@@ -164,7 +164,7 @@ function RoadmapSection() {
     <section id="roadmaps" className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
       <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">Roadmaps</p>
+          <p className="eyebrow">Roadmaps</p>
           <h2 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">Choose a path and follow the signal from beginner to builder.</h2>
         </div>
         <p className="max-w-xl text-slate-400">
@@ -173,7 +173,7 @@ function RoadmapSection() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="glass rounded-[2rem] border border-white/10 p-6">
+        <div className="glass rounded-2xl border border-white/10 p-6">
           <div className="mb-6 flex items-center justify-between">
             <h3 className="text-xl font-semibold text-white">Interactive roadmap nodes</h3>
             <span className="text-sm text-slate-400">{roadmaps.length} tracks</span>
@@ -185,7 +185,7 @@ function RoadmapSection() {
                 <button
                   key={roadmap.title}
                   onClick={() => setActiveRoadmap(roadmap)}
-                  className={`roadmap-card rounded-[1.25rem] border p-4 text-left transition ${isActive ? 'border-cyan-400/40 bg-cyan-400/10 shadow-lg shadow-cyan-950/40' : 'border-white/10 bg-slate-950/50 hover:border-white/20 hover:bg-white/5'}`}
+                  className={`roadmap-card rounded-lg border p-4 text-left transition ${isActive ? 'border-cyan-400/40 bg-cyan-400/10 shadow-lg shadow-cyan-950/40' : 'border-white/10 bg-slate-950/50 hover:border-white/20 hover:bg-white/5'}`}
                 >
                   <div className="mb-3 flex items-center gap-2">
                     <span className={`h-2.5 w-2.5 rounded-full bg-gradient-to-r ${roadmap.accent}`} />
@@ -198,27 +198,27 @@ function RoadmapSection() {
           </div>
         </div>
 
-        <div className="glass rounded-[2rem] border border-white/10 p-7">
-          <div className={`rounded-[1.5rem] border border-white/10 bg-gradient-to-br ${activeRoadmap.accent} p-[1px]`}>
-            <div className="rounded-[calc(1.5rem-1px)] bg-slate-950/80 p-6">
+        <div className="glass rounded-2xl border border-white/10 p-7">
+          <div className={`rounded-xl border border-white/10 bg-gradient-to-br ${activeRoadmap.accent} p-[1px]`}>
+            <div className="rounded-xl bg-slate-950/80 p-6">
               <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                 <div>
-                  <p className="text-sm uppercase tracking-[0.35em] text-slate-400">Selected roadmap</p>
+                  <p className="text-sm tracking-label text-slate-400">Selected roadmap</p>
                   <h3 className="mt-2 text-2xl font-semibold text-white">{activeRoadmap.title}</h3>
                   <p className="mt-2 max-w-xl text-slate-400">{activeRoadmap.short}</p>
                 </div>
-                <div className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-sm text-cyan-200">
+                <div className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-sm text-cyan-300">
                   {activeRoadmap.progress} complete
                 </div>
               </div>
 
               <div className="mt-6 grid gap-4 md:grid-cols-2">
-                <div className="rounded-[1.25rem] border border-white/10 bg-white/5 p-4">
-                  <p className="text-sm uppercase tracking-[0.25em] text-slate-400">Timeline</p>
+                <div className="rounded-lg border border-white/10 bg-white/5 p-4">
+                  <p className="text-sm tracking-label text-slate-400">Timeline</p>
                   <p className="mt-2 text-lg font-semibold text-white">{activeRoadmap.timeline}</p>
                 </div>
-                <div className="rounded-[1.25rem] border border-white/10 bg-white/5 p-4">
-                  <p className="text-sm uppercase tracking-[0.25em] text-slate-400">Progress</p>
+                <div className="rounded-lg border border-white/10 bg-white/5 p-4">
+                  <p className="text-sm tracking-label text-slate-400">Progress</p>
                   <div className="mt-2 h-2 rounded-full bg-slate-800">
                     <div className={`h-2 rounded-full bg-gradient-to-r ${activeRoadmap.accent}`} style={{ width: activeRoadmap.progress }} />
                   </div>
@@ -227,8 +227,8 @@ function RoadmapSection() {
               </div>
 
               <div className="mt-6 grid gap-6 lg:grid-cols-2">
-                <div className="rounded-[1.25rem] border border-white/10 bg-slate-900/70 p-4">
-                  <p className="text-sm uppercase tracking-[0.25em] text-slate-400">Resources</p>
+                <div className="rounded-lg border border-white/10 bg-slate-900/70 p-4">
+                  <p className="text-sm tracking-label text-slate-400">Resources</p>
                   <ul className="mt-3 space-y-2 text-sm text-slate-300">
                     {activeRoadmap.resources.map((resource) => (
                       <li key={resource} className="flex items-center gap-2">
@@ -238,8 +238,8 @@ function RoadmapSection() {
                     ))}
                   </ul>
                 </div>
-                <div className="rounded-[1.25rem] border border-white/10 bg-slate-900/70 p-4">
-                  <p className="text-sm uppercase tracking-[0.25em] text-slate-400">Projects</p>
+                <div className="rounded-lg border border-white/10 bg-slate-900/70 p-4">
+                  <p className="text-sm tracking-label text-slate-400">Projects</p>
                   <ul className="mt-3 space-y-2 text-sm text-slate-300">
                     {activeRoadmap.projects.map((project) => (
                       <li key={project} className="flex items-center gap-2">
@@ -251,9 +251,9 @@ function RoadmapSection() {
                 </div>
               </div>
 
-              <div className="mt-6 rounded-[1.25rem] border border-white/10 bg-white/5 p-4">
+              <div className="mt-6 rounded-lg border border-white/10 bg-white/5 p-4">
                 <div className="flex items-center justify-between">
-                  <p className="text-sm uppercase tracking-[0.25em] text-slate-400">Certification</p>
+                  <p className="text-sm tracking-label text-slate-400">Certification</p>
                   <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-slate-200">
                     {activeRoadmap.certification}
                   </span>
@@ -261,7 +261,7 @@ function RoadmapSection() {
                 <div className="mt-4 space-y-3">
                   {activeRoadmap.milestones.map((milestone, index) => (
                     <div key={milestone} className="flex items-center gap-3">
-                      <div className="flex h-8 w-8 items-center justify-center rounded-full border border-cyan-400/20 bg-cyan-400/10 text-sm font-semibold text-cyan-200">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-full border border-cyan-400/20 bg-cyan-400/10 text-sm font-semibold text-cyan-300">
                         {index + 1}
                       </div>
                       <div>

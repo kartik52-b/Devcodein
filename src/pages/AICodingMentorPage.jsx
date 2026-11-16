@@ -116,16 +116,16 @@ function AICodingMentorPage() {
   }, [activeProfile.id]);
 
   return (
-    <div className="min-h-screen bg-[#050816] p-4 text-slate-100 md:p-6 lg:p-8">
+    <div className="min-h-[70vh] p-4 text-slate-200 md:p-6 lg:p-8">
       <div className="mx-auto max-w-7xl space-y-6">
-        <section className="glass rounded-[2rem] border border-white/10 p-6 md:p-8">
+        <section className="glass rounded-2xl border border-white/10 p-6 md:p-8">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
-              <p className="text-sm uppercase tracking-[0.35em] text-[#5ed29c]">Intelligent programming assistant</p>
+              <p className="text-sm tracking-label text-emerald-300">Intelligent programming assistant</p>
               <h1 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">AI mentor for writing, debugging, explaining, and optimizing</h1>
               <p className="mt-4 text-slate-400">The assistant understands prompts across languages and workflows, from merge sort in Java to debugging production issues.</p>
             </div>
-            <div className="rounded-[1.2rem] border border-[#5ed29c]/20 bg-[#5ed29c]/10 px-4 py-3 text-sm text-[#5ed29c]">
+            <div className="rounded-lg border border-[#5ed29c]/20 bg-[#5ed29c]/10 px-4 py-3 text-sm text-emerald-300">
               <div className="flex items-center gap-2">
                 <Bot size={16} />
                 <span>Online and ready</span>
@@ -135,61 +135,61 @@ function AICodingMentorPage() {
         </section>
 
         <div className="grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
-          <section className="glass rounded-[2rem] border border-white/10 p-6">
+          <section className="glass rounded-2xl border border-white/10 p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Suggested prompts</p>
+                <p className="text-xs tracking-label text-slate-400">Suggested prompts</p>
                 <h2 className="mt-2 text-xl font-semibold text-white">Start a high-signal conversation</h2>
               </div>
-              <BrainCircuit size={18} className="text-[#5ed29c]" />
+              <BrainCircuit size={18} className="text-emerald-300" />
             </div>
             <div className="mt-5 flex flex-wrap gap-2">
               {quickActions.map((action) => (
-                <button key={action.label} onClick={() => handleQuickAction(action)} className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-200 transition hover:border-[#5ed29c]/40 hover:bg-[#5ed29c]/10">
+                <button key={action.label} onClick={() => handleQuickAction(action)} className="btn btn-tertiary btn-sm">
                   {action.label}
                 </button>
               ))}
             </div>
-            <div className="mt-6 rounded-[1.25rem] border border-white/10 bg-slate-950/60 p-4">
-              <p className="text-[10px] uppercase tracking-[0.3em] text-slate-500">Current focus</p>
+            <div className="mt-6 rounded-lg border border-white/10 bg-slate-950/60 p-4">
+              <p className="text-[10px] tracking-label text-slate-400">Current focus</p>
               <p className="mt-2 text-lg font-semibold text-white">{intentLabel}</p>
               <p className="mt-2 text-sm leading-7 text-slate-400">The experience supports code generation, debugging, explanation, optimization, language conversion, interviews, and project planning.</p>
             </div>
             <div className="mt-6 space-y-3">
-              <div className="rounded-[1.1rem] border border-white/10 bg-slate-950/70 p-4">
-                <p className="text-[10px] uppercase tracking-[0.3em] text-slate-500">Recent chats</p>
+              <div className="rounded-lg border border-white/10 bg-slate-950/70 p-4">
+                <p className="text-[10px] tracking-label text-slate-400">Recent chats</p>
                 <div className="mt-3 space-y-2 text-sm text-slate-300">
-                  {recentChats.map((item) => <div key={item} className="rounded-xl border border-white/10 bg-white/5 px-3 py-2">{item}</div>)}
+                  {recentChats.map((item) => <div key={item} className="rounded-md border border-white/10 bg-white/5 px-3 py-2">{item}</div>)}
                 </div>
               </div>
-              <div className="rounded-[1.1rem] border border-white/10 bg-slate-950/70 p-4">
-                <p className="text-[10px] uppercase tracking-[0.3em] text-slate-500">Pinned chats</p>
+              <div className="rounded-lg border border-white/10 bg-slate-950/70 p-4">
+                <p className="text-[10px] tracking-label text-slate-400">Pinned chats</p>
                 <div className="mt-3 space-y-2 text-sm text-slate-300">
-                  {pinnedChats.map((item) => <div key={item} className="rounded-xl border border-white/10 bg-white/5 px-3 py-2">{item}</div>)}
+                  {pinnedChats.map((item) => <div key={item} className="rounded-md border border-white/10 bg-white/5 px-3 py-2">{item}</div>)}
                 </div>
               </div>
             </div>
           </section>
 
-          <section className="glass rounded-[2rem] border border-white/10 p-4 md:p-6">
-            <div className="mb-4 flex items-center justify-between rounded-[1.25rem] border border-white/10 bg-slate-950/70 px-4 py-3">
+          <section className="glass rounded-2xl border border-white/10 p-4 md:p-6">
+            <div className="mb-4 flex items-center justify-between rounded-lg border border-white/10 bg-slate-950/70 px-4 py-3">
               <div>
-                <p className="text-[10px] uppercase tracking-[0.3em] text-slate-500">Conversation history</p>
+                <p className="text-[10px] tracking-label text-slate-400">Conversation history</p>
                 <p className="text-lg font-semibold text-white">Live mentor session</p>
               </div>
-              <div className="rounded-full border border-[#5ed29c]/20 bg-[#5ed29c]/10 px-3 py-1 text-sm text-[#5ed29c]">Typing {isTyping ? '…' : 'ready'}</div>
+              <div className="rounded-full border border-[#5ed29c]/20 bg-[#5ed29c]/10 px-3 py-1 text-sm text-emerald-300">Typing {isTyping ? '…' : 'ready'}</div>
             </div>
-            <div className="mb-4 max-h-[420px] space-y-3 overflow-y-auto rounded-[1.25rem] border border-white/10 bg-slate-950/70 p-4">
+            <div className="mb-4 max-h-[420px] space-y-3 overflow-y-auto rounded-lg border border-white/10 bg-slate-950/70 p-4">
               {messages.map((message) => (
                 <div key={message.id} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-[90%] rounded-[1rem] px-4 py-3 text-sm leading-7 ${message.role === 'user' ? 'bg-gradient-to-r from-[#5ed29c] to-cyan-500 text-[#07100c]' : 'border border-white/10 bg-white/5 text-slate-200'}`}>
+                  <div className={`max-w-[90%] rounded-lg px-4 py-3 text-sm leading-7 ${message.role === 'user' ? 'bg-gradient-to-r from-[#5ed29c] to-cyan-500 text-slate-950' : 'border border-white/10 bg-white/5 text-slate-200'}`}>
                     {message.content}
                   </div>
                 </div>
               ))}
               {isTyping && (
                 <div className="flex justify-start">
-                  <div className="rounded-[1rem] border border-white/10 bg-white/5 px-4 py-3">
+                  <div className="rounded-lg border border-white/10 bg-white/5 px-4 py-3">
                     <div className="flex items-center gap-2">
                       <span className="h-2.5 w-2.5 animate-bounce rounded-full bg-[#5ed29c]" />
                       <span className="h-2.5 w-2.5 animate-bounce rounded-full bg-[#5ed29c] [animation-delay:120ms]" />
@@ -199,11 +199,11 @@ function AICodingMentorPage() {
                 </div>
               )}
             </div>
-            <div className="rounded-[1.25rem] border border-white/10 bg-slate-950/70 p-3">
-              <textarea value={draft} onChange={(event) => setDraft(event.target.value)} rows={3} onKeyDown={(event) => { if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); handleSend(); } }} placeholder="Ask about a bug, concept, or coding challenge..." className="w-full resize-none rounded-[1rem] border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500" />
+            <div className="rounded-lg border border-white/10 bg-slate-950/70 p-3">
+              <textarea value={draft} onChange={(event) => setDraft(event.target.value)} rows={3} onKeyDown={(event) => { if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); handleSend(); } }} placeholder="Ask about a bug, concept, or coding challenge..." className="w-full resize-none rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-400" />
               <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <p className="text-sm text-slate-400">Responses are designed to feel like a premium engineering mentor.</p>
-                <button onClick={() => handleSend()} className="rounded-full bg-gradient-to-r from-[#5ed29c] to-cyan-400 px-4 py-2 text-sm font-semibold text-[#07100c]">Send message</button>
+                <button onClick={() => handleSend()} className="btn btn-primary">Send message</button>
               </div>
             </div>
           </section>

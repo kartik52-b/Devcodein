@@ -1,66 +1,379 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ==========================================================================
+   DevVerse design tokens
+   Single source of truth for colour, radius, elevation and motion. Tailwind
+   utilities read these values, so the whole app can be re-themed here.
+   ========================================================================== */
 :root {
-    color-scheme: dark;
-    font-family: 'Inter', sans-serif;
-    background: #050816;
-    color: #f8fafc;
+  color-scheme: dark;
+
+  /* Surfaces */
+  --dv-canvas: #050816;
+  --dv-canvas-mid: #0f172a;
+  --dv-canvas-deep: #020617;
+  --dv-surface-solid: #0b1220;
+  --dv-surface-glass: rgba(15, 23, 42, 0.55);
+  --dv-border: rgba(255, 255, 255, 0.1);
+  --dv-border-strong: rgba(255, 255, 255, 0.15);
+
+  /* Brand */
+  --dv-primary: #6366f1;
+  --dv-primary-soft: #818cf8;
+  --dv-accent: #22d3ee;
+  --dv-success: #34d399;
+  --dv-warning: #fbbf24;
+  --dv-danger: #fb7185;
+
+  /* Text palette — 10 tokens, all AA on the canvas. */
+  --dv-text: #ffffff;
+  --dv-text-body: #e2e8f0;
+  --dv-text-secondary: #cbd5e1;
+  --dv-text-muted: #94a3b8;
+  --dv-text-on-light: #020617;
+
+  /* Radii — 6 tokens. */
+  --dv-radius-sm: 6px;
+  --dv-radius-md: 12px;
+  --dv-radius-lg: 16px;
+  --dv-radius-xl: 24px;
+  --dv-radius-2xl: 32px;
+  --dv-radius-full: 9999px;
+
+  /* Elevation */
+  --dv-shadow-card: 0 20px 60px -28px rgba(2, 6, 23, 0.9);
+  --dv-shadow-glow: 0 0 120px rgba(124, 58, 237, 0.35);
+
+  /* Motion */
+  --dv-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dv-duration: 200ms;
 }
 
-html {
+@layer base {
+  html {
     scroll-behavior: smooth;
-}
+  }
 
-body {
+  body {
     margin: 0;
     min-height: 100vh;
-    background: radial-gradient(circle at top left, rgba(88, 28, 135, 0.3), transparent 24%), radial-gradient(circle at 85% 15%, rgba(56, 189, 248, 0.2), transparent 22%), linear-gradient(135deg, #050816 0%, #0f172a 45%, #020617 100%);
-    color: #f8fafc;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    background:
+      radial-gradient(circle at top left, rgba(88, 28, 135, 0.3), transparent 24%),
+      radial-gradient(circle at 85% 15%, rgba(56, 189, 248, 0.2), transparent 22%),
+      linear-gradient(135deg, #050816 0%, #0f172a 45%, #020617 100%);
+    background-attachment: fixed;
+    color: var(--dv-text-body);
     overflow-x: hidden;
-}
+  }
 
-* {
+  * {
     box-sizing: border-box;
-}
+  }
 
-::selection {
+  /* One global, high-contrast focus ring for keyboard users. */
+  :focus-visible {
+    outline: 2px solid var(--dv-accent);
+    outline-offset: 2px;
+  }
+
+  ::selection {
     background: rgba(129, 140, 248, 0.35);
     color: white;
+  }
 }
 
-.glass {
-    background: rgba(15, 23, 42, 0.55);
+@layer components {
+  .glass {
+    background: var(--dv-surface-glass);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-}
+    border: 1px solid var(--dv-border);
+    box-shadow: var(--dv-shadow-card);
+  }
 
-.aurora {
+  .aurora {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 20% 20%, rgba(129, 140, 248, 0.6), transparent 32%), radial-gradient(circle at 80% 10%, rgba(20, 184, 166, 0.35), transparent 24%), radial-gradient(circle at 60% 80%, rgba(244, 114, 182, 0.3), transparent 34%);
+    background:
+      radial-gradient(circle at 20% 20%, rgba(129, 140, 248, 0.6), transparent 32%),
+      radial-gradient(circle at 80% 10%, rgba(20, 184, 166, 0.35), transparent 24%),
+      radial-gradient(circle at 60% 80%, rgba(244, 114, 182, 0.3), transparent 34%);
     filter: blur(40px);
     opacity: 0.9;
     pointer-events: none;
-}
+  }
 
-.mouse-glow {
+  .mouse-glow {
     position: fixed;
     width: 320px;
     height: 320px;
-    border-radius: 50%;
+    border-radius: var(--dv-radius-full);
     pointer-events: none;
     background: radial-gradient(circle, rgba(99, 102, 241, 0.22), transparent 70%);
     transform: translate(-50%, -50%);
     z-index: 0;
     filter: blur(20px);
-}
+  }
 
-.roadmap-card {
-    transition: transform 200ms ease, border-color 200ms ease, background-color 200ms ease;
-}
+  .roadmap-card {
+    transition: transform var(--dv-duration) var(--dv-ease),
+      border-color var(--dv-duration) var(--dv-ease),
+      background-color var(--dv-duration) var(--dv-ease);
+  }
 
-.roadmap-card:hover {
+  .roadmap-card:hover {
     transform: translateY(-2px);
+  }
+
+  /* Section eyebrow — sentence case, never uppercase. */
+  .eyebrow {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--dv-primary-soft);
+  }
+
+
+  /* ------------------------------------------------------------------
+     Buttons — exactly five variants: primary, secondary, tertiary,
+     ghost, danger. Sizes are modifiers, not new variants.
+     ------------------------------------------------------------------ */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: var(--dv-radius-full);
+    border: 1px solid transparent;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background-color var(--dv-duration) var(--dv-ease),
+      border-color var(--dv-duration) var(--dv-ease),
+      color var(--dv-duration) var(--dv-ease),
+      transform var(--dv-duration) var(--dv-ease);
+  }
+
+  .btn:disabled,
+  .btn[aria-disabled='true'] {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .btn-primary {
+    background-image: linear-gradient(90deg, #6366f1, #8b5cf6, #22d3ee);
+    color: var(--dv-text);
+    box-shadow: var(--dv-shadow-glow);
+  }
+
+  .btn-primary:hover {
+    filter: brightness(1.08);
+  }
+
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--dv-border-strong);
+    color: var(--dv-text);
+    backdrop-filter: blur(12px);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  .btn-tertiary {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--dv-border);
+    color: var(--dv-text-secondary);
+  }
+
+  .btn-tertiary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--dv-text);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--dv-text-secondary);
+  }
+
+  .btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--dv-text);
+  }
+
+  .btn-danger {
+    background: #e11d48;
+    color: var(--dv-text);
+  }
+
+  .btn-danger:hover {
+    background: #f43f5e;
+  }
+
+  .btn-sm {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+  }
+
+  .btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .btn-icon {
+    padding: 0.5rem;
+    border-radius: var(--dv-radius-md);
+  }
+
+  /* Shared text field (auth + settings forms). */
+  .text-input {
+    width: 100%;
+    border-radius: var(--dv-radius-md);
+    border: 1px solid var(--dv-border);
+    background: rgba(2, 6, 23, 0.7);
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    color: var(--dv-text);
+    transition: border-color var(--dv-duration) var(--dv-ease),
+      box-shadow var(--dv-duration) var(--dv-ease);
+  }
+
+  .text-input::placeholder {
+    color: var(--dv-text-muted);
+  }
+
+  .text-input:hover {
+    border-color: var(--dv-border-strong);
+  }
+
+  .text-input:focus {
+    outline: none;
+    border-color: rgba(34, 211, 238, 0.45);
+    box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
+  }
+
+  .text-input[aria-invalid='true'] {
+    border-color: rgba(244, 63, 94, 0.6);
+  }
+
+  /* Small interaction helper kept for existing markup. */
+  .btn-micro {
+    transition: transform var(--dv-duration) var(--dv-ease),
+      box-shadow var(--dv-duration) var(--dv-ease);
+  }
+
+  .btn-micro:active {
+    transform: scale(0.97);
+  }
+
+  .card-hover-premium {
+    transition: transform var(--dv-duration) var(--dv-ease),
+      border-color var(--dv-duration) var(--dv-ease);
+  }
+
+  .card-hover-premium:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+}
+
+/* ==========================================================================
+   Animations referenced across the app
+   ========================================================================== */
+@keyframes dv-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dv-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dv-streak-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(251, 146, 60, 0);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(251, 146, 60, 0.35);
+  }
+}
+
+@keyframes dv-podium {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: dv-fade-in 400ms var(--dv-ease) both;
+  }
+
+  .animate-slide-up {
+    animation: dv-slide-up 500ms var(--dv-ease) both;
+  }
+
+  .animate-streak-glow {
+    animation: dv-streak-glow 3s ease-in-out infinite;
+  }
+
+  .animate-podium-first,
+  .animate-podium-second,
+  .animate-podium-third {
+    animation: dv-podium 500ms var(--dv-ease) both;
+  }
+
+  .animate-podium-second {
+    animation-delay: 100ms;
+  }
+
+  .animate-podium-third {
+    animation-delay: 200ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .mouse-glow {
+    display: none;
+  }
 }

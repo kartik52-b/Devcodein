@@ -7,14 +7,14 @@ const algorithms = [
     name: 'Bubble Sort',
     type: 'Sort',
     complexity: { best: 'O(N)', avg: 'O(N²)', worst: 'O(N²)', space: 'O(1)' },
-    desc: 'Repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. Small values "bubble" to the top.'
+ desc: 'Repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. Small values "bubble" to the top.'
   },
   {
     id: 'quick-sort',
     name: 'Quick Sort',
     type: 'Sort',
     complexity: { best: 'O(N log N)', avg: 'O(N log N)', worst: 'O(N²)', space: 'O(log N)' },
-    desc: 'Selects a "pivot" element and partitions the other elements into two sub-arrays, according to whether they are less than or greater than the pivot.'
+ desc: 'Selects a "pivot" element and partitions the other elements into two sub-arrays, according to whether they are less than or greater than the pivot.'
   },
   {
     id: 'merge-sort',
@@ -788,7 +788,7 @@ function AlgorithmVisualizerPage() {
   };
 
   return (
-    <div className="min-h-screen px-4 py-8 md:px-6 lg:px-8 text-slate-100 max-w-7xl mx-auto">
+    <div className="min-h-[70vh] px-4 py-8 md:px-6 lg:px-8 text-slate-200 max-w-7xl mx-auto">
       
       {/* Background glow animations */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
@@ -797,7 +797,7 @@ function AlgorithmVisualizerPage() {
       </div>
 
       {/* Header Block */}
-      <div className="glass rounded-[2rem] border border-white/10 p-6 md:p-8 lg:p-10 mb-8 shadow-2xl relative">
+      <div className="glass rounded-2xl border border-white/10 p-6 md:p-8 lg:p-10 mb-8 shadow-2xl relative">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-500/10 px-3 py-1 text-xs md:text-sm text-cyan-300 mb-4">
@@ -813,8 +813,8 @@ function AlgorithmVisualizerPage() {
           </div>
           <div>
             <Link 
-              to="/" 
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 hover:bg-white/10 px-5 py-2.5 text-sm font-medium text-slate-200 transition-all duration-200 backdrop-blur shadow-lg hover:border-white/20 active:scale-95"
+ to="/" 
+ className="btn btn-secondary rounded-full"
             >
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -829,18 +829,18 @@ function AlgorithmVisualizerPage() {
       <div className="grid gap-8 grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] mb-8">
         
         {/* Left Side: Canvas & Controls */}
-        <div className="glass rounded-[2rem] border border-white/10 p-5 md:p-6 shadow-xl flex flex-col justify-between">
+        <div className="glass rounded-2xl border border-white/10 p-5 md:p-6 shadow-xl flex flex-col justify-between">
           <div>
             
             {/* Top row controls */}
             <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
               <div>
-                <span className="text-xs text-slate-500 uppercase tracking-wider block">Algorithm Mode</span>
+                <span className="text-xs text-slate-400 tracking-label block">Algorithm Mode</span>
                 <div className="relative mt-1">
                   <select
                     value={selectedAlgo}
                     onChange={(e) => setSelectedAlgo(e.target.value)}
-                    className="bg-slate-900 border border-white/10 text-white rounded-xl px-4 py-2 text-sm font-semibold pr-10 focus:outline-none focus:border-indigo-500 appearance-none cursor-pointer"
+ className="bg-slate-900 border border-white/10 text-white rounded-md px-4 py-2 text-sm font-semibold pr-10 focus:outline-none focus:border-indigo-500 appearance-none cursor-pointer"
                   >
                     {algorithms.map(a => (
                       <option key={a.id} value={a.id}>{a.name} ({a.type})</option>
@@ -854,11 +854,11 @@ function AlgorithmVisualizerPage() {
 
               {/* Speed Slider Selector */}
               <div className="flex items-center gap-3">
-                <span className="text-xs text-slate-500">Play Speed</span>
+                <span className="text-xs text-slate-400">Play Speed</span>
                 <select 
                   value={playSpeed} 
                   onChange={e => setPlaySpeed(Number(e.target.value))}
-                  className="bg-slate-900 border border-white/10 text-slate-350 rounded-lg text-xs px-2.5 py-1.5 focus:outline-none"
+ className="bg-slate-900 border border-white/10 text-slate-400 rounded-md text-xs px-2.5 py-1.5 focus:outline-none"
                 >
                   <option value={0.5}>0.5x</option>
                   <option value={1}>1.0x (normal)</option>
@@ -869,7 +869,7 @@ function AlgorithmVisualizerPage() {
             </div>
 
             {/* Animation Canvas Screen */}
-            <div className="bg-slate-950/70 border border-white/10 rounded-2xl p-6 min-h-[250px] flex items-center justify-center relative overflow-hidden mb-6">
+            <div className="bg-slate-950/70 border border-white/10 rounded-lg p-6 min-h-[250px] flex items-center justify-center relative overflow-hidden mb-6">
               
               {/* Rendering Sort/Search bars */}
               {(currentAlgo.type === 'Sort' || currentAlgo.id === 'binary-search') && (
@@ -894,7 +894,7 @@ function AlgorithmVisualizerPage() {
                     }
                     if (isSorted) {
                       barColor = 'from-emerald-600/60 to-emerald-500/50';
-                      labelColor = 'text-emerald-400';
+                      labelColor = 'text-emerald-300';
                     }
                     if (isPivot) {
                       barColor = 'from-rose-500 to-pink-500';
@@ -906,13 +906,13 @@ function AlgorithmVisualizerPage() {
                         {/* Binary Search Pointers label */}
                         {currentAlgo.id === 'binary-search' && (
                           <div className="h-6 flex flex-col justify-end text-[8px] font-mono leading-none">
-                            {idx === activeFrame.low && <span className="text-cyan-400 block font-bold">Low</span>}
-                            {idx === activeFrame.mid && <span className="text-yellow-400 block font-bold">Mid</span>}
-                            {idx === activeFrame.high && <span className="text-pink-400 block font-bold">High</span>}
+                            {idx === activeFrame.low && <span className="text-cyan-300 block font-bold">Low</span>}
+                            {idx === activeFrame.mid && <span className="text-amber-300 block font-bold">Mid</span>}
+                            {idx === activeFrame.high && <span className="text-rose-300 block font-bold">High</span>}
                           </div>
                         )}
                         <div 
-                          className={`w-full rounded-t-lg bg-gradient-to-t ${barColor} border ${borderClass} shadow-md transition-all duration-300`} 
+                          className={`w-full rounded-t-md bg-gradient-to-t ${barColor} border ${borderClass} shadow-md transition-all duration-300`} 
                           style={{ height: `${(val / 90) * 110}px`, minHeight: '12px' }} 
                         />
                         <span className={`text-[10px] font-mono font-bold mt-1 ${labelColor}`}>{val}</span>
@@ -975,31 +975,31 @@ function AlgorithmVisualizerPage() {
             {/* Traversal State Stack/Queue indicators */}
             {currentAlgo.type === 'Graph' && (
               <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="bg-slate-950/40 border border-white/5 p-3 rounded-xl">
-                  <span className="text-[10px] text-slate-500 font-bold uppercase block tracking-wider mb-1">
+                <div className="bg-slate-950/40 border border-white/5 p-3 rounded-md">
+                  <span className="text-[10px] text-slate-400 font-bold block tracking-label mb-1">
                     {selectedAlgo === 'dfs' ? 'Implicit Stack (LIFO)' : 'Queue (FIFO)'}
                   </span>
                   <div className="flex gap-1 overflow-x-auto min-h-[30px] items-center">
                     {activeFrame.frontier?.map((val, idx) => (
-                      <span key={idx} className="bg-violet-950/60 border border-violet-500/30 text-violet-200 text-xs px-2.5 py-1 rounded font-mono font-bold">
+                      <span key={idx} className="bg-violet-950/60 border border-violet-500/30 text-indigo-300 text-xs px-2.5 py-1 rounded-sm font-mono font-bold">
                         {val}
                       </span>
                     ))}
                     {(!activeFrame.frontier || activeFrame.frontier.length === 0) && (
-                      <span className="text-[10px] text-slate-650 italic">Empty</span>
+                      <span className="text-[10px] text-slate-400 italic">Empty</span>
                     )}
                   </div>
                 </div>
-                <div className="bg-slate-950/40 border border-white/5 p-3 rounded-xl">
-                  <span className="text-[10px] text-slate-500 font-bold uppercase block tracking-wider mb-1">Visited Order</span>
+                <div className="bg-slate-950/40 border border-white/5 p-3 rounded-md">
+                  <span className="text-[10px] text-slate-400 font-bold block tracking-label mb-1">Visited Order</span>
                   <div className="flex gap-1 overflow-x-auto min-h-[30px] items-center">
                     {activeFrame.visited?.map((val, idx) => (
-                      <span key={idx} className="bg-indigo-950/60 border border-indigo-500/30 text-indigo-200 text-xs px-2 py-0.5 rounded font-mono">
+                      <span key={idx} className="bg-indigo-950/60 border border-indigo-500/30 text-indigo-300 text-xs px-2 py-0.5 rounded-sm font-mono">
                         {val}
                       </span>
                     ))}
                     {(!activeFrame.visited || activeFrame.visited.length === 0) && (
-                      <span className="text-[10px] text-slate-650 italic">Empty</span>
+                      <span className="text-[10px] text-slate-400 italic">Empty</span>
                     )}
                   </div>
                 </div>
@@ -1007,13 +1007,13 @@ function AlgorithmVisualizerPage() {
             )}
 
             {/* Playback Controls Panel */}
-            <div className="flex flex-wrap items-center justify-between gap-4 p-4 bg-slate-950/40 border border-white/5 rounded-2xl">
+            <div className="flex flex-wrap items-center justify-between gap-4 p-4 bg-slate-950/40 border border-white/5 rounded-lg">
               <div className="flex items-center gap-2">
                 <button
                   onClick={stepBackward}
                   disabled={currentFrameIdx === 0}
-                  className="p-2.5 rounded-xl border border-white/10 hover:bg-white/5 disabled:opacity-30 disabled:hover:bg-transparent transition active:scale-95"
-                  title="Step Backward"
+ className="btn btn-ghost disabled:opacity-30 disabled:hover:bg-transparent"
+ title="Step Backward"
                 >
                   <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.334 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z" />
@@ -1021,15 +1021,15 @@ function AlgorithmVisualizerPage() {
                 </button>
                 <button
                   onClick={() => setIsPlaying(prev => !prev)}
-                  className="rounded-full bg-gradient-to-r from-cyan-500 via-indigo-500 to-violet-500 text-white font-semibold text-sm px-6 py-2.5 shadow-md hover:scale-[1.01] transition-all duration-200 active:scale-95"
+ className="btn btn-primary rounded-full"
                 >
                   {isPlaying ? 'Pause' : 'Play Simulation'}
                 </button>
                 <button
                   onClick={stepForward}
                   disabled={currentFrameIdx === frames.length - 1}
-                  className="p-2.5 rounded-xl border border-white/10 hover:bg-white/5 disabled:opacity-30 disabled:hover:bg-transparent transition active:scale-95"
-                  title="Step Forward"
+ className="btn btn-ghost disabled:opacity-30 disabled:hover:bg-transparent"
+ title="Step Forward"
                 >
                   <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.934 12.8a1 1 0 000-1.6l-5.334-4A1 1 0 005 8v8a1 1 0 001.6.8l5.334-4zM19.934 12.8a1 1 0 000-1.6l-5.334-4A1 1 0 0013 8v8a1 1 0 001.6.8l5.334-4z" />
@@ -1037,14 +1037,14 @@ function AlgorithmVisualizerPage() {
                 </button>
                 <button
                   onClick={handleReset}
-                  className="bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 text-slate-300 rounded-xl text-xs px-4 py-2.5 font-medium transition active:scale-95"
+ className="btn btn-tertiary btn-sm"
                 >
                   Reset
                 </button>
               </div>
 
               <div className="text-right">
-                <span className="text-xs text-slate-500 font-mono block">Simulation Frames</span>
+                <span className="text-xs text-slate-400 font-mono block">Simulation Frames</span>
                 <span className="text-sm font-semibold text-slate-300 font-mono">
                   {currentFrameIdx + 1} / {frames.length || 1}
                 </span>
@@ -1058,15 +1058,15 @@ function AlgorithmVisualizerPage() {
         <div className="space-y-8">
           
           {/* Explanation panel */}
-          <div className="glass rounded-[2rem] border border-white/10 p-6 shadow-xl">
-            <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
-              <svg className="h-5 w-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="glass rounded-2xl border border-white/10 p-6 shadow-xl">
+            <h2 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
+              <svg className="h-5 w-5 text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               Execution Panel
-            </h3>
+            </h2>
             <p className="text-xs text-slate-400 mb-4">{currentAlgo.desc}</p>
-            <div className="rounded-2xl bg-slate-950/60 p-4 border border-white/5 min-h-[100px] flex items-center justify-center">
+            <div className="rounded-lg bg-slate-950/60 p-4 border border-white/5 min-h-[100px] flex items-center justify-center">
               <p className="text-sm text-slate-200 leading-relaxed font-medium">
                 {activeFrame.explanation}
               </p>
@@ -1074,27 +1074,27 @@ function AlgorithmVisualizerPage() {
           </div>
 
           {/* Complexity analysis card */}
-          <div className="glass rounded-[2rem] border border-white/10 p-6 shadow-xl">
-            <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-              <svg className="h-5 w-5 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="glass rounded-2xl border border-white/10 p-6 shadow-xl">
+            <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+              <svg className="h-5 w-5 text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
               </svg>
               Asymptotic Complexity
-            </h3>
+            </h2>
             <div className="space-y-3.5">
-              <div className="flex justify-between items-center bg-slate-950/40 p-3 rounded-xl border border-white/5">
+              <div className="flex justify-between items-center bg-slate-950/40 p-3 rounded-md border border-white/5">
                 <span className="text-xs text-slate-400 font-medium">Best Case Time</span>
                 <span className="font-mono text-xs text-cyan-300 font-bold">{currentAlgo.complexity.best}</span>
               </div>
-              <div className="flex justify-between items-center bg-slate-950/40 p-3 rounded-xl border border-white/5">
+              <div className="flex justify-between items-center bg-slate-950/40 p-3 rounded-md border border-white/5">
                 <span className="text-xs text-slate-400 font-medium">Average Case Time</span>
-                <span className="font-mono text-xs text-violet-300 font-bold">{currentAlgo.complexity.avg}</span>
+                <span className="font-mono text-xs text-indigo-300 font-bold">{currentAlgo.complexity.avg}</span>
               </div>
-              <div className="flex justify-between items-center bg-slate-950/40 p-3 rounded-xl border border-white/5">
+              <div className="flex justify-between items-center bg-slate-950/40 p-3 rounded-md border border-white/5">
                 <span className="text-xs text-slate-400 font-medium">Worst Case Time</span>
-                <span className="font-mono text-xs text-rose-400 font-bold">{currentAlgo.complexity.worst}</span>
+                <span className="font-mono text-xs text-rose-300 font-bold">{currentAlgo.complexity.worst}</span>
               </div>
-              <div className="flex justify-between items-center bg-slate-950/40 p-3 rounded-xl border border-white/5">
+              <div className="flex justify-between items-center bg-slate-950/40 p-3 rounded-md border border-white/5">
                 <span className="text-xs text-slate-400 font-medium">Auxiliary Space</span>
                 <span className="font-mono text-xs text-indigo-300 font-bold">{currentAlgo.complexity.space}</span>
               </div>
@@ -1106,13 +1106,13 @@ function AlgorithmVisualizerPage() {
       </div>
 
       {/* Animation Timeline Walkthrough Section */}
-      <div className="glass rounded-[2rem] border border-white/10 p-6 md:p-8 mb-8 shadow-xl">
-        <h3 className="text-xl font-semibold text-white mb-2 flex items-center gap-2">
-          <svg className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div className="glass rounded-2xl border border-white/10 p-6 md:p-8 mb-8 shadow-xl">
+        <h2 className="text-xl font-semibold text-white mb-2 flex items-center gap-2">
+          <svg className="h-5 w-5 text-amber-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           Active Animation Timeline
-        </h3>
+        </h2>
         <p className="text-sm text-slate-400 mb-6">Execution log trace of the visualizer step process. Click any node to jump directly to that state frame.</p>
 
         <div className="relative">
@@ -1147,7 +1147,7 @@ function AlgorithmVisualizerPage() {
 
                   {/* Step label text overlay */}
                   <div className="absolute top-10 left-1/2 -translate-x-1/2 flex flex-col items-center w-28 text-center pointer-events-none mt-1">
-                    <span className={`text-[9px] truncate w-full font-mono ${isActive ? 'text-indigo-300 font-bold' : 'text-slate-500'}`}>
+                    <span className={`text-[9px] truncate w-full font-mono ${isActive ? 'text-indigo-300 font-bold' : 'text-slate-400'}`}>
                       {frame.stepLabel}
                     </span>
                   </div>

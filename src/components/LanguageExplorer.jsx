@@ -13,7 +13,7 @@ const languages = [
     performanceScore: 92,
     popularity: 78,
     popularityLabel: 'Widely used in systems and embedded work',
-    example: `#include <stdio.h>\n\nint main(void) {\n    int total = 0;\n    for (int i = 0; i < 3; i++) {\n        total += i;\n    }\n    printf("%d\\n", total);\n    return 0;\n}`,
+    example: `#include <stdio.h>\n\nint main(void) {\n    int total = 0;\n    for (int i = 0; i < 3; i++) {\n total += i;\n }\n printf("%d\\n", total);\n    return 0;\n}`,
     tutorials: ['C Programming Basics', 'Systems Programming with C']
   },
   {
@@ -83,7 +83,7 @@ const languages = [
     performanceScore: 86,
     popularity: 84,
     popularityLabel: 'Growing fast in distributed backend systems',
-    example: `package main\n\nimport "fmt"\n\nfunc main() {\n    total := 0\n    for i := 0; i < 3; i++ {\n        total += i\n    }\n    fmt.Println(total)\n}`,
+ example: `package main\n\nimport "fmt"\n\nfunc main() {\n    total := 0\n    for i := 0; i < 3; i++ {\n        total += i\n    }\n    fmt.Println(total)\n}`,
     tutorials: ['Go in 30 Minutes', 'Build APIs with Go']
   },
   {
@@ -97,19 +97,19 @@ const languages = [
     performanceScore: 95,
     popularity: 81,
     popularityLabel: 'Rising quickly in systems and infrastructure tools',
-    example: `fn main() {\n    let mut total = 0;\n    for i in 0..3 {\n        total += i;\n    }\n    println!("{}", total);\n}`,
+ example: `fn main() {\n let mut total = 0;\n for i in 0..3 {\n total += i;\n }\n println!("{}", total);\n}`,
     tutorials: ['Rust for Systems Programming', 'Learn Rust by Building']
   }
 ];
 
 const starterSnippets = {
-  c: `#include <stdio.h>\n\nint main(void) {\n  int total = 0;\n  for (int i = 0; i < 3; i++) {\n    total += i;\n  }\n  printf("%d\\n", total);\n  return 0;\n}`,
+  c: `#include <stdio.h>\n\nint main(void) {\n  int total = 0;\n  for (int i = 0; i < 3; i++) {\n total += i;\n }\n printf("%d\\n", total);\n  return 0;\n}`,
   cpp: `#include <iostream>\nusing namespace std;\n\nint main() {\n  int total = 0;\n  for (int i = 0; i < 3; i++) {\n    total += i;\n  }\n  cout << total << '\\n';\n  return 0;\n}`,
   java: `public class Main {\n  public static void main(String[] args) {\n    int total = 0;\n    for (int i = 0; i < 3; i++) {\n      total += i;\n    }\n    System.out.println(total);\n  }\n}`,
   python: `total = 0\nfor i in range(3):\n    total += i\nprint(total)`,
   javascript: `let total = 0;\nfor (let i = 0; i < 3; i++) {\n  total += i;\n}\nconsole.log(total);`,
-  go: `package main\n\nimport "fmt"\n\nfunc main() {\n  total := 0\n  for i := 0; i < 3; i++ {\n    total += i\n  }\n  fmt.Println(total)\n}`,
-  rust: `fn main() {\n    let mut total = 0;\n    for i in 0..3 {\n        total += i;\n    }\n    println!("{}", total);\n}`
+ go: `package main\n\nimport "fmt"\n\nfunc main() {\n  total := 0\n  for i := 0; i < 3; i++ {\n    total += i\n  }\n  fmt.Println(total)\n}`,
+ rust: `fn main() {\n let mut total = 0;\n for i in 0..3 {\n total += i;\n }\n println!("{}", total);\n}`
 };
 
 const monacoLanguageMap = {
@@ -124,7 +124,7 @@ const monacoLanguageMap = {
 
 const diffRows = [
   { feature: 'Loop syntax', c: 'for (int i = 0; i < 3; i++)', cpp: 'for (int i = 0; i < 3; i++)', java: 'for (int i = 0; i < 3; i++)', python: 'for i in range(3):', javascript: 'for (let i = 0; i < 3; i++)', go: 'for i := 0; i < 3; i++ {', rust: 'for i in 0..3 {' },
-  { feature: 'Output', c: 'printf("%d\\n", total);', cpp: 'cout << total << "\\n";', java: 'System.out.println(total);', python: 'print(total)', javascript: 'console.log(total);', go: 'fmt.Println(total)', rust: 'println!("{}", total);' },
+ { feature: 'Output', c: 'printf("%d\\n", total);', cpp: 'cout << total << "\\n";', java: 'System.out.println(total);', python: 'print(total)', javascript: 'console.log(total);', go: 'fmt.Println(total)', rust: 'println!("{}", total);' },
   { feature: 'Variable declaration', c: 'int total = 0;', cpp: 'int total = 0;', java: 'int total = 0;', python: 'total = 0', javascript: 'let total = 0;', go: 'total := 0', rust: 'let mut total = 0;' }
 ];
 
@@ -163,15 +163,15 @@ function LanguageExplorer() {
   };
 
   return (
-    <section className="mx-auto max-w-7xl px-6 py-10 lg:px-8 lg:py-12">
-      <div className="mb-8">
-        <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">Programming Language Explorer</p>
-        <h1 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">Compare syntax, trade-offs, and performance in one focused workspace.</h1>
-        <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-400">This page is dedicated entirely to language comparison. Choose a source language, inspect a target language, and explore example programs, strengths, weaknesses, and popularity.</p>
+    <section className="space-y-6">
+      <div>
+        <p className="eyebrow">Programming language explorer</p>
+        <h2 className="mt-2 text-2xl font-semibold text-white sm:text-3xl">Compare syntax, trade-offs, and performance in one focused workspace.</h2>
+        <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-400 sm:text-base">Choose a source language, inspect a target language, and explore example programs, strengths, weaknesses, and popularity.</p>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="glass rounded-[2rem] border border-white/10 p-5 shadow-2xl shadow-indigo-950/40">
+        <div className="glass rounded-2xl border border-white/10 p-5 shadow-2xl shadow-indigo-950/40">
           <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
             <div>
               <p className="text-sm text-slate-400">Monaco Editor</p>
@@ -190,14 +190,14 @@ function LanguageExplorer() {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-[1.25rem] border border-white/10">
+          <div className="overflow-hidden rounded-lg border border-white/10">
             <Editor
-              height="320px"
+ height="320px"
               defaultLanguage={monacoLanguageMap[sourceLanguage]}
               language={monacoLanguageMap[sourceLanguage]}
               value={code}
               onChange={(value) => setCode(value || '')}
-              theme="vs-dark"
+ theme="vs-dark"
               options={{
                 minimap: { enabled: false },
                 fontSize: 14,
@@ -210,23 +210,23 @@ function LanguageExplorer() {
           </div>
 
           <div className="mt-5 flex flex-wrap gap-3">
-            <button onClick={handleCopy} className="rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/20">
+            <button onClick={handleCopy} className="btn btn-secondary rounded-full">
               {copied ? 'Copied ✓' : 'Copy code'}
             </button>
-            <button onClick={handleDownload} className="rounded-full bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-400 px-4 py-2 text-sm font-medium text-white shadow-glow transition hover:scale-[1.01]">
+            <button onClick={handleDownload} className="btn btn-primary rounded-full">
               Download code
             </button>
           </div>
         </div>
 
         <div className="space-y-6">
-          <div className="glass rounded-[2rem] border border-white/10 p-6">
+          <div className="glass rounded-2xl border border-white/10 p-6">
             <p className="text-sm text-slate-400">Syntax Explanation</p>
             <h2 className="mt-2 text-xl font-semibold text-white">Why this translation feels natural</h2>
             <p className="mt-4 leading-7 text-slate-300">{explanation}</p>
           </div>
 
-          <div className="glass rounded-[2rem] border border-white/10 p-6">
+          <div className="glass rounded-2xl border border-white/10 p-6">
             <p className="text-sm text-slate-400">Language Selector</p>
             <div className="mt-4 grid gap-3">
               {languages.map((lang) => (
@@ -236,7 +236,7 @@ function LanguageExplorer() {
                     setSelectedLanguage(lang.id);
                     setSourceLanguage(lang.id);
                   }}
-                  className={`rounded-[1.2rem] border p-3 text-left transition ${selectedLanguage === lang.id ? 'border-cyan-400/40 bg-cyan-500/10' : 'border-white/10 bg-slate-950/40 hover:bg-slate-900/70'}`}
+                  className={`rounded-lg border p-3 text-left transition ${selectedLanguage === lang.id ? 'border-cyan-400/40 bg-cyan-500/10' : 'border-white/10 bg-slate-950/40 hover:bg-slate-900/70'}`}
                 >
                   <div className="flex items-center justify-between">
                     <span className="font-semibold text-white">{lang.name}</span>
@@ -250,12 +250,12 @@ function LanguageExplorer() {
         </div>
       </div>
 
-      <div className="mt-8 glass rounded-[2rem] border border-white/10 p-6">
+      <div className="mt-8 glass rounded-2xl border border-white/10 p-6">
         <div className="mb-6">
-          <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">Syntax Comparison</p>
+          <p className="eyebrow">Syntax Comparison</p>
           <h2 className="mt-2 text-2xl font-semibold text-white">Core syntax differences at a glance</h2>
         </div>
-        <div className="overflow-hidden rounded-[1.25rem] border border-white/10">
+        <div className="overflow-hidden rounded-lg border border-white/10">
           <table className="min-w-full text-left text-sm text-slate-300">
             <thead className="bg-slate-950/70 text-slate-200">
               <tr>
@@ -276,16 +276,16 @@ function LanguageExplorer() {
       </div>
 
       <div className="mt-8 grid gap-6 lg:grid-cols-2">
-        <div className="glass rounded-[2rem] border border-white/10 p-6">
-          <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">Advantages</p>
+        <div className="glass rounded-2xl border border-white/10 p-6">
+          <p className="eyebrow">Advantages</p>
           <ul className="mt-4 space-y-3 text-sm text-slate-300">
             {target.advantages.map((item) => (
               <li key={item} className="flex items-start gap-2"><span className="mt-2 h-2 w-2 rounded-full bg-emerald-400" />{item}</li>
             ))}
           </ul>
         </div>
-        <div className="glass rounded-[2rem] border border-white/10 p-6">
-          <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">Disadvantages</p>
+        <div className="glass rounded-2xl border border-white/10 p-6">
+          <p className="eyebrow">Disadvantages</p>
           <ul className="mt-4 space-y-3 text-sm text-slate-300">
             {target.disadvantages.map((item) => (
               <li key={item} className="flex items-start gap-2"><span className="mt-2 h-2 w-2 rounded-full bg-rose-400" />{item}</li>
@@ -295,8 +295,8 @@ function LanguageExplorer() {
       </div>
 
       <div className="mt-8 grid gap-6 lg:grid-cols-2">
-        <div className="glass rounded-[2rem] border border-white/10 p-6">
-          <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">Performance Comparison</p>
+        <div className="glass rounded-2xl border border-white/10 p-6">
+          <p className="eyebrow">Performance Comparison</p>
           <div className="mt-4 space-y-4">
             {languages.map((lang) => (
               <div key={lang.id}>
@@ -313,8 +313,8 @@ function LanguageExplorer() {
           <p className="mt-4 text-sm leading-7 text-slate-400">{target.performance}</p>
         </div>
 
-        <div className="glass rounded-[2rem] border border-white/10 p-6">
-          <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">Language Popularity</p>
+        <div className="glass rounded-2xl border border-white/10 p-6">
+          <p className="eyebrow">Language Popularity</p>
           <div className="mt-4 space-y-4">
             {languages.map((lang) => (
               <div key={lang.id}>
@@ -333,17 +333,17 @@ function LanguageExplorer() {
       </div>
 
       <div className="mt-8 grid gap-6 lg:grid-cols-2">
-        <div className="glass rounded-[2rem] border border-white/10 p-6">
-          <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">Example Programs</p>
-          <div className="mt-4 rounded-[1.25rem] border border-white/10 bg-slate-950/70 p-4">
+        <div className="glass rounded-2xl border border-white/10 p-6">
+          <p className="eyebrow">Example Programs</p>
+          <div className="mt-4 rounded-lg border border-white/10 bg-slate-950/70 p-4">
             <pre className="whitespace-pre-wrap font-mono text-sm leading-7 text-slate-200">{target.example}</pre>
           </div>
         </div>
-        <div className="glass rounded-[2rem] border border-white/10 p-6">
-          <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">Related Tutorials</p>
+        <div className="glass rounded-2xl border border-white/10 p-6">
+          <p className="eyebrow">Related Tutorials</p>
           <div className="mt-4 space-y-3">
             {target.tutorials.map((tutorial) => (
-              <div key={tutorial} className="rounded-[1rem] border border-white/10 bg-slate-950/60 p-3 text-sm text-slate-300">
+              <div key={tutorial} className="rounded-lg border border-white/10 bg-slate-950/60 p-3 text-sm text-slate-300">
                 {tutorial}
               </div>
             ))}

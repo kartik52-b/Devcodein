@@ -79,10 +79,10 @@ function ProfilePage() {
   };
 
   return (
-    <div className="space-y-6 p-4 md:p-6 lg:p-8 animate-fade-in text-slate-100">
+    <div className="space-y-6 p-4 md:p-6 lg:p-8 animate-fade-in text-slate-200">
       
       {/* Header section (Profile details) */}
-      <div className="glass rounded-[2rem] border border-white/10 p-6 md:p-8">
+      <div className="glass rounded-2xl border border-white/10 p-6 md:p-8">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-5 relative">
             
@@ -90,19 +90,20 @@ function ProfilePage() {
             <div className="relative">
               <button
                 onClick={() => setShowAvatarSelector(!showAvatarSelector)}
-                className="flex h-20 w-20 items-center justify-center rounded-full border border-cyan-400 bg-gradient-to-br from-indigo-600 to-cyan-400 text-4xl shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 btn-micro"
-                title="Change Avatar"
+ className="btn btn-primary btn-icon rounded-full"
+ title="Change Avatar"
               >
                 {activeProfile.avatar}
               </button>
               
               {showAvatarSelector && (
-                <div className="absolute top-24 left-0 z-20 grid grid-cols-4 gap-2 rounded-xl border border-white/10 bg-slate-900 p-3 shadow-2xl">
+                <div className="absolute top-24 left-0 z-20 grid grid-cols-4 gap-2 rounded-md border border-white/10 bg-slate-900 p-3 shadow-2xl">
                   {avatarPresets.map((preset) => (
                     <button
                       key={preset}
                       onClick={() => handleSelectAvatar(preset)}
-                      className="h-10 w-10 flex items-center justify-center rounded-lg bg-white/5 text-2xl hover:bg-white/15 transition btn-micro"
+ className="btn btn-tertiary btn-icon"
+                      aria-label={`Use avatar ${preset}`}
                     >
                       {preset}
                     </button>
@@ -114,7 +115,7 @@ function ProfilePage() {
             <div>
               <div className="flex items-center gap-2.5">
                 <h1 className="text-2xl font-bold text-white md:text-3xl">{activeProfile.name}</h1>
-                <span className="rounded bg-indigo-500/10 px-2 py-0.5 text-xs text-indigo-300 font-semibold border border-indigo-400/20">
+                <span className="rounded-sm bg-indigo-500/10 px-2 py-0.5 text-xs text-indigo-300 font-semibold border border-indigo-400/20">
                   {activeProfile.level > 10 ? 'Senior developer' : 'Beginner Coder'}
                 </span>
               </div>
@@ -122,8 +123,8 @@ function ProfilePage() {
               
               {/* Settings Shortcut */}
               <Link
-                to="/modules/settings"
-                className="mt-3 inline-flex items-center gap-1.5 text-xs text-cyan-300 hover:text-cyan-200 transition-all font-semibold"
+ to="/modules/settings"
+ className="mt-3 inline-flex items-center gap-1.5 text-xs text-cyan-300 hover:text-cyan-300 transition-all font-semibold"
               >
                 ⚙️ Settings Profile Control
               </Link>
@@ -138,11 +139,11 @@ function ProfilePage() {
             </div>
             <div className="h-2 w-full rounded-full bg-slate-800 overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-indigo-500 to-cyan-400 transition-all duration-1000"
+ className="h-full bg-gradient-to-r from-indigo-500 to-cyan-400 transition-all duration-1000"
                 style={{ width: `${xpPercentage}%` }}
               />
             </div>
-            <p className="text-[10px] text-slate-500 text-right">{xpPercentage}% progressed to Level {activeProfile.level + 1}</p>
+            <p className="text-[10px] text-slate-400 text-right">{xpPercentage}% progressed to Level {activeProfile.level + 1}</p>
           </div>
         </div>
       </div>
@@ -154,41 +155,41 @@ function ProfilePage() {
         <div className="space-y-6">
           
           {/* Solved Problems distribution */}
-          <div className="glass rounded-[2rem] border border-white/10 p-6 card-hover-premium">
-            <h3 className="text-lg font-semibold text-white mb-4">Solved Coding Problems</h3>
+          <div className="glass rounded-2xl border border-white/10 p-6 card-hover-premium">
+            <h2 className="text-lg font-semibold text-white mb-4">Solved Coding Problems</h2>
             
             <div className="grid gap-4 sm:grid-cols-3">
               {/* Easy stats card */}
-              <div className="rounded-xl border border-white/5 bg-emerald-500/5 p-4 text-center">
-                <span className="text-xs font-semibold text-emerald-400">Easy Challenges</span>
+              <div className="rounded-md border border-white/5 bg-emerald-500/5 p-4 text-center">
+                <span className="text-xs font-semibold text-emerald-300">Easy Challenges</span>
                 <p className="text-2xl font-bold text-white mt-1.5">{problemStats.easy.solved} / {problemStats.easy.total}</p>
                 <div className="mt-2 h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-emerald-400"
+ className="h-full bg-emerald-400"
                     style={{ width: `${(problemStats.easy.solved / problemStats.easy.total) * 100}%` }}
                   />
                 </div>
               </div>
 
               {/* Medium stats card */}
-              <div className="rounded-xl border border-white/5 bg-indigo-500/5 p-4 text-center">
-                <span className="text-xs font-semibold text-indigo-400">Medium Challenges</span>
+              <div className="rounded-md border border-white/5 bg-indigo-500/5 p-4 text-center">
+                <span className="text-xs font-semibold text-indigo-300">Medium Challenges</span>
                 <p className="text-2xl font-bold text-white mt-1.5">{problemStats.medium.solved} / {problemStats.medium.total}</p>
                 <div className="mt-2 h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-indigo-400"
+ className="h-full bg-indigo-400"
                     style={{ width: `${(problemStats.medium.solved / problemStats.medium.total) * 100}%` }}
                   />
                 </div>
               </div>
 
               {/* Hard stats card */}
-              <div className="rounded-xl border border-white/5 bg-rose-500/5 p-4 text-center">
-                <span className="text-xs font-semibold text-rose-400">Hard Challenges</span>
+              <div className="rounded-md border border-white/5 bg-rose-500/5 p-4 text-center">
+                <span className="text-xs font-semibold text-rose-300">Hard Challenges</span>
                 <p className="text-2xl font-bold text-white mt-1.5">{problemStats.hard.solved} / {problemStats.hard.total}</p>
                 <div className="mt-2 h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-rose-400"
+ className="h-full bg-rose-400"
                     style={{ width: `${(problemStats.hard.solved / problemStats.hard.total) * 100}%` }}
                   />
                 </div>
@@ -197,8 +198,8 @@ function ProfilePage() {
           </div>
 
           {/* Bookmarked Problems links */}
-          <div className="glass rounded-[2rem] border border-white/10 p-6 card-hover-premium">
-            <h3 className="text-lg font-semibold text-white mb-3">Bookmarked Challenges</h3>
+          <div className="glass rounded-2xl border border-white/10 p-6 card-hover-premium">
+            <h2 className="text-lg font-semibold text-white mb-3">Bookmarked Challenges</h2>
             <p className="text-xs text-slate-400 mb-4">Quick access links to challenges saved during study.</p>
             
             <div className="space-y-2">
@@ -206,24 +207,24 @@ function ProfilePage() {
                 activeProfile.bookmarks.map((bookmarkId) => (
                   <Link
                     key={bookmarkId}
-                    to="/modules/challenges"
-                    className="flex items-center justify-between rounded-xl border border-white/5 bg-slate-950/40 p-3.5 text-xs text-slate-300 hover:text-white hover:border-indigo-400/20 hover:bg-indigo-500/5 transition-all"
+ to="/modules/challenges"
+ className="flex items-center justify-between rounded-md border border-white/5 bg-slate-950/40 p-3.5 text-xs text-slate-300 hover:text-white hover:border-indigo-400/20 hover:bg-indigo-500/5 transition-all"
                   >
-                    <span className="font-semibold uppercase truncate">{bookmarkId.replace(/-/g, ' ')}</span>
-                    <span className="px-2 py-0.5 rounded text-[10px] bg-indigo-500/10 text-indigo-300">
+                    <span className="font-semibold truncate">{bookmarkId.replace(/-/g, ' ')}</span>
+                    <span className="px-2 py-0.5 rounded-sm text-[10px] bg-indigo-500/10 text-indigo-300">
                       View Challenge
                     </span>
                   </Link>
                 ))
               ) : (
-                <p className="text-xs text-slate-500 italic py-4 text-center">No bookmarks saved yet. Save bookmarks inside the Practice room!</p>
+                <p className="text-xs text-slate-400 italic py-4 text-center">No bookmarks saved yet. Save bookmarks inside the Practice room!</p>
               )}
             </div>
           </div>
 
           {/* Achievements Wall with Hover Explanations */}
-          <div className="glass rounded-[2rem] border border-white/10 p-6 card-hover-premium">
-            <h3 className="text-lg font-semibold text-white mb-2">Unlocked Achievements</h3>
+          <div className="glass rounded-2xl border border-white/10 p-6 card-hover-premium">
+            <h2 className="text-lg font-semibold text-white mb-2">Unlocked Achievements</h2>
             <p className="text-xs text-slate-400 mb-6">Hover or click achievement node to inspect details.</p>
 
             <div className="grid gap-4 sm:grid-cols-2">
@@ -231,7 +232,7 @@ function ProfilePage() {
                 activeProfile.achievements.map((ach) => (
                   <div
                     key={ach.id}
-                    className="group relative rounded-2xl border border-white/5 bg-slate-950/40 p-4 transition-all hover:border-cyan-400/20"
+ className="group relative rounded-lg border border-white/5 bg-slate-950/40 p-4 transition-all hover:border-cyan-400/20"
                   >
                     <div className="flex items-center gap-3">
                       <span className="text-3xl">{ach.icon}</span>
@@ -239,19 +240,19 @@ function ProfilePage() {
                         <h4 className="font-semibold text-white group-hover:text-cyan-300 transition-colors">
                           {ach.title}
                         </h4>
-                        <p className="text-[10px] text-slate-500 mt-0.5">Earned: {ach.earned}</p>
+                        <p className="text-[10px] text-slate-400 mt-0.5">Earned: {ach.earned}</p>
                       </div>
                     </div>
 
                     {/* Absolute positioning detail tooltip on hover */}
-                    <div className="absolute bottom-full left-1/2 z-10 w-48 -translate-x-1/2 translate-y-[-8px] rounded-lg border border-white/10 bg-slate-900 p-2.5 text-center text-[10px] text-slate-300 opacity-0 shadow-xl pointer-events-none group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute bottom-full left-1/2 z-10 w-48 -translate-x-1/2 translate-y-[-8px] rounded-md border border-white/10 bg-slate-900 p-2.5 text-center text-[10px] text-slate-300 opacity-0 shadow-xl pointer-events-none group-hover:opacity-100 transition-opacity duration-300">
                       {ach.desc}
                       <div className="absolute top-full left-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1 rotate-45 bg-slate-900 border-r border-b border-white/10" />
                     </div>
                   </div>
                 ))
               ) : (
-                <div className="col-span-2 text-center text-xs text-slate-500 italic py-4">
+                <div className="col-span-2 text-center text-xs text-slate-400 italic py-4">
                   No achievements unlocked. Tackle Daily Missions to trigger unlocks!
                 </div>
               )}
@@ -263,21 +264,21 @@ function ProfilePage() {
         <div className="space-y-6">
           
           {/* Friends active panel */}
-          <div className="glass rounded-[2rem] border border-white/10 p-6 card-hover-premium">
-            <h3 className="text-lg font-semibold text-white mb-1">Friends Roster</h3>
+          <div className="glass rounded-2xl border border-white/10 p-6 card-hover-premium">
+            <h2 className="text-lg font-semibold text-white mb-1">Friends Roster</h2>
             <p className="text-xs text-slate-400 mb-4">Connect and compare stats with team peers.</p>
 
             <div className="flex gap-2 mb-4">
               <input
-                type="text"
+ type="text"
                 value={friendNameInput}
                 onChange={(e) => setFriendNameInput(e.target.value)}
-                placeholder="Enter username..."
-                className="flex-1 text-xs rounded-xl border border-white/10 bg-slate-950/60 px-3 py-2 text-white outline-none focus:border-cyan-400/40"
+ placeholder="Enter username..."
+ className="flex-1 text-xs rounded-md border border-white/10 bg-slate-950/60 px-3 py-2 text-white outline-none focus:border-cyan-400/40"
               />
               <button
                 onClick={handleAddFriend}
-                className="rounded-xl bg-indigo-500 px-4 py-2 text-xs font-semibold text-white hover:bg-indigo-400 active:scale-95 transition btn-micro"
+ className="btn btn-primary btn-sm"
               >
                 Add Friend
               </button>
@@ -285,7 +286,7 @@ function ProfilePage() {
 
             <div className="space-y-3 max-h-64 overflow-y-auto pr-1">
               {friends.map((friend) => (
-                <div key={friend.id} className="flex items-center justify-between rounded-xl border border-white/5 bg-slate-950/40 p-3">
+                <div key={friend.id} className="flex items-center justify-between rounded-md border border-white/5 bg-slate-950/40 p-3">
                   <div className="flex items-center gap-3">
                     <span className="text-2xl">{friend.avatar}</span>
                     <div>
@@ -300,8 +301,8 @@ function ProfilePage() {
                     <span className="text-[10px] text-slate-400 mr-2">{friend.status}</span>
                     <button
                       onClick={() => handleRemoveFriend(friend.id)}
-                      className="text-[10px] text-slate-500 hover:text-rose-400"
-                      title="Remove Friend"
+ className="text-[10px] text-slate-400 hover:text-rose-300"
+ title="Remove Friend"
                     >
                       ✕
                     </button>
@@ -312,8 +313,8 @@ function ProfilePage() {
           </div>
 
           {/* Recent Activity stream */}
-          <div className="glass rounded-[2rem] border border-white/10 p-6 card-hover-premium">
-            <h3 className="text-lg font-semibold text-white mb-4">Recent Activity</h3>
+          <div className="glass rounded-2xl border border-white/10 p-6 card-hover-premium">
+            <h2 className="text-lg font-semibold text-white mb-4">Recent Activity</h2>
             <div className="space-y-3 relative border-l border-white/10 pl-4 ml-2">
               {activeProfile.recentActivity.length > 0 ? (
                 activeProfile.recentActivity.map((act, i) => (
@@ -323,7 +324,7 @@ function ProfilePage() {
                   </div>
                 ))
               ) : (
-                <p className="text-xs text-slate-500 italic pl-2 py-4">No recent activity logs.</p>
+                <p className="text-xs text-slate-400 italic pl-2 py-4">No recent activity logs.</p>
               )}
             </div>
           </div>

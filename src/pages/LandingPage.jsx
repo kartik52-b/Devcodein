@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Button from '../components/ui/Button';
 import AICodingMentor from '../components/AICodingMentor';
 import DailyMissionSystem from '../components/DailyMissionSystem';
 import DsaBattleArena from '../components/DsaBattleArena';
@@ -82,19 +83,19 @@ const faqs = [
 
 function LandingPage() {
   return (
-    <div className="relative min-h-screen overflow-hidden text-slate-100">
+    <div className="relative text-slate-200">
       <div className="relative z-10">
-        <main>
+        <div>
           <section className="mx-auto grid max-w-7xl gap-14 px-6 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-24">
             <div className="relative">
-              <div className="aurora" />
+              <div className="aurora" aria-hidden="true" />
               <div className="relative space-y-8">
-                <div className="inline-flex items-center gap-2 rounded-full border border-indigo-400/20 bg-indigo-500/10 px-3 py-1 text-sm text-indigo-200">
+                <div className="inline-flex items-center gap-2 rounded-full border border-indigo-400/20 bg-indigo-500/10 px-3 py-1 text-sm text-indigo-300">
                   <span className="h-2 w-2 rounded-full bg-cyan-300" />
                   AI-powered coding learning platform
                 </div>
                 <div className="space-y-5">
-                  <h1 className="max-w-3xl text-4xl font-semibold leading-[0.95] text-white sm:text-5xl lg:text-7xl">
+                  <h1 className="max-w-3xl text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-7xl">
                     Learn to build like the top 1% of engineers.
                   </h1>
                   <p className="max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
@@ -102,19 +103,19 @@ function LandingPage() {
                   </p>
                 </div>
                 <div className="flex flex-col gap-3 sm:flex-row">
-                  <a href="#features" className="rounded-full bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-400 px-6 py-3 text-center font-medium text-white shadow-glow transition hover:scale-[1.01]">
+                  <Button href="#features" variant="primary" size="lg" className="text-center">
                     Explore the platform
-                  </a>
-                  <a href="#faq" className="rounded-full border border-white/15 bg-white/10 px-6 py-3 text-center font-medium text-slate-100 backdrop-blur transition hover:bg-white/20">
+                  </Button>
+                  <Button href="#faq" variant="secondary" size="lg" className="text-center">
                     See how it works
-                  </a>
+                  </Button>
                 </div>
               </div>
             </div>
 
             <div className="relative">
-              <div className="glass animate-float rounded-[2rem] border border-white/10 p-5 shadow-2xl shadow-indigo-950/60">
-                <div className="rounded-[1.5rem] border border-white/10 bg-slate-950/70 p-4">
+              <div className="glass animate-float rounded-2xl border border-white/10 p-5 shadow-2xl shadow-indigo-950/60">
+                <div className="rounded-xl border border-white/10 bg-slate-950/70 p-4">
                   <div className="mb-4 flex items-center justify-between">
                     <div>
                       <p className="text-sm text-slate-400">Current mastery path</p>
@@ -130,7 +131,7 @@ function LandingPage() {
                       ['Shipping polished UI systems', '81%'],
                       ['Integrating AI copilots', '74%']
                     ].map(([title, progress]) => (
-                      <div key={title} className="rounded-2xl border border-white/10 bg-white/5 p-3">
+                      <div key={title} className="rounded-lg border border-white/10 bg-white/5 p-3">
                         <div className="mb-2 flex items-center justify-between text-sm">
                           <span className="text-slate-300">{title}</span>
                           <span className="text-white">{progress}</span>
@@ -149,7 +150,7 @@ function LandingPage() {
           <section className="mx-auto max-w-7xl px-6 py-6 lg:px-8">
             <div className="grid gap-6 lg:grid-cols-3">
               {stats.map((stat) => (
-                <div key={stat.label} className="glass rounded-[1.4rem] border border-white/10 p-8 text-center">
+                <div key={stat.label} className="glass rounded-xl border border-white/10 p-8 text-center">
                   <p className="text-4xl font-semibold text-white">{stat.value}</p>
                   <p className="mt-2 text-slate-400">{stat.label}</p>
                 </div>
@@ -160,34 +161,36 @@ function LandingPage() {
           <section id="features" className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
             <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
               <div>
-                <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">Platform overview</p>
+                <p className="eyebrow">Platform overview</p>
                 <h2 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">Every major module, beautifully previewed.</h2>
               </div>
               <p className="max-w-xl text-slate-400">The homepage highlights the product experience while each module links to a dedicated page for full interaction.</p>
             </div>
             <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
               {features.map((feature) => (
-                <Link key={feature.title} to={feature.path} className="group glass rounded-[1.6rem] border border-white/10 p-7 transition hover:-translate-y-1">
-                  <div className={`mb-5 h-12 w-12 rounded-2xl bg-gradient-to-br ${feature.accent}`} />
+                <Link key={feature.title} to={feature.path} className="group glass rounded-xl border border-white/10 p-7 transition hover:-translate-y-1">
+                  <div className={`mb-5 h-12 w-12 rounded-lg bg-gradient-to-br ${feature.accent}`} />
                   <h3 className="mb-3 text-xl font-semibold text-white">{feature.title}</h3>
                   <p className="leading-7 text-slate-400">{feature.description}</p>
-                  <div className="mt-6 text-sm font-medium text-cyan-300 transition group-hover:text-cyan-200">Open module →</div>
+                  <div className="mt-6 text-sm font-medium text-cyan-300 transition group-hover:text-cyan-300">Open module →</div>
                 </Link>
               ))}
             </div>
           </section>
 
           <section className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
-            <div className="glass rounded-[2rem] border border-white/10 p-8 lg:p-10">
+            <div className="glass rounded-2xl border border-white/10 p-8 lg:p-10">
               <div className="mb-8">
-                <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">Preview suite</p>
+                <p className="eyebrow">Preview suite</p>
                 <h2 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">A polished snapshot of the full product experience.</h2>
               </div>
-              <div className="grid gap-6 lg:grid-cols-2">
-                <div className="rounded-[1.5rem] border border-white/10 bg-slate-950/70 p-6">
+              {/* Full-width previews: these embeds contain their own multi-column
+                  layouts, so stacking them prevents cramped, overlapping panels. */}
+              <div className="space-y-6">
+                <div className="rounded-xl border border-white/10 bg-slate-950/70 p-6">
                   <LanguageExplorer />
                 </div>
-                <div className="rounded-[1.5rem] border border-white/10 bg-slate-950/70 p-6">
+                <div className="rounded-xl border border-white/10 bg-slate-950/70 p-6">
                   <DsaBattleArena />
                 </div>
               </div>
@@ -196,19 +199,19 @@ function LandingPage() {
 
           <section className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
             <div className="grid gap-6 lg:grid-cols-2">
-              <div className="glass rounded-[2rem] border border-white/10 p-8">
+              <div className="glass rounded-2xl border border-white/10 p-8">
                 <AICodingMentor />
               </div>
-              <div className="glass rounded-[2rem] border border-white/10 p-8">
+              <div className="glass rounded-2xl border border-white/10 p-8">
                 <RoadmapSection />
               </div>
             </div>
           </section>
 
           <section className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
-            <div className="glass rounded-[2rem] border border-white/10 p-8">
+            <div className="glass rounded-2xl border border-white/10 p-8">
               <div className="mb-6">
-                <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">Community pulse</p>
+                <p className="eyebrow">Community pulse</p>
                 <h2 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">Momentum, accountability, and visible growth.</h2>
               </div>
               <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
@@ -224,7 +227,7 @@ function LandingPage() {
           <section className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
             <div className="grid gap-6 lg:grid-cols-2">
               {testimonials.map((item) => (
-                <div key={item.author} className="glass rounded-[1.5rem] border border-white/10 p-7">
+                <div key={item.author} className="glass rounded-xl border border-white/10 p-7">
                   <p className="text-lg leading-8 text-slate-200">“{item.quote}”</p>
                   <div className="mt-6">
                     <p className="font-semibold text-white">{item.author}</p>
@@ -236,14 +239,14 @@ function LandingPage() {
           </section>
 
           <section id="faq" className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
-            <div className="glass rounded-[2rem] border border-white/10 p-8 lg:p-12">
+            <div className="glass rounded-2xl border border-white/10 p-8 lg:p-12">
               <div className="mb-8 max-w-2xl">
-                <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">FAQ</p>
+                <p className="eyebrow">FAQ</p>
                 <h2 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">Everything you need to know before you begin.</h2>
               </div>
               <div className="space-y-4">
                 {faqs.map((item) => (
-                  <details key={item.question} className="rounded-[1.25rem] border border-white/10 bg-slate-950/70 p-5">
+                  <details key={item.question} className="rounded-lg border border-white/10 bg-slate-950/70 p-5">
                     <summary className="cursor-pointer text-lg font-medium text-white">{item.question}</summary>
                     <p className="mt-3 text-slate-400">{item.answer}</p>
                   </details>
@@ -253,31 +256,20 @@ function LandingPage() {
           </section>
 
           <section className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
-            <div className="glass rounded-[2rem] border border-white/10 p-8 text-center lg:p-12">
-              <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">Ready to build differently?</p>
+            <div className="glass rounded-2xl border border-white/10 p-8 text-center lg:p-12">
+              <p className="eyebrow">Ready to build differently?</p>
               <h2 className="mx-auto mt-3 max-w-3xl text-3xl font-semibold text-white sm:text-4xl">Join DevVerse and sharpen your engineering instincts with AI that feels like a real co-pilot.</h2>
               <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-                <a href="#" className="rounded-full bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-400 px-6 py-3 font-medium text-white shadow-glow transition hover:scale-[1.01]">
+                <Button to="/auth?mode=register" variant="primary" size="lg">
                   Reserve your access
-                </a>
-                <a href="#" className="rounded-full border border-white/15 bg-white/10 px-6 py-3 font-medium text-slate-100 backdrop-blur transition hover:bg-white/20">
+                </Button>
+                <Button href="#features" variant="secondary" size="lg">
                   Book a demo
-                </a>
+                </Button>
               </div>
             </div>
           </section>
-        </main>
-
-        <footer className="mx-auto max-w-7xl border-t border-white/10 px-6 py-8 text-sm text-slate-400 lg:px-8">
-          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <p>© 2026 DevVerse. Crafted for ambitious builders.</p>
-            <div className="flex gap-5">
-              <a href="#" className="transition hover:text-white">Privacy</a>
-              <a href="#" className="transition hover:text-white">Terms</a>
-              <a href="#" className="transition hover:text-white">Contact</a>
-            </div>
-          </div>
-        </footer>
+        </div>
       </div>
     </div>
   );

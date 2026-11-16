@@ -131,21 +131,21 @@ function CodingHabitTrackerPage() {
   };
 
   return (
-    <div className="space-y-6 p-4 md:p-6 lg:p-8 animate-fade-in text-slate-100">
+    <div className="space-y-6 p-4 md:p-6 lg:p-8 animate-fade-in text-slate-200">
       {/* Header Section */}
-      <div className="glass rounded-[2rem] border border-white/10 p-6 md:p-8">
+      <div className="glass rounded-2xl border border-white/10 p-6 md:p-8">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="max-w-2xl">
-            <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">Analytics Workspace</p>
+            <p className="eyebrow">Analytics Workspace</p>
             <h1 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">Coding Habit Tracker</h1>
             <p className="mt-2 text-slate-400">Establish long-term coding rhythms. Visualize consistency using heatmaps and tracking analytics.</p>
           </div>
-          <div className="flex items-center gap-4 bg-slate-950/60 rounded-2xl border border-white/10 p-4 shrink-0">
-            <div className="h-10 w-10 flex items-center justify-center bg-orange-500/20 text-orange-400 rounded-full animate-streak-glow text-xl">
+          <div className="flex items-center gap-4 bg-slate-950/60 rounded-lg border border-white/10 p-4 shrink-0">
+            <div className="h-10 w-10 flex items-center justify-center bg-orange-500/20 text-amber-300 rounded-full animate-streak-glow text-xl">
               🔥
             </div>
             <div>
-              <p className="text-xs text-slate-400 uppercase tracking-wider">Current Streak</p>
+              <p className="text-xs text-slate-400 tracking-label">Current Streak</p>
               <p className="text-xl font-bold text-white">{activeProfile.streak} Days</p>
             </div>
           </div>
@@ -156,10 +156,10 @@ function CodingHabitTrackerPage() {
       <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
         
         {/* Heatmap module */}
-        <div className="glass rounded-[2rem] border border-white/10 p-6 card-hover-premium">
+        <div className="glass rounded-2xl border border-white/10 p-6 card-hover-premium">
           <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <h3 className="text-lg font-semibold text-white">GitHub-style Contribution Grid</h3>
+              <h2 className="text-lg font-semibold text-white">GitHub-style Contribution Grid</h2>
               <p className="text-xs text-slate-400">Track commit and problem-solving velocity.</p>
             </div>
             <div className="flex items-center gap-1.5 text-xs text-slate-400">
@@ -176,7 +176,7 @@ function CodingHabitTrackerPage() {
           <div className="overflow-x-auto pb-4">
             <div className="flex gap-1 min-w-[500px]">
               {/* Day Labels Column */}
-              <div className="flex flex-col justify-between text-[10px] text-slate-500 pr-2 pt-1 h-28">
+              <div className="flex flex-col justify-between text-[10px] text-slate-400 pr-2 pt-1 h-28">
                 <span>Sun</span>
                 <span>Tue</span>
                 <span>Thu</span>
@@ -198,7 +198,7 @@ function CodingHabitTrackerPage() {
                           key={dIdx}
                           onMouseEnter={() => setHoveredCell(cell)}
                           onMouseLeave={() => setHoveredCell(null)}
-                          className={`h-3.5 w-3.5 rounded-[3px] transition-all cursor-pointer ${colorClass}`}
+                          className={`h-3.5 w-3.5 rounded-sm transition-all cursor-pointer ${colorClass}`}
                         />
                       );
                     })}
@@ -219,18 +219,18 @@ function CodingHabitTrackerPage() {
         </div>
 
         {/* Action center: Log hours */}
-        <div className="glass rounded-[2rem] border border-white/10 p-6 flex flex-col justify-between card-hover-premium">
+        <div className="glass rounded-2xl border border-white/10 p-6 flex flex-col justify-between card-hover-premium">
           <div>
-            <h3 className="text-lg font-semibold text-white">Log Code Sessions</h3>
+            <h2 className="text-lg font-semibold text-white">Log Code Sessions</h2>
             <p className="text-xs text-slate-400 mt-1">Submit your workspace practice duration to maintain streak.</p>
             
             <div className="mt-4 space-y-4">
               <div>
-                <label className="block text-xs uppercase tracking-wider text-slate-400 mb-1">Hours Spent Coded</label>
+                <label className="block text-xs tracking-label text-slate-400 mb-1">Hours Spent Coded</label>
                 <select
                   value={logHours}
                   onChange={(e) => setLogHours(e.target.value)}
-                  className="w-full text-sm rounded-xl border border-white/10 bg-slate-950/60 p-3 text-white outline-none focus:border-cyan-400/40"
+ className="w-full text-sm rounded-md border border-white/10 bg-slate-950/60 p-3 text-white outline-none focus:border-cyan-400/40"
                 >
                   <option value="0.5">30 Mins (0.5h)</option>
                   <option value="1">1 Hour (1.0h)</option>
@@ -242,7 +242,7 @@ function CodingHabitTrackerPage() {
 
               <button
                 onClick={handleLogActivity}
-                className="w-full rounded-xl bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-400 py-3 text-xs font-semibold text-white shadow-lg shadow-indigo-950/40 hover:scale-[1.01] active:scale-95 transition-all btn-micro"
+ className="btn btn-primary btn-lg w-full"
               >
                 Log Today&apos;s Time
               </button>
@@ -250,13 +250,13 @@ function CodingHabitTrackerPage() {
           </div>
 
           <div className="mt-6 border-t border-white/5 pt-4 grid grid-cols-2 gap-4">
-            <div className="rounded-xl border border-white/5 bg-slate-950/40 p-3 text-center">
-              <p className="text-[10px] text-slate-500 uppercase tracking-wider">Longest Streak</p>
+            <div className="rounded-md border border-white/5 bg-slate-950/40 p-3 text-center">
+              <p className="text-[10px] text-slate-400 tracking-label">Longest Streak</p>
               <p className="text-lg font-bold text-white mt-1">{activeProfile.longestStreak} days</p>
             </div>
-            <div className="rounded-xl border border-white/5 bg-slate-950/40 p-3 text-center">
-              <p className="text-[10px] text-slate-500 uppercase tracking-wider">Total Active Days</p>
-              <p className="text-lg font-bold text-cyan-400 mt-1">{stats.totalDays} days</p>
+            <div className="rounded-md border border-white/5 bg-slate-950/40 p-3 text-center">
+              <p className="text-[10px] text-slate-400 tracking-label">Total Active Days</p>
+              <p className="text-lg font-bold text-cyan-300 mt-1">{stats.totalDays} days</p>
             </div>
           </div>
         </div>
@@ -266,15 +266,15 @@ function CodingHabitTrackerPage() {
       {/* Reports section */}
       <div className="grid gap-6 md:grid-cols-3">
         {/* Weekly stats */}
-        <div className="glass rounded-[2rem] border border-white/10 p-6 card-hover-premium">
-          <h3 className="text-base font-semibold text-white mb-4">Weekly Snapshot</h3>
+        <div className="glass rounded-2xl border border-white/10 p-6 card-hover-premium">
+          <h2 className="text-base font-semibold text-white mb-4">Weekly Snapshot</h2>
           <div className="space-y-3">
             {[
-              { label: 'Hours Coded', val: `${stats.totalHours} hrs`, color: 'text-indigo-400' },
-              { label: 'Avg Focus Level', val: `${stats.avgFocus}%`, color: 'text-cyan-400' },
-              { label: 'Solved Challenges', val: `${activeProfile.solvedCount} total`, color: 'text-emerald-400' }
+              { label: 'Hours Coded', val: `${stats.totalHours} hrs`, color: 'text-indigo-300' },
+              { label: 'Avg Focus Level', val: `${stats.avgFocus}%`, color: 'text-cyan-300' },
+              { label: 'Solved Challenges', val: `${activeProfile.solvedCount} total`, color: 'text-emerald-300' }
             ].map((s, idx) => (
-              <div key={idx} className="flex justify-between items-center bg-slate-950/40 p-3 rounded-xl border border-white/5">
+              <div key={idx} className="flex justify-between items-center bg-slate-950/40 p-3 rounded-md border border-white/5">
                 <span className="text-xs text-slate-400">{s.label}</span>
                 <span className={`text-sm font-semibold ${s.color}`}>{s.val}</span>
               </div>
@@ -283,8 +283,8 @@ function CodingHabitTrackerPage() {
         </div>
 
         {/* Monthly report analytics */}
-        <div className="glass rounded-[2rem] border border-white/10 p-6 card-hover-premium">
-          <h3 className="text-base font-semibold text-white mb-4 font-medium">Monthly Trends</h3>
+        <div className="glass rounded-2xl border border-white/10 p-6 card-hover-premium">
+          <h2 className="text-base font-semibold text-white mb-4 font-medium">Monthly Trends</h2>
           <div className="space-y-4">
             {[
               { label: 'Consistency Ratio', percent: activeProfile.xp === 0 ? 0 : 84 },
@@ -298,7 +298,7 @@ function CodingHabitTrackerPage() {
                 </div>
                 <div className="h-2 w-full rounded-full bg-slate-800 overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-indigo-500 to-cyan-400 transition-all duration-1000"
+ className="h-full bg-gradient-to-r from-indigo-500 to-cyan-400 transition-all duration-1000"
                     style={{ width: `${item.percent}%` }}
                   />
                 </div>
@@ -308,23 +308,23 @@ function CodingHabitTrackerPage() {
         </div>
 
         {/* Habit accomplishments */}
-        <div className="glass rounded-[2rem] border border-white/10 p-6 card-hover-premium">
-          <h3 className="text-base font-semibold text-white mb-4">Habit Achievements</h3>
+        <div className="glass rounded-2xl border border-white/10 p-6 card-hover-premium">
+          <h2 className="text-base font-semibold text-white mb-4">Habit Achievements</h2>
           <div className="space-y-2.5 max-h-48 overflow-y-auto pr-1">
             {achievements.map((ach) => {
               // If new user, they have no completed achievements yet
               const isComp = activeProfile.xp === 0 ? false : ach.completed;
               return (
-                <div key={ach.id} className="flex items-center gap-3 bg-slate-950/40 p-2.5 rounded-xl border border-white/5 text-xs">
+                <div key={ach.id} className="flex items-center gap-3 bg-slate-950/40 p-2.5 rounded-md border border-white/5 text-xs">
                   <span className="text-lg">{ach.icon}</span>
                   <div>
                     <h4 className="font-semibold text-white">{ach.title}</h4>
                     <p className="text-[10px] text-slate-400 mt-0.5">{ach.desc}</p>
                   </div>
                   {isComp ? (
-                    <span className="ml-auto text-emerald-400 font-semibold">✓</span>
+                    <span className="ml-auto text-emerald-300 font-semibold">✓</span>
                   ) : (
-                    <span className="ml-auto text-slate-500">⏳</span>
+                    <span className="ml-auto text-slate-400">⏳</span>
                   )}
                 </div>
               );
@@ -334,8 +334,8 @@ function CodingHabitTrackerPage() {
       </div>
       
       {/* Pure CSS Charts visualization */}
-      <div className="glass rounded-[2rem] border border-white/10 p-6 card-hover-premium">
-        <h3 className="text-lg font-semibold text-white mb-4">Hours Coded per Day (Weekly Distribution)</h3>
+      <div className="glass rounded-2xl border border-white/10 p-6 card-hover-premium">
+        <h2 className="text-lg font-semibold text-white mb-4">Hours Coded per Day (Weekly Distribution)</h2>
         
         {/* Simple Bar Chart */}
         <div className="mt-8 flex h-48 items-end gap-3 md:gap-6 border-b border-white/10 pb-2">
@@ -353,10 +353,10 @@ function CodingHabitTrackerPage() {
                 {bar.hrs}h
               </span>
               <div
-                className="w-full max-w-[40px] rounded-t-lg bg-gradient-to-t from-indigo-600 via-indigo-500 to-cyan-400 hover:from-cyan-400 hover:to-indigo-500 transition-all duration-500 cursor-pointer shadow-lg shadow-indigo-950/40"
+ className="w-full max-w-[40px] rounded-t-md bg-gradient-to-t from-indigo-600 via-indigo-500 to-cyan-400 hover:from-cyan-400 hover:to-indigo-500 transition-all duration-500 cursor-pointer shadow-lg shadow-indigo-950/40"
                 style={{ height: `${bar.percent}%`, minHeight: '10%' }}
               />
-              <span className="text-xs text-slate-500 font-medium">{bar.day}</span>
+              <span className="text-xs text-slate-400 font-medium">{bar.day}</span>
             </div>
           ))}
         </div>

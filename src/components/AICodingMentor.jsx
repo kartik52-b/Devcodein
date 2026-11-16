@@ -79,12 +79,12 @@ function AICodingMentor() {
   return (
     <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
       <div className="mb-8 max-w-3xl">
-        <p className="text-sm uppercase tracking-[0.35em] text-indigo-300">AI Coding Mentor</p>
+        <p className="eyebrow">AI Coding Mentor</p>
         <h2 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">A beautiful mentor for debugging, explaining, and building faster.</h2>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="glass rounded-[2rem] border border-white/10 p-6">
+        <div className="glass rounded-2xl border border-white/10 p-6">
           <div className="mb-6">
             <h3 className="text-xl font-semibold text-white">Mentor modes</h3>
             <p className="mt-2 text-sm text-slate-400">Choose a focus and start a guided conversation.</p>
@@ -94,15 +94,15 @@ function AICodingMentor() {
               <button
                 key={action.label}
                 onClick={() => handleQuickAction(action)}
-                className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-200 transition hover:border-cyan-400/40 hover:bg-cyan-400/10"
+ className="btn btn-tertiary rounded-full"
               >
                 {action.label}
               </button>
             ))}
           </div>
 
-          <div className="mt-6 rounded-[1.25rem] border border-white/10 bg-slate-950/70 p-4">
-            <p className="text-sm uppercase tracking-[0.25em] text-slate-400">Current focus</p>
+          <div className="mt-6 rounded-lg border border-white/10 bg-slate-950/70 p-4">
+            <p className="text-sm tracking-label text-slate-400">Current focus</p>
             <p className="mt-2 text-lg font-semibold text-white">{modeLabel}</p>
             <p className="mt-2 text-sm leading-7 text-slate-400">
               Use this mentor to explain concepts, generate a starter implementation, review bugs, or prepare for interviews.
@@ -110,8 +110,8 @@ function AICodingMentor() {
           </div>
         </div>
 
-        <div className="glass rounded-[2rem] border border-white/10 p-4 sm:p-6">
-          <div className="mb-4 flex items-center justify-between rounded-[1rem] border border-white/10 bg-slate-950/70 px-4 py-3">
+        <div className="glass rounded-2xl border border-white/10 p-4 sm:p-6">
+          <div className="mb-4 flex items-center justify-between rounded-lg border border-white/10 bg-slate-950/70 px-4 py-3">
             <div>
               <p className="text-sm text-slate-400">Conversation history</p>
               <p className="font-semibold text-white">Live AI mentor session</p>
@@ -121,10 +121,10 @@ function AICodingMentor() {
             </div>
           </div>
 
-          <div className="mb-4 max-h-[420px] space-y-3 overflow-y-auto rounded-[1.25rem] border border-white/10 bg-slate-950/70 p-4">
+          <div className="mb-4 max-h-[420px] space-y-3 overflow-y-auto rounded-lg border border-white/10 bg-slate-950/70 p-4">
             {messages.map((message) => (
               <div key={message.id} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[85%] rounded-[1rem] px-4 py-3 text-sm leading-7 ${message.role === 'user' ? 'bg-gradient-to-r from-indigo-500 to-cyan-400 text-white' : 'border border-white/10 bg-white/5 text-slate-200'}`}>
+                <div className={`max-w-[85%] rounded-lg px-4 py-3 text-sm leading-7 ${message.role === 'user' ? 'bg-gradient-to-r from-indigo-500 to-cyan-400 text-white' : 'border border-white/10 bg-white/5 text-slate-200'}`}>
                   {message.content}
                 </div>
               </div>
@@ -132,7 +132,7 @@ function AICodingMentor() {
 
             {isTyping && (
               <div className="flex justify-start">
-                <div className="rounded-[1rem] border border-white/10 bg-white/5 px-4 py-3">
+                <div className="rounded-lg border border-white/10 bg-white/5 px-4 py-3">
                   <div className="flex items-center gap-2">
                     <span className="h-2.5 w-2.5 animate-bounce rounded-full bg-cyan-300" />
                     <span className="h-2.5 w-2.5 animate-bounce rounded-full bg-cyan-300 [animation-delay:120ms]" />
@@ -143,7 +143,7 @@ function AICodingMentor() {
             )}
           </div>
 
-          <div className="rounded-[1.25rem] border border-white/10 bg-slate-950/70 p-3">
+          <div className="rounded-lg border border-white/10 bg-slate-950/70 p-3">
             <textarea
               value={draft}
               onChange={(event) => setDraft(event.target.value)}
@@ -154,14 +154,14 @@ function AICodingMentor() {
                 }
               }}
               rows={3}
-              placeholder="Ask about a bug, concept, or coding challenge..."
-              className="w-full resize-none rounded-[1rem] border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none ring-0 placeholder:text-slate-500"
+ placeholder="Ask about a bug, concept, or coding challenge..."
+ className="w-full resize-none rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none ring-0 placeholder:text-slate-400"
             />
             <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-sm text-slate-400">Responses are designed to feel like a premium engineering mentor.</p>
               <button
                 onClick={() => handleSend()}
-                className="rounded-full bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-400 px-4 py-2 text-sm font-semibold text-white transition hover:scale-[1.01]"
+ className="btn btn-primary rounded-full"
               >
                 Send message
               </button>

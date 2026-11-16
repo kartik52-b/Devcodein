@@ -11,7 +11,7 @@ import { useAuth } from '../context/AuthContext';
  * - Signed-in users never see /auth (handled by <PublicOnly>).
  */
 export function RequireAuth({ children }) {
-  const { isAuthenticated, isBootstrapping } = useAuth();
+  const { isAuthenticated, isBootstrapping, isEmailVerified, otpPending } = useAuth();
   const location = useLocation();
 
   if (isBootstrapping) {
@@ -22,12 +22,33 @@ export function RequireAuth({ children }) {
     );
   }
 
-  if (!isAuthenticated) {
+  // A session without a confirmed email cannot open protected pages. Supabase
+  // still blocks the data through RLS — this only avoids an empty dashboard.
+  if (isAuthenticated && otpPending && !isEmailVerified) {
     const returnTo = `${location.pathname}${location.search}`;
-    return <Navigate to={`/auth?returnTo=${encodeURIComponent(returnTo)}`} replace />;
+    return (
+      <Navigate
+        to={`/auth?mode=verify-email&returnTo=${encodeURIComponent(returnTo)}`}
+        replace
+      />
+    );
   }
 
-  return children ?? <Outlet />;
+  // If the visitor is not authenticated, always redirect to sign-in so they
+  // can choose Google or email/password. The only exception is the auth page
+  // itself and its sub-routes, which PublicOnly handles.
+  if (!isAuthenticated) {
+    const isAuthRoute = location.pathname === '/auth' || location.pathname.startsWith('/auth/');
+    if (!isAuthRoute) {
+      const returnTo = `${location.pathname}${location.search}`;
+      return <Navigate to={`/auth?returnTo=${encodeURIComponent(returnTo)}`} replace />;
+    }
+    return children ?? <Outlet />;
+  }
+
+  // Authenticated users: protect the module routes
+  const returnTo = `${location.pathname}${location.search}`;
+  return <Navigate to={`/auth?returnTo=${encodeURIComponent(returnTo)}`} replace />;
 }
 
 /** Redirects already-authenticated visitors away from login/register. */

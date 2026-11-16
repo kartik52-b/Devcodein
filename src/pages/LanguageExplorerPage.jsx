@@ -61,7 +61,7 @@ function LanguageExplorerPage() {
   };
 
   return (
-    <div className="min-h-screen px-4 py-8 md:px-6 lg:px-8 text-slate-100 max-w-7xl mx-auto">
+    <div className="min-h-[70vh] px-4 py-8 md:px-6 lg:px-8 text-slate-200 max-w-7xl mx-auto">
       
       {/* Aurora visual glow background */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
@@ -70,7 +70,7 @@ function LanguageExplorerPage() {
       </div>
 
       {/* Header Block */}
-      <div className="glass rounded-[2rem] border border-white/10 p-6 md:p-8 lg:p-10 mb-8 shadow-2xl">
+      <div className="glass rounded-2xl border border-white/10 p-6 md:p-8 lg:p-10 mb-8 shadow-2xl">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-indigo-400/20 bg-indigo-500/10 px-3 py-1 text-xs md:text-sm text-indigo-300 mb-4">
@@ -86,8 +86,8 @@ function LanguageExplorerPage() {
           </div>
           <div>
             <Link 
-              to="/" 
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 hover:bg-white/10 px-5 py-2.5 text-sm font-medium text-slate-200 transition-all duration-200 backdrop-blur shadow-lg hover:border-white/20 active:scale-95"
+ to="/" 
+ className="btn btn-secondary rounded-full"
             >
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -102,14 +102,14 @@ function LanguageExplorerPage() {
       <div className="grid gap-8 grid-cols-1 lg:grid-cols-2 mb-8">
         
         {/* Editor A Panel */}
-        <div className="glass rounded-[2rem] border border-white/10 p-5 md:p-6 shadow-xl flex flex-col relative overflow-hidden">
+        <div className="glass rounded-2xl border border-white/10 p-5 md:p-6 shadow-xl flex flex-col relative overflow-hidden">
           {/* Subtle indicator bar matching language A accent */}
           <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${selectedLangAObj.accent}`} />
           
           {/* Selection controls A */}
           <div className="flex flex-wrap items-center justify-between gap-4 mb-4 mt-2">
             <div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 block mb-1">Language A</span>
+              <span className="text-xs font-semibold tracking-label text-slate-400 block mb-1">Language A</span>
               <div className="relative">
                 <select
                   value={langA}
@@ -120,7 +120,7 @@ function LanguageExplorerPage() {
                       setLangB(langA); // automatically swap if selected same
                     }
                   }}
-                  className="bg-slate-900 border border-white/10 text-white rounded-xl px-4 py-2 text-sm font-medium pr-10 focus:outline-none focus:border-indigo-500 transition-colors appearance-none cursor-pointer"
+ className="bg-slate-900 border border-white/10 text-white rounded-md px-4 py-2 text-sm font-medium pr-10 focus:outline-none focus:border-indigo-500 transition-colors appearance-none cursor-pointer"
                 >
                   {languages.map(l => (
                     <option key={l.id} value={l.id}>{l.name}</option>
@@ -134,21 +134,21 @@ function LanguageExplorerPage() {
             
             {/* Quick stats badge */}
             <div className="text-right">
-              <span className="text-xs text-slate-500 block">Typing Model</span>
+              <span className="text-xs text-slate-400 block">Typing Model</span>
               <span className="text-xs md:text-sm font-semibold text-slate-300">{selectedLangAObj.typing}</span>
             </div>
           </div>
 
           {/* Monaco Editor Wrapper */}
-          <div className="rounded-xl overflow-hidden border border-white/10 bg-slate-950/60 p-1 flex-grow">
+          <div className="rounded-md overflow-hidden border border-white/10 bg-slate-950/60 p-1 flex-grow">
             <div className="flex justify-between items-center bg-slate-950/90 px-4 py-2 border-b border-white/5 text-xs text-slate-400 font-mono">
               <span>{selectedLangAObj.name} editor (editable)</span>
               <span>{selectedLangAObj.executionModel}</span>
             </div>
             <Editor
-              height="340px"
+ height="340px"
               language={langA === 'cpp' ? 'cpp' : langA === 'c' ? 'c' : langA}
-              theme="vs-dark"
+ theme="vs-dark"
               value={codeA}
               onChange={(val) => setCodeA(val || '')}
               options={{
@@ -171,11 +171,11 @@ function LanguageExplorerPage() {
           <div className="flex justify-between items-center gap-3 mt-4">
             <button
               onClick={() => handleCopy(codeA, setCopiedA)}
-              className="inline-flex items-center gap-2 rounded-xl border border-white/10 hover:border-white/20 bg-slate-900/60 px-4 py-2 text-xs md:text-sm font-medium text-slate-200 transition-colors hover:bg-slate-800"
+ className="btn btn-tertiary btn-sm md:text-sm"
             >
               {copiedA ? (
                 <>
-                  <svg className="h-4 w-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="h-4 w-4 text-emerald-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   Copied!
@@ -191,7 +191,7 @@ function LanguageExplorerPage() {
             </button>
             <button
               onClick={() => handleDownload(codeA, langA)}
-              className="inline-flex items-center gap-2 rounded-xl border border-white/10 hover:border-white/20 bg-slate-900/60 px-4 py-2 text-xs md:text-sm font-medium text-slate-200 transition-colors hover:bg-slate-800"
+ className="btn btn-tertiary btn-sm md:text-sm"
             >
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -202,14 +202,14 @@ function LanguageExplorerPage() {
         </div>
 
         {/* Editor B Panel */}
-        <div className="glass rounded-[2rem] border border-white/10 p-5 md:p-6 shadow-xl flex flex-col relative overflow-hidden">
+        <div className="glass rounded-2xl border border-white/10 p-5 md:p-6 shadow-xl flex flex-col relative overflow-hidden">
           {/* Subtle indicator bar matching language B accent */}
           <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${selectedLangBObj.accent}`} />
           
           {/* Selection controls B */}
           <div className="flex flex-wrap items-center justify-between gap-4 mb-4 mt-2">
             <div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 block mb-1">Language B</span>
+              <span className="text-xs font-semibold tracking-label text-slate-400 block mb-1">Language B</span>
               <div className="relative">
                 <select
                   value={langB}
@@ -220,7 +220,7 @@ function LanguageExplorerPage() {
                       setLangA(langB); // automatically swap if selected same
                     }
                   }}
-                  className="bg-slate-900 border border-white/10 text-white rounded-xl px-4 py-2 text-sm font-medium pr-10 focus:outline-none focus:border-indigo-500 transition-colors appearance-none cursor-pointer"
+ className="bg-slate-900 border border-white/10 text-white rounded-md px-4 py-2 text-sm font-medium pr-10 focus:outline-none focus:border-indigo-500 transition-colors appearance-none cursor-pointer"
                 >
                   {languages.map(l => (
                     <option key={l.id} value={l.id}>{l.name}</option>
@@ -236,8 +236,8 @@ function LanguageExplorerPage() {
             <div className="self-end">
               <button 
                 onClick={handleSwap}
-                className="bg-indigo-600/30 hover:bg-indigo-600/50 border border-indigo-500/30 text-indigo-200 px-3.5 py-2 rounded-xl text-xs md:text-sm font-medium transition-all hover:scale-105 active:scale-95 flex items-center gap-1.5"
-                title="Swap left and right languages"
+ className="btn btn-tertiary btn-sm md:text-sm gap-1.5"
+ title="Swap left and right languages"
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
@@ -248,21 +248,21 @@ function LanguageExplorerPage() {
 
             {/* Quick stats badge */}
             <div className="text-right">
-              <span className="text-xs text-slate-500 block">Typing Model</span>
+              <span className="text-xs text-slate-400 block">Typing Model</span>
               <span className="text-xs md:text-sm font-semibold text-slate-300">{selectedLangBObj.typing}</span>
             </div>
           </div>
 
           {/* Monaco Editor Wrapper */}
-          <div className="rounded-xl overflow-hidden border border-white/10 bg-slate-950/60 p-1 flex-grow">
+          <div className="rounded-md overflow-hidden border border-white/10 bg-slate-950/60 p-1 flex-grow">
             <div className="flex justify-between items-center bg-slate-950/90 px-4 py-2 border-b border-white/5 text-xs text-slate-400 font-mono">
               <span>{selectedLangBObj.name} editor (editable)</span>
               <span>{selectedLangBObj.executionModel}</span>
             </div>
             <Editor
-              height="340px"
+ height="340px"
               language={langB === 'cpp' ? 'cpp' : langB === 'c' ? 'c' : langB}
-              theme="vs-dark"
+ theme="vs-dark"
               value={codeB}
               onChange={(val) => setCodeB(val || '')}
               options={{
@@ -285,11 +285,11 @@ function LanguageExplorerPage() {
           <div className="flex justify-between items-center gap-3 mt-4">
             <button
               onClick={() => handleCopy(codeB, setCopiedB)}
-              className="inline-flex items-center gap-2 rounded-xl border border-white/10 hover:border-white/20 bg-slate-900/60 px-4 py-2 text-xs md:text-sm font-medium text-slate-200 transition-colors hover:bg-slate-800"
+ className="btn btn-tertiary btn-sm md:text-sm"
             >
               {copiedB ? (
                 <>
-                  <svg className="h-4 w-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="h-4 w-4 text-emerald-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   Copied!
@@ -305,7 +305,7 @@ function LanguageExplorerPage() {
             </button>
             <button
               onClick={() => handleDownload(codeB, langB)}
-              className="inline-flex items-center gap-2 rounded-xl border border-white/10 hover:border-white/20 bg-slate-900/60 px-4 py-2 text-xs md:text-sm font-medium text-slate-200 transition-colors hover:bg-slate-800"
+ className="btn btn-tertiary btn-sm md:text-sm"
             >
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -318,19 +318,19 @@ function LanguageExplorerPage() {
       </div>
 
       {/* Preset Example Programs Selection Block */}
-      <div className="glass rounded-[2rem] border border-white/10 p-5 md:p-6 mb-8 shadow-xl">
-        <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-          <svg className="h-5 w-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div className="glass rounded-2xl border border-white/10 p-5 md:p-6 mb-8 shadow-xl">
+        <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+          <svg className="h-5 w-5 text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
           </svg>
           Select Example Program Template
-        </h3>
+        </h2>
         <div className="flex flex-wrap gap-2.5">
           {Object.keys(presets).map((key) => (
             <button
               key={key}
               onClick={() => setActivePreset(key)}
-              className={`rounded-xl px-4 py-2.5 text-xs md:text-sm font-semibold transition-all duration-200 active:scale-95 ${
+              className={`rounded-md px-4 py-2.5 text-xs md:text-sm font-semibold transition-all duration-200 active:scale-95 ${
                 activePreset === key
                   ? 'bg-gradient-to-r from-indigo-500 to-violet-500 text-white shadow-lg shadow-indigo-950/50 border border-indigo-400/30'
                   : 'bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 hover:border-white/20'
@@ -346,28 +346,28 @@ function LanguageExplorerPage() {
       <div className="grid gap-8 grid-cols-1 lg:grid-cols-2 mb-8">
         
         {/* Paradigm & General Syntax Explanation Card */}
-        <div className="glass rounded-[2rem] border border-white/10 p-6 md:p-8 shadow-xl flex flex-col justify-between">
+        <div className="glass rounded-2xl border border-white/10 p-6 md:p-8 shadow-xl flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between mb-5">
-              <h3 className="text-xl font-semibold text-white flex items-center gap-2">
-                <svg className="h-5 w-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <h2 className="text-xl font-semibold text-white flex items-center gap-2">
+                <svg className="h-5 w-5 text-cyan-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                 </svg>
                 Syntax Paradigm Shift Analysis
-              </h3>
+              </h2>
               <span className="rounded-full bg-cyan-500/10 px-3 py-1 text-xs font-semibold text-cyan-300 border border-cyan-400/20">
                 Live Insights
               </span>
             </div>
             
             <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4 bg-slate-950/40 p-4 rounded-2xl border border-white/5">
+              <div className="grid grid-cols-2 gap-4 bg-slate-950/40 p-4 rounded-lg border border-white/5">
                 <div>
-                  <span className="text-xs text-slate-500 block mb-1">Language A Paradigm</span>
+                  <span className="text-xs text-slate-400 block mb-1">Language A Paradigm</span>
                   <span className="text-sm font-semibold text-slate-200">{selectedLangAObj.paradigm}</span>
                 </div>
                 <div>
-                  <span className="text-xs text-slate-500 block mb-1">Language B Paradigm</span>
+                  <span className="text-xs text-slate-400 block mb-1">Language B Paradigm</span>
                   <span className="text-sm font-semibold text-slate-200">{selectedLangBObj.paradigm}</span>
                 </div>
               </div>
@@ -383,8 +383,8 @@ function LanguageExplorerPage() {
                 {langB === 'rust' || langB === 'c' || langB === 'cpp' ? ' ownership/manual management.' : ' a garbage-collected heap.'}
               </p>
               
-              <div className="bg-indigo-950/20 rounded-2xl border border-indigo-500/10 p-4">
-                <span className="text-xs font-semibold text-indigo-300 uppercase tracking-wider block mb-2">Architectural Translation Key</span>
+              <div className="bg-indigo-950/20 rounded-lg border border-indigo-500/10 p-4">
+                <span className="text-xs font-semibold text-indigo-300 tracking-label block mb-2">Architectural Translation Key</span>
                 <ul className="text-xs text-slate-300 space-y-2">
                   <li className="flex items-start gap-1.5">
                     <span className="h-1.5 w-1.5 rounded-full bg-indigo-400 mt-1.5 flex-shrink-0" />
@@ -399,21 +399,21 @@ function LanguageExplorerPage() {
             </div>
           </div>
           
-          <div className="mt-6 border-t border-white/5 pt-4 text-xs text-slate-500 flex justify-between">
+          <div className="mt-6 border-t border-white/5 pt-4 text-xs text-slate-400 flex justify-between">
             <span>Core compiler profiles active</span>
             <span>Static comparative engine v1.2</span>
           </div>
         </div>
 
         {/* Dynamic Interactive Metrics Dashboard (Performance) */}
-        <div className="glass rounded-[2rem] border border-white/10 p-6 md:p-8 shadow-xl flex flex-col justify-between">
+        <div className="glass rounded-2xl border border-white/10 p-6 md:p-8 shadow-xl flex flex-col justify-between">
           <div>
-            <h3 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
-              <svg className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+              <svg className="h-5 w-5 text-amber-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
               Performance & Resource Comparison
-            </h3>
+            </h2>
 
             {/* Performance metric 1: CPU Execution Speed */}
             <div className="space-y-6">
@@ -486,12 +486,12 @@ function LanguageExplorerPage() {
 
               {/* Compilation Model summary badges */}
               <div className="grid grid-cols-2 gap-4 mt-2">
-                <div className="bg-slate-950/50 border border-white/5 p-3.5 rounded-xl text-center">
-                  <span className="text-[10px] text-slate-500 block uppercase tracking-wider mb-1">{selectedLangAObj.name} Compile style</span>
+                <div className="bg-slate-950/50 border border-white/5 p-3.5 rounded-md text-center">
+                  <span className="text-[10px] text-slate-400 block tracking-label mb-1">{selectedLangAObj.name} Compile style</span>
                   <span className="text-xs md:text-sm font-semibold text-slate-300 block">{selectedLangAObj.performance.compilation}</span>
                 </div>
-                <div className="bg-slate-950/50 border border-white/5 p-3.5 rounded-xl text-center">
-                  <span className="text-[10px] text-slate-500 block uppercase tracking-wider mb-1">{selectedLangBObj.name} Compile style</span>
+                <div className="bg-slate-950/50 border border-white/5 p-3.5 rounded-md text-center">
+                  <span className="text-[10px] text-slate-400 block tracking-label mb-1">{selectedLangBObj.name} Compile style</span>
                   <span className="text-xs md:text-sm font-semibold text-slate-300 block">{selectedLangBObj.performance.compilation}</span>
                 </div>
               </div>
@@ -499,7 +499,7 @@ function LanguageExplorerPage() {
             </div>
           </div>
           
-          <div className="mt-4 text-xs text-slate-500 text-right">
+          <div className="mt-4 text-xs text-slate-400 text-right">
             Stats represent average production builds running standard benchmarks.
           </div>
         </div>
@@ -510,21 +510,21 @@ function LanguageExplorerPage() {
       <div className="grid gap-8 grid-cols-1 md:grid-cols-2 mb-8">
         
         {/* Language A Details */}
-        <div className="glass rounded-[2rem] border border-white/10 p-6 md:p-8 shadow-xl flex flex-col justify-between">
+        <div className="glass rounded-2xl border border-white/10 p-6 md:p-8 shadow-xl flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-3 mb-6">
               <div className={`h-3 w-3 rounded-full bg-gradient-to-r ${selectedLangAObj.accent}`} />
-              <h3 className="text-xl font-semibold text-white">Pros & Cons: {selectedLangAObj.name}</h3>
+              <h2 className="text-xl font-semibold text-white">Pros & Cons: {selectedLangAObj.name}</h2>
             </div>
             
             <div className="space-y-6">
               {/* Advantages */}
               <div>
-                <span className="text-xs font-semibold text-emerald-400 uppercase tracking-wider block mb-3">Key Advantages</span>
+                <span className="text-xs font-semibold text-emerald-300 tracking-label block mb-3">Key Advantages</span>
                 <ul className="space-y-2.5">
                   {selectedLangAObj.advantages.map((adv, idx) => (
                     <li key={idx} className="text-sm text-slate-300 flex items-start gap-2">
-                      <svg className="h-5 w-5 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="h-5 w-5 text-emerald-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                       </svg>
                       <span>{adv}</span>
@@ -535,11 +535,11 @@ function LanguageExplorerPage() {
               
               {/* Disadvantages */}
               <div>
-                <span className="text-xs font-semibold text-rose-400 uppercase tracking-wider block mb-3">Key Disadvantages</span>
+                <span className="text-xs font-semibold text-rose-300 tracking-label block mb-3">Key Disadvantages</span>
                 <ul className="space-y-2.5">
                   {selectedLangAObj.disadvantages.map((dis, idx) => (
                     <li key={idx} className="text-sm text-slate-300 flex items-start gap-2">
-                      <svg className="h-5 w-5 text-rose-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="h-5 w-5 text-rose-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
                       </svg>
                       <span>{dis}</span>
@@ -552,21 +552,21 @@ function LanguageExplorerPage() {
         </div>
 
         {/* Language B Details */}
-        <div className="glass rounded-[2rem] border border-white/10 p-6 md:p-8 shadow-xl flex flex-col justify-between">
+        <div className="glass rounded-2xl border border-white/10 p-6 md:p-8 shadow-xl flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-3 mb-6">
               <div className={`h-3 w-3 rounded-full bg-gradient-to-r ${selectedLangBObj.accent}`} />
-              <h3 className="text-xl font-semibold text-white">Pros & Cons: {selectedLangBObj.name}</h3>
+              <h2 className="text-xl font-semibold text-white">Pros & Cons: {selectedLangBObj.name}</h2>
             </div>
             
             <div className="space-y-6">
               {/* Advantages */}
               <div>
-                <span className="text-xs font-semibold text-emerald-400 uppercase tracking-wider block mb-3">Key Advantages</span>
+                <span className="text-xs font-semibold text-emerald-300 tracking-label block mb-3">Key Advantages</span>
                 <ul className="space-y-2.5">
                   {selectedLangBObj.advantages.map((adv, idx) => (
                     <li key={idx} className="text-sm text-slate-300 flex items-start gap-2">
-                      <svg className="h-5 w-5 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="h-5 w-5 text-emerald-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                       </svg>
                       <span>{adv}</span>
@@ -577,11 +577,11 @@ function LanguageExplorerPage() {
               
               {/* Disadvantages */}
               <div>
-                <span className="text-xs font-semibold text-rose-400 uppercase tracking-wider block mb-3">Key Disadvantages</span>
+                <span className="text-xs font-semibold text-rose-300 tracking-label block mb-3">Key Disadvantages</span>
                 <ul className="space-y-2.5">
                   {selectedLangBObj.disadvantages.map((dis, idx) => (
                     <li key={idx} className="text-sm text-slate-300 flex items-start gap-2">
-                      <svg className="h-5 w-5 text-rose-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="h-5 w-5 text-rose-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
                       </svg>
                       <span>{dis}</span>
@@ -596,40 +596,40 @@ function LanguageExplorerPage() {
       </div>
 
       {/* Language Popularity Section */}
-      <div className="glass rounded-[2rem] border border-white/10 p-6 md:p-8 mb-8 shadow-xl">
-        <h3 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
-          <svg className="h-5 w-5 text-pink-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div className="glass rounded-2xl border border-white/10 p-6 md:p-8 mb-8 shadow-xl">
+        <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+          <svg className="h-5 w-5 text-rose-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
           </svg>
           Industry Popularity Index
-        </h3>
+        </h2>
 
         <div className="grid gap-6 grid-cols-1 md:grid-cols-3">
           
           {/* TIOBE ranks */}
-          <div className="bg-slate-950/40 border border-white/5 rounded-2xl p-5 relative overflow-hidden flex flex-col justify-between">
+          <div className="bg-slate-950/40 border border-white/5 rounded-lg p-5 relative overflow-hidden flex flex-col justify-between">
             <div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 block mb-1">TIOBE Index Rank (Overall)</span>
+              <span className="text-xs font-semibold tracking-label text-slate-400 block mb-1">TIOBE Index Rank (Overall)</span>
               <p className="text-xs text-slate-400 leading-relaxed mb-4">Official industry rank based on developer search volumes globally.</p>
             </div>
             <div className="flex items-end justify-between mt-2">
               <div>
-                <span className="text-xs text-slate-500 block">{selectedLangAObj.name}</span>
+                <span className="text-xs text-slate-400 block">{selectedLangAObj.name}</span>
                 <span className="text-2xl font-bold text-indigo-300 font-mono">{selectedLangAObj.popularity.tiobeRank}</span>
               </div>
               <div className="h-10 w-px bg-white/10" />
               <div className="text-right">
-                <span className="text-xs text-slate-500 block">{selectedLangBObj.name}</span>
+                <span className="text-xs text-slate-400 block">{selectedLangBObj.name}</span>
                 <span className="text-2xl font-bold text-cyan-300 font-mono">{selectedLangBObj.popularity.tiobeRank}</span>
               </div>
             </div>
           </div>
 
           {/* Stack Overflow Survey preference */}
-          <div className="bg-slate-950/40 border border-white/5 rounded-2xl p-5 relative overflow-hidden flex flex-col justify-between">
+          <div className="bg-slate-950/40 border border-white/5 rounded-lg p-5 relative overflow-hidden flex flex-col justify-between">
             <div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 block mb-1">StackOverflow Usage %</span>
+              <span className="text-xs font-semibold tracking-label text-slate-400 block mb-1">StackOverflow Usage %</span>
               <p className="text-xs text-slate-400 leading-relaxed mb-4">Percentage of developers using this language in production surveys.</p>
             </div>
             <div className="space-y-3 mt-2">
@@ -655,9 +655,9 @@ function LanguageExplorerPage() {
           </div>
 
           {/* GitHub PR volumes */}
-          <div className="bg-slate-950/40 border border-white/5 rounded-2xl p-5 relative overflow-hidden flex flex-col justify-between">
+          <div className="bg-slate-950/40 border border-white/5 rounded-lg p-5 relative overflow-hidden flex flex-col justify-between">
             <div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 block mb-1">GitHub Pull Request Share %</span>
+              <span className="text-xs font-semibold tracking-label text-slate-400 block mb-1">GitHub Pull Request Share %</span>
               <p className="text-xs text-slate-400 leading-relaxed mb-4">Total active codebase growth index based on submitted PR metrics.</p>
             </div>
             <div className="space-y-3 mt-2">
@@ -686,24 +686,24 @@ function LanguageExplorerPage() {
       </div>
 
       {/* Syntax Comparison Side-by-side Table */}
-      <div className="glass rounded-[2rem] border border-white/10 p-6 md:p-8 mb-8 shadow-xl">
-        <h3 className="text-xl font-semibold text-white mb-2 flex items-center gap-2">
-          <svg className="h-5 w-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div className="glass rounded-2xl border border-white/10 p-6 md:p-8 mb-8 shadow-xl">
+        <h2 className="text-xl font-semibold text-white mb-2 flex items-center gap-2">
+          <svg className="h-5 w-5 text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 00-2 2z" />
           </svg>
           Interactive Syntax Comparison Grid
-        </h3>
+        </h2>
         <p className="text-sm text-slate-400 mb-6">Compare language structural rules by construct definitions.</p>
         
-        <div className="overflow-x-auto rounded-2xl border border-white/10">
+        <div className="overflow-x-auto rounded-lg border border-white/10">
           <table className="min-w-full text-left text-sm text-slate-300 border-collapse">
             <thead>
               <tr className="bg-slate-950/80 text-slate-200 border-b border-white/10">
-                <th className="px-5 py-4 font-semibold text-xs uppercase tracking-wider w-1/4">Construct Feature</th>
-                <th className="px-5 py-4 font-semibold text-xs uppercase tracking-wider w-3/8 border-l border-white/10">
+                <th className="px-5 py-4 font-semibold text-xs tracking-label w-1/4">Construct Feature</th>
+                <th className="px-5 py-4 font-semibold text-xs tracking-label w-[37.5%] border-l border-white/10">
                   {selectedLangAObj.name} Syntax
                 </th>
-                <th className="px-5 py-4 font-semibold text-xs uppercase tracking-wider w-3/8 border-l border-white/10">
+                <th className="px-5 py-4 font-semibold text-xs tracking-label w-[37.5%] border-l border-white/10">
                   {selectedLangBObj.name} Syntax
                 </th>
               </tr>
@@ -734,18 +734,18 @@ function LanguageExplorerPage() {
       </div>
 
       {/* Curated Resources Section */}
-      <div className="glass rounded-[2rem] border border-white/10 p-6 md:p-8 shadow-xl">
-        <h3 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
-          <svg className="h-5 w-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div className="glass rounded-2xl border border-white/10 p-6 md:p-8 shadow-xl">
+        <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+          <svg className="h-5 w-5 text-emerald-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
           </svg>
           Related Learning Resources & Tutorials
-        </h3>
+        </h2>
 
         <div className="grid gap-6 grid-cols-1 md:grid-cols-2">
           
           {/* Tutorials for A */}
-          <div className="bg-slate-950/40 border border-white/5 rounded-2xl p-5">
+          <div className="bg-slate-950/40 border border-white/5 rounded-lg p-5">
             <div className="flex items-center gap-2 mb-4">
               <span className={`h-2.5 w-2.5 rounded-full bg-gradient-to-r ${selectedLangAObj.accent}`} />
               <h4 className="font-semibold text-white text-base">Study {selectedLangAObj.name}</h4>
@@ -755,19 +755,19 @@ function LanguageExplorerPage() {
                 <a 
                   key={i} 
                   href={tut.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="group flex items-center justify-between p-3 rounded-xl bg-slate-900 border border-white/5 hover:border-indigo-500/30 hover:bg-slate-850 transition-all"
+ target="_blank" 
+ rel="noopener noreferrer"
+ className="group flex items-center justify-between p-3 rounded-md bg-slate-900 border border-white/5 hover:border-indigo-500/30 hover:bg-slate-900 transition-all"
                 >
                   <div>
                     <span className="text-xs md:text-sm font-medium text-slate-200 group-hover:text-indigo-300 transition-colors block">
                       {tut.title}
                     </span>
-                    <span className="text-[10px] text-slate-500 uppercase tracking-wider block mt-1 font-semibold">
+                    <span className="text-[10px] text-slate-400 tracking-label block mt-1 font-semibold">
                       {tut.difficulty} Path
                     </span>
                   </div>
-                  <svg className="h-4 w-4 text-slate-500 group-hover:text-indigo-400 group-hover:translate-x-0.5 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="h-4 w-4 text-slate-400 group-hover:text-indigo-300 group-hover:translate-x-0.5 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
                 </a>
@@ -776,7 +776,7 @@ function LanguageExplorerPage() {
           </div>
 
           {/* Tutorials for B */}
-          <div className="bg-slate-950/40 border border-white/5 rounded-2xl p-5">
+          <div className="bg-slate-950/40 border border-white/5 rounded-lg p-5">
             <div className="flex items-center gap-2 mb-4">
               <span className={`h-2.5 w-2.5 rounded-full bg-gradient-to-r ${selectedLangBObj.accent}`} />
               <h4 className="font-semibold text-white text-base">Study {selectedLangBObj.name}</h4>
@@ -786,19 +786,19 @@ function LanguageExplorerPage() {
                 <a 
                   key={i} 
                   href={tut.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="group flex items-center justify-between p-3 rounded-xl bg-slate-900 border border-white/5 hover:border-cyan-500/30 hover:bg-slate-850 transition-all"
+ target="_blank" 
+ rel="noopener noreferrer"
+ className="group flex items-center justify-between p-3 rounded-md bg-slate-900 border border-white/5 hover:border-cyan-500/30 hover:bg-slate-900 transition-all"
                 >
                   <div>
                     <span className="text-xs md:text-sm font-medium text-slate-200 group-hover:text-cyan-300 transition-colors block">
                       {tut.title}
                     </span>
-                    <span className="text-[10px] text-slate-500 uppercase tracking-wider block mt-1 font-semibold">
+                    <span className="text-[10px] text-slate-400 tracking-label block mt-1 font-semibold">
                       {tut.difficulty} Path
                     </span>
                   </div>
-                  <svg className="h-4 w-4 text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-0.5 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="h-4 w-4 text-slate-400 group-hover:text-cyan-300 group-hover:translate-x-0.5 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
                 </a>

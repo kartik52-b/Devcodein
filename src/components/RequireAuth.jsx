@@ -34,21 +34,15 @@ export function RequireAuth({ children }) {
     );
   }
 
-  // If the visitor is not authenticated, always redirect to sign-in so they
-  // can choose Google or email/password. The only exception is the auth page
-  // itself and its sub-routes, which PublicOnly handles.
+  // Signed-out visitors always land on the sign-in page, whatever protected
+  // URL they tried (this is what previously showed a 404 on unknown paths).
   if (!isAuthenticated) {
-    const isAuthRoute = location.pathname === '/auth' || location.pathname.startsWith('/auth/');
-    if (!isAuthRoute) {
-      const returnTo = `${location.pathname}${location.search}`;
-      return <Navigate to={`/auth?returnTo=${encodeURIComponent(returnTo)}`} replace />;
-    }
-    return children ?? <Outlet />;
+    const returnTo = `${location.pathname}${location.search}`;
+    return <Navigate to={`/auth?returnTo=${encodeURIComponent(returnTo)}`} replace />;
   }
 
-  // Authenticated users: protect the module routes
-  const returnTo = `${location.pathname}${location.search}`;
-  return <Navigate to={`/auth?returnTo=${encodeURIComponent(returnTo)}`} replace />;
+  // Authenticated and verified: render the protected page.
+  return children ?? <Outlet />;
 }
 
 /** Redirects already-authenticated visitors away from login/register. */

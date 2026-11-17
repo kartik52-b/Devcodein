@@ -376,6 +376,9 @@ reset role;
 
 | Symptom | Cause / fix |
 | --- | --- |
+| "Request failed (404)" on Create account / Sign in | The build had no `VITE_SUPABASE_URL` + `VITE_SUPABASE_ANON_KEY`, so it fell back to the Express API and called `POST /api/auth/register`. A static Vercel deployment has no `/api` function, so that URL answers 404. Set both variables in Vercel for **Production and Preview**, redeploy, and confirm the deploy is built from a commit that contains `src/context/supabaseAuthProvider.jsx`. The app now reports this state explicitly instead of a bare 404. |
+| Google button navigates to a 404 page | Same cause as above (it goes to `/api/auth/google/start`). With Supabase configured, Google uses `https://<ref>.supabase.co/auth/v1/authorize`, so no `/api` route is involved. |
+| Signed in but `/dashboard` is blank | Fixed: `isAuthenticated` now requires a real Supabase session, and authenticated visitors are rendered instead of being redirected back to `/auth`. Ensure the deployed build includes `src/components/RequireAuth.jsx` from this commit. |
 | `redirect_to` mismatch or login returns to the Site URL | Add the exact URL (origin **and** path) to Supabase redirect URLs |
 | Google: `redirect_uri_mismatch` | Authorized redirect URI must be `https://<ref>.supabase.co/auth/v1/callback` |
 | Google button returns "cancelled" immediately | Provider disabled or client ID/secret wrong in Supabase |

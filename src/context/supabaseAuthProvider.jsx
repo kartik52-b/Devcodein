@@ -89,8 +89,17 @@ const mapAuthError = (error) => {
   if (/rate limit|too many requests|for security purposes/i.test(raw)) {
     return 'Too many attempts. Please wait a minute and try again.';
   }
+  if (/provider is not enabled|unsupported provider|provider.*disabled/i.test(raw)) {
+    return 'Google sign-in is not enabled for this project yet. Enable the Google provider in Supabase → Authentication → Providers.';
+  }
+  if (/signups not allowed|signups are disabled|email signups/i.test(raw)) {
+    return 'Email sign-up is disabled for this project. Enable Email under Supabase → Authentication → Providers.';
+  }
   if (/invalid api key|no api key|supabase url/i.test(raw)) {
     return 'Authentication is misconfigured. Check the Supabase URL and anon key setup.';
+  }
+  if (/unable to validate email|invalid email|email address is invalid/i.test(raw)) {
+    return 'Enter a valid email address and try again.';
   }
   if (/token has expired|invalid token|jwt expired|session.*expired/i.test(raw)) {
     return 'Your session expired. Please sign in again.';
@@ -111,6 +120,10 @@ export function SupabaseAuthProvider({ children }) {
   const { upsertProfile } = useProfile();
 
   const [user, setUser] = useState(readCachedUser);
+  // The cached user is only a paint hint. Authorisation must come from a real
+  // Supabase session, otherwise a leftover cache entry would unlock guarded
+  // routes (and strand the visitor on an empty dashboard) after sign-out.
+  const [hasSession, setHasSession] = useState(false);
   const [isBootstrapping, setIsBootstrapping] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -152,6 +165,7 @@ export function SupabaseAuthProvider({ children }) {
 
   const resetLocalSession = useCallback(() => {
     lastToken.current = null;
+    setHasSession(false);
     setUser(null);
     cacheUser(null);
     clearToken();
@@ -172,6 +186,7 @@ export function SupabaseAuthProvider({ children }) {
       }
 
       const authUser = session.user;
+      setHasSession(true);
       const base = toUser(authUser, null);
       setUser(base);
       cacheUser(base);
@@ -499,7 +514,7 @@ export function SupabaseAuthProvider({ children }) {
   const value = {
     user,
     token: null,
-    isAuthenticated: Boolean(user?.id && !isBootstrapping),
+    isAuthenticated: Boolean(hasSession && user?.id && !isBootstrapping),
     isEmailVerified: Boolean(user?.isEmailVerified),
     isBootstrapping,
     isLoading,

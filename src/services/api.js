@@ -31,6 +31,25 @@ export class ApiUnavailableError extends ApiError {
   }
 }
 
+/**
+ * The deployment has no authentication endpoint at all.
+ *
+ * This is what a static Vercel build produces when it was compiled without
+ * Supabase keys and there is no Express API behind /api: the request for
+ * /api/auth/register is answered by the static host with a 404 page. The raw
+ * "Request failed (404)" is meaningless to the person signing up, so the
+ * client explains both ways to make the endpoint exist.
+ */
+export class AuthServiceMissingError extends ApiError {
+  constructor() {
+    super(
+      'Authentication is not configured on this deployment. Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in Vercel (Settings → Environment Variables) and redeploy, or set VITE_API_URL to a running DevVerse API.',
+      { status: 404 }
+    );
+    this.name = 'AuthServiceMissingError';
+  }
+}
+
 export const getToken = () => {
   try {
     return window.localStorage.getItem(TOKEN_KEY);
@@ -110,6 +129,14 @@ export const request = async (path, options = {}) => {
       clearToken();
       window.dispatchEvent(new Event(UNAUTHORIZED_EVENT));
     }
+
+    // A 404 on an /api/auth/* route means the endpoint itself is missing (no
+    // API deployed), not that the request was malformed. Surface configuration
+    // guidance instead of a bare status code.
+    if (response.status === 404 && /^\/api\/auth(\/|$)/.test(path)) {
+      throw new AuthServiceMissingError();
+    }
+
     throw new ApiError(extractMessage(payload, `Request failed (${response.status})`), {
       status: response.status,
       payload
@@ -129,3 +156,6 @@ export const api = {
 
 /** True when the error means "the backend is not reachable". */
 export const isUnavailable = (error) => error instanceof ApiUnavailableError;
+
+/** True when the deployment has no authentication endpoint configured. */
+export const isAuthServiceMissing = (error) => error instanceof AuthServiceMissingError;

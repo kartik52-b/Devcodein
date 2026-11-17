@@ -52,7 +52,7 @@ function HabitTracker() {
 
       <div className="grid gap-6 xl:grid-cols-[1.15fr_0.85fr]">
         <div className="glass rounded-2xl border border-white/10 p-6 shadow-2xl shadow-indigo-950/40">
-          <div className="mb-5 flex items-center justify-between">
+          <div className="mb-6 flex items-center justify-between">
             <div>
               <p className="text-sm text-slate-400">Contribution graph</p>
               <p className="text-lg font-semibold text-white">{selectedRange} activity</p>
@@ -60,7 +60,7 @@ function HabitTracker() {
             <div className="rounded-full border border-emerald-400/20 bg-emerald-500/10 px-3 py-1 text-sm text-emerald-300">{stats.total} contributions</div>
           </div>
 
-          <div className="rounded-xl border border-white/10 bg-slate-950/60 p-5">
+          <div className="rounded-xl border border-white/10 bg-slate-950/60 p-6">
             <div className="mb-4 flex items-center gap-2 text-xs tracking-label text-slate-400">
               {days.map((day) => <span key={day} className="w-10 text-center">{day}</span>)}
             </div>

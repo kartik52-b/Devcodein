@@ -185,7 +185,7 @@ function LeaderboardPage() {
           </div>
         </div>
 
-        <div className="mt-5 flex flex-wrap items-center gap-3 text-xs">
+        <div className="mt-6 flex flex-wrap items-center gap-3 text-xs">
           <span
             className={`rounded-full border px-3 py-1 font-semibold ${
               isLive
@@ -203,7 +203,7 @@ function LeaderboardPage() {
 
       {/* ------------------------------------------------------ states */}
       {isLive && live.status === 'loading' ? (
-        <div className="glass rounded-2xl border border-white/10 p-10 text-center">
+        <div className="glass rounded-2xl border border-white/10 p-12 text-center">
           <p className="animate-pulse text-slate-300">Loading the leaderboard…</p>
         </div>
       ) : null}
@@ -222,7 +222,7 @@ function LeaderboardPage() {
       ) : null}
 
       {isLive && live.status === 'ready' && live.entries.length === 0 ? (
-        <div className="glass rounded-2xl border border-white/10 p-10 text-center">
+        <div className="glass rounded-2xl border border-white/10 p-12 text-center">
           <p className="text-white">No ranked learners yet.</p>
           <p className="mt-2 text-sm text-slate-400">
             Solve your first challenge and you will appear at the top of this board.

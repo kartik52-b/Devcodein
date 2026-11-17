@@ -286,7 +286,7 @@ function DailyMissionsPage() {
                 <button
                   disabled={progressPercent < 100 || hasClaimedToday || claimState.busy}
                   onClick={handleClaimTodayReward}
-                  className={`rounded-full px-5 py-2 text-sm font-semibold transition-all duration-300 ${
+                  className={`rounded-full px-6 py-2 text-sm font-semibold transition-all duration-300 ${
                     progressPercent === 100 && !hasClaimedToday
                       ? 'bg-gradient-to-r from-amber-400 to-orange-500 text-slate-950 shadow-lg shadow-orange-500/20 hover:scale-105 active:scale-95 btn-micro'
                       : hasClaimedToday

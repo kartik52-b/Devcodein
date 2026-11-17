@@ -241,7 +241,7 @@ function DsaBattleArena() {
             <div className="grid gap-4 lg:grid-cols-2">
               {[current.left, current.right].map((side, index) => {
                 return (
-                  <div key={side.name} className="rounded-xl border border-white/10 bg-slate-950/60 p-5">
+                  <div key={side.name} className="rounded-xl border border-white/10 bg-slate-950/60 p-6">
                     <div className={`mb-4 h-1.5 w-24 rounded-full bg-gradient-to-r ${side.accent}`} />
                     <div className="flex items-center justify-between">
                       <h4 className="text-lg font-semibold text-white">{side.name}</h4>
@@ -262,7 +262,7 @@ function DsaBattleArena() {
           </div>
 
           <div className="space-y-4">
-            <div className="rounded-xl border border-white/10 bg-slate-950/60 p-5">
+            <div className="rounded-xl border border-white/10 bg-slate-950/60 p-6">
               <p className="text-sm text-slate-400">Speed comparison</p>
               <div className="mt-4 space-y-4">
                 {[
@@ -287,7 +287,7 @@ function DsaBattleArena() {
               </div>
             </div>
 
-            <div className="rounded-xl border border-white/10 bg-slate-950/60 p-5">
+            <div className="rounded-xl border border-white/10 bg-slate-950/60 p-6">
               <p className="text-sm text-slate-400">Time & space complexity</p>
               <div className="mt-4 space-y-3">
                 {current.stats.map(([metric, value]) => (

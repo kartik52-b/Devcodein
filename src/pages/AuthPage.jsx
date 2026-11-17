@@ -208,7 +208,7 @@ function AuthPage() {
   const emailValue = email || otpEmail || user?.email || '';
 
   return (
-    <div className="min-h-[70vh] px-4 py-10 text-slate-200 md:px-6 lg:px-8">
+    <div className="min-h-[70vh] px-4 py-12 text-slate-200 md:px-6 lg:px-8">
       <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[0.9fr_1.1fr]">
         <section className="glass rounded-2xl border border-white/10 p-6 md:p-8">
           <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs font-semibold tracking-label text-cyan-300">
@@ -250,7 +250,7 @@ function AuthPage() {
 
         <section className="glass rounded-2xl border border-white/10 p-6 md:p-8">
           {showVerifyPanel ? (
-            <div className="rounded-xl border border-cyan-400/20 bg-slate-950/70 p-5">
+            <div className="rounded-xl border border-cyan-400/20 bg-slate-950/70 p-6">
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="text-xs tracking-label text-slate-400">Almost there</p>
@@ -310,7 +310,7 @@ function AuthPage() {
                   </div>
 
                   {otpDelivery === 'development' && devOtp ? (
-                    <div className="mt-5 rounded-lg border border-amber-400/30 bg-amber-400/10 p-4 text-sm text-amber-300">
+                    <div className="mt-6 rounded-lg border border-amber-400/30 bg-amber-400/10 p-4 text-sm text-amber-300">
                       <p className="font-semibold">Development notice</p>
                       <p className="mt-2">
                         Email delivery is not configured on this server. Your code is{' '}
@@ -375,7 +375,7 @@ function AuthPage() {
               {error ? (
                 <p
                   role="alert"
-                  className="mt-5 rounded-lg border border-rose-400/20 bg-rose-400/10 px-3 py-2 text-sm text-rose-300"
+                  className="mt-6 rounded-lg border border-rose-400/20 bg-rose-400/10 px-3 py-2 text-sm text-rose-300"
                 >
                   {error}
                 </p>
@@ -383,7 +383,7 @@ function AuthPage() {
               {success ? (
                 <p
                   role="status"
-                  className="mt-5 rounded-lg border border-emerald-400/20 bg-emerald-400/10 px-3 py-2 text-sm text-emerald-300"
+                  className="mt-6 rounded-lg border border-emerald-400/20 bg-emerald-400/10 px-3 py-2 text-sm text-emerald-300"
                 >
                   {success}
                 </p>

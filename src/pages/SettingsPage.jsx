@@ -283,7 +283,7 @@ function SettingsPage() {
             <div className="space-y-6">
               <h3 className="text-lg font-semibold text-white border-b border-white/10 pb-3">Interface Theme Configurations</h3>
               
-              <div className="space-y-5">
+              <div className="space-y-6">
                 {/* Dark Mode toggle */}
                 <div className="flex items-center justify-between bg-slate-950/40 p-4 rounded-md border border-white/5">
                   <div>

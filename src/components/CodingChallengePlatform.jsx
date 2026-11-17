@@ -88,7 +88,7 @@ function CodingChallengePlatform() {
 
       <div className="grid gap-6 xl:grid-cols-[0.95fr_1.05fr]">
         <div className="space-y-4">
-          <div className="glass rounded-2xl border border-white/10 p-5">
+          <div className="glass rounded-2xl border border-white/10 p-6">
             <div className="mb-4 flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-400">Daily challenge</p>
@@ -101,7 +101,7 @@ function CodingChallengePlatform() {
             </div>
           </div>
 
-          <div className="glass rounded-2xl border border-white/10 p-5">
+          <div className="glass rounded-2xl border border-white/10 p-6">
             <div className="mb-4 flex items-center justify-between">
               <p className="text-lg font-semibold text-white">Problem list</p>
               <p className="text-sm text-slate-400">{xp} XP</p>
@@ -138,7 +138,7 @@ function CodingChallengePlatform() {
               </div>
               <div className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">{selectedChallenge.difficulty}</div>
             </div>
-            <div className="mt-5 grid gap-3 md:grid-cols-2">
+            <div className="mt-6 grid gap-3 md:grid-cols-2">
               <div className="rounded-lg border border-white/10 bg-slate-950/60 p-4">
                 <p className="text-sm text-slate-400">Problem statement</p>
                 <p className="mt-2 leading-7 text-slate-300">{selectedChallenge.statement}</p>
@@ -179,11 +179,11 @@ function CodingChallengePlatform() {
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
-            <div className="glass rounded-2xl border border-white/10 p-5">
+            <div className="glass rounded-2xl border border-white/10 p-6">
               <p className="text-sm text-slate-400">Hints</p>
               <p className="mt-3 text-sm leading-7 text-slate-300">{selectedChallenge.hints[0]}</p>
             </div>
-            <div className="glass rounded-2xl border border-white/10 p-5">
+            <div className="glass rounded-2xl border border-white/10 p-6">
               <p className="text-sm text-slate-400">Test cases</p>
               <p className="mt-3 text-sm leading-7 text-slate-300">{selectedChallenge.testCases[0]}</p>
             </div>

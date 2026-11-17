@@ -171,8 +171,8 @@ function LanguageExplorer() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="glass rounded-2xl border border-white/10 p-5 shadow-2xl shadow-indigo-950/40">
-          <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+        <div className="glass rounded-2xl border border-white/10 p-6 shadow-2xl shadow-indigo-950/40">
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
             <div>
               <p className="text-sm text-slate-400">Monaco Editor</p>
               <p className="text-lg font-semibold text-white">Write in {source.name}</p>
@@ -209,7 +209,7 @@ function LanguageExplorer() {
             />
           </div>
 
-          <div className="mt-5 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-wrap gap-3">
             <button onClick={handleCopy} className="btn btn-secondary rounded-full">
               {copied ? 'Copied ✓' : 'Copy code'}
             </button>

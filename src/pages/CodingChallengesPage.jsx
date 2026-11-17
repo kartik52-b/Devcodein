@@ -287,8 +287,8 @@ function CodingChallengesPage() {
   /* ---------------------------------------------------------- states */
   if (loading) {
     return (
-      <div className="min-h-[60vh] px-4 py-10 text-slate-200 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl space-y-4 rounded-2xl border border-white/10 bg-slate-950/70 p-10 text-center">
+      <div className="min-h-[60vh] px-4 py-12 text-slate-200 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl space-y-4 rounded-2xl border border-white/10 bg-slate-950/70 p-12 text-center">
           <p className="animate-pulse text-lg text-slate-300">Loading challenges…</p>
           <p className="text-sm text-slate-400">Fetching the problem catalog from the API.</p>
         </div>
@@ -298,8 +298,8 @@ function CodingChallengesPage() {
 
   if (catalog.length === 0) {
     return (
-      <div className="min-h-[60vh] px-4 py-10 text-slate-200 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl space-y-4 rounded-2xl border border-white/10 bg-slate-950/70 p-10 text-center">
+      <div className="min-h-[60vh] px-4 py-12 text-slate-200 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl space-y-4 rounded-2xl border border-white/10 bg-slate-950/70 p-12 text-center">
           <p className="text-lg text-white">No challenges available yet.</p>
           <p className="text-sm text-slate-400">{loadError || 'The catalog is empty. Please check back soon.'}</p>
           <button
@@ -314,7 +314,7 @@ function CodingChallengesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(99,102,241,0.18),_transparent_52%)] px-4 py-10 text-slate-200 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(99,102,241,0.18),_transparent_52%)] px-4 py-12 text-slate-200 sm:px-6 lg:px-8">
       <div className="mx-auto flex max-w-7xl flex-col gap-6">
         <section className="rounded-2xl border border-white/10 bg-slate-950/70 p-8 shadow-2xl shadow-indigo-950/50 backdrop-blur">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
@@ -328,7 +328,7 @@ function CodingChallengesPage() {
                 without leaving the experience.
               </p>
             </div>
-            <div className="rounded-lg border border-emerald-400/20 bg-emerald-500/10 px-5 py-4 text-sm text-emerald-300">
+            <div className="rounded-lg border border-emerald-400/20 bg-emerald-500/10 px-6 py-4 text-sm text-emerald-300">
               <p className="text-slate-300">Current status</p>
               <p className="mt-1 text-lg font-semibold text-white">
                 {submitState.status === 'submitting'
@@ -360,7 +360,7 @@ function CodingChallengesPage() {
 
         <section className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
           {/* ------------------------------------------------- list */}
-          <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-5 backdrop-blur">
+          <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-6 backdrop-blur">
             <div className="mb-4 flex items-center justify-between">
               <div>
                 <p className="text-sm tracking-label text-slate-400">Problem list</p>
@@ -464,8 +464,8 @@ function CodingChallengesPage() {
 
           {/* ----------------------------------------------- editor */}
           {selectedChallenge ? (
-            <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-5 backdrop-blur">
-              <div className="flex flex-col gap-4 border-b border-white/10 pb-5">
+            <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-6 backdrop-blur">
+              <div className="flex flex-col gap-4 border-b border-white/10 pb-6">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
                     <p className="text-sm tracking-label text-slate-400">Selected problem</p>
@@ -502,7 +502,7 @@ function CodingChallengesPage() {
                 </div>
               </div>
 
-              <div className="mt-5 grid gap-5 xl:grid-cols-[1.05fr_0.95fr]">
+              <div className="mt-6 grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
                 <div>
                   <p className="text-lg leading-8 text-slate-300">{selectedChallenge.description}</p>
 
@@ -524,7 +524,7 @@ function CodingChallengesPage() {
                     </div>
                   ) : null}
 
-                  <div className="mt-5 flex flex-wrap gap-3">
+                  <div className="mt-6 flex flex-wrap gap-3">
                     <button
                       onClick={handleRun}
  className="btn btn-primary rounded-full"

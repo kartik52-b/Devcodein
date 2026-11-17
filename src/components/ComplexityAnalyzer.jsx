@@ -74,7 +74,7 @@ function ComplexityAnalyzer() {
       </div>
 
       <div className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
-        <div className="glass rounded-2xl border border-white/10 p-5 shadow-2xl shadow-indigo-950/40">
+        <div className="glass rounded-2xl border border-white/10 p-6 shadow-2xl shadow-indigo-950/40">
           <div className="mb-4 flex items-center justify-between">
             <div>
               <p className="text-sm text-slate-400">Code input</p>
@@ -99,7 +99,7 @@ function ComplexityAnalyzer() {
               </div>
               <div className="rounded-full border border-emerald-400/20 bg-emerald-500/10 px-3 py-1 text-sm text-emerald-300">Healthy</div>
             </div>
-            <div className="mt-5 space-y-3">
+            <div className="mt-6 space-y-3">
               {performanceBars.map((bar) => (
                 <div key={bar.label}>
                   <div className="mb-2 flex items-center justify-between text-sm text-slate-300">

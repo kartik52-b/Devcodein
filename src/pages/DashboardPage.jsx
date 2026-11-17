@@ -26,7 +26,7 @@ import { dailyMissions, dailyMissionTotalXp } from '../data/missionsData';
  */
 
 const StatCard = ({ icon: Icon, label, value, hint, accent = 'text-cyan-300' }) => (
-  <div className="glass rounded-xl border border-white/10 p-5">
+  <div className="glass rounded-xl border border-white/10 p-6">
     <div className="flex items-center justify-between">
       <p className="text-xs tracking-label text-slate-400">{label}</p>
       <Icon size={16} className={accent} />
@@ -144,7 +144,7 @@ function DashboardPage() {
  title="Continue learning"
           action={<ViewAllLink to="/modules/roadmaps">Roadmaps</ViewAllLink>}
         >
-          <div className="rounded-lg border border-white/10 bg-slate-950/60 p-5">
+          <div className="rounded-lg border border-white/10 bg-slate-950/60 p-6">
             <div className="flex items-center gap-3">
               <span className="flex h-10 w-10 items-center justify-center rounded-md bg-indigo-500/20 text-indigo-300">
                 <Route size={18} />
@@ -166,7 +166,7 @@ function DashboardPage() {
             </Link>
           </div>
 
-          <div className="mt-4 rounded-lg border border-white/10 bg-slate-950/60 p-5">
+          <div className="mt-4 rounded-lg border border-white/10 bg-slate-950/60 p-6">
             <div className="flex items-center justify-between gap-3">
               <div>
                 <p className="font-medium text-white">Your progress</p>
@@ -219,7 +219,7 @@ function DashboardPage() {
             <Link
               key={item.to}
               to={item.to}
- className="group rounded-lg border border-white/10 bg-slate-950/60 p-5 transition hover:border-cyan-400/30 hover:bg-slate-900/70"
+ className="group rounded-lg border border-white/10 bg-slate-950/60 p-6 transition hover:border-cyan-400/30 hover:bg-slate-900/70"
             >
               <div className="flex items-center justify-between">
                 <span className="flex h-10 w-10 items-center justify-center rounded-md bg-cyan-400/10 text-cyan-300">

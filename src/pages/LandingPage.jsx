@@ -2,9 +2,7 @@ import { Link } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import AICodingMentor from '../components/AICodingMentor';
 import DailyMissionSystem from '../components/DailyMissionSystem';
-import DsaBattleArena from '../components/DsaBattleArena';
 import HabitTracker from '../components/HabitTracker';
-import LanguageExplorer from '../components/LanguageExplorer';
 import ProfileLeaderboard from '../components/ProfileLeaderboard';
 import RoadmapSection from '../components/RoadmapSection';
 
@@ -86,7 +84,7 @@ function LandingPage() {
     <div className="relative text-slate-200">
       <div className="relative z-10">
         <div>
-          <section className="mx-auto grid max-w-7xl gap-14 px-6 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-24">
+          <section className="mx-auto grid max-w-7xl gap-12 px-6 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:px-8 lg:py-20">
             <div className="relative">
               <div className="aurora" aria-hidden="true" />
               <div className="relative space-y-8">
@@ -94,7 +92,7 @@ function LandingPage() {
                   <span className="h-2 w-2 rounded-full bg-cyan-300" />
                   AI-powered coding learning platform
                 </div>
-                <div className="space-y-5">
+                <div className="space-y-6">
                   <h1 className="max-w-3xl text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-7xl">
                     Learn to build like the top 1% of engineers.
                   </h1>
@@ -114,7 +112,7 @@ function LandingPage() {
             </div>
 
             <div className="relative">
-              <div className="glass animate-float rounded-2xl border border-white/10 p-5 shadow-2xl shadow-indigo-950/60">
+              <div className="glass animate-float rounded-2xl border border-white/10 p-6 shadow-2xl shadow-indigo-950/60">
                 <div className="rounded-xl border border-white/10 bg-slate-950/70 p-4">
                   <div className="mb-4 flex items-center justify-between">
                     <div>
@@ -159,41 +157,35 @@ function LandingPage() {
           </section>
 
           <section id="features" className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
-            <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div className="mb-12 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
               <div>
                 <p className="eyebrow">Platform overview</p>
                 <h2 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">Every major module, beautifully previewed.</h2>
               </div>
-              <p className="max-w-xl text-slate-400">The homepage highlights the product experience while each module links to a dedicated page for full interaction.</p>
+              <p className="max-w-xl text-slate-400">Every major module has a dedicated page. The interactive previews live together on the product experience page.</p>
             </div>
             <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
               {features.map((feature) => (
-                <Link key={feature.title} to={feature.path} className="group glass rounded-xl border border-white/10 p-7 transition hover:-translate-y-1">
-                  <div className={`mb-5 h-12 w-12 rounded-lg bg-gradient-to-br ${feature.accent}`} />
+                <Link key={feature.title} to={feature.path} className="group glass rounded-xl border border-white/10 p-8 transition hover:-translate-y-1">
+                  <div className={`mb-6 h-12 w-12 rounded-lg bg-gradient-to-br ${feature.accent}`} />
                   <h3 className="mb-3 text-xl font-semibold text-white">{feature.title}</h3>
                   <p className="leading-7 text-slate-400">{feature.description}</p>
                   <div className="mt-6 text-sm font-medium text-cyan-300 transition group-hover:text-cyan-300">Open module →</div>
                 </Link>
               ))}
             </div>
-          </section>
 
-          <section className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
-            <div className="glass rounded-2xl border border-white/10 p-8 lg:p-10">
-              <div className="mb-8">
-                <p className="eyebrow">Preview suite</p>
-                <h2 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">A polished snapshot of the full product experience.</h2>
+            <div className="mt-12 flex flex-col items-start gap-6 rounded-2xl border border-white/10 bg-white/5 p-8 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="text-lg font-semibold text-white">Want the full guided tour?</p>
+                <p className="mt-2 max-w-2xl text-slate-400">
+                  Open the language explorer and DSA battle arena side by side on the product
+                  experience page.
+                </p>
               </div>
-              {/* Full-width previews: these embeds contain their own multi-column
-                  layouts, so stacking them prevents cramped, overlapping panels. */}
-              <div className="space-y-6">
-                <div className="rounded-xl border border-white/10 bg-slate-950/70 p-6">
-                  <LanguageExplorer />
-                </div>
-                <div className="rounded-xl border border-white/10 bg-slate-950/70 p-6">
-                  <DsaBattleArena />
-                </div>
-              </div>
+              <Button to="/product-experience" variant="secondary" size="lg">
+                Open the product experience
+              </Button>
             </div>
           </section>
 
@@ -227,7 +219,7 @@ function LandingPage() {
           <section className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
             <div className="grid gap-6 lg:grid-cols-2">
               {testimonials.map((item) => (
-                <div key={item.author} className="glass rounded-xl border border-white/10 p-7">
+                <div key={item.author} className="glass rounded-xl border border-white/10 p-8">
                   <p className="text-lg leading-8 text-slate-200">“{item.quote}”</p>
                   <div className="mt-6">
                     <p className="font-semibold text-white">{item.author}</p>
@@ -246,7 +238,7 @@ function LandingPage() {
               </div>
               <div className="space-y-4">
                 {faqs.map((item) => (
-                  <details key={item.question} className="rounded-lg border border-white/10 bg-slate-950/70 p-5">
+                  <details key={item.question} className="rounded-lg border border-white/10 bg-slate-950/70 p-6">
                     <summary className="cursor-pointer text-lg font-medium text-white">{item.question}</summary>
                     <p className="mt-3 text-slate-400">{item.answer}</p>
                   </details>

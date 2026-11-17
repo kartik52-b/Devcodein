@@ -50,9 +50,12 @@ export default {
         glow: '0 0 120px rgba(124, 58, 237, 0.35)',
         focus: '0 0 0 2px rgba(34, 211, 238, 0.7)'
       },
+      // The app uses Tailwind's 4px spacing scale: 4, 8, 12, 16, 24, 32,
+      // 48, 64 and 80px (1, 2, 3, 4, 6, 8, 12, 16, 20). These two semantic
+      // aliases cover the vertical rhythm between landing sections.
       spacing: {
-        section: '2rem',
-        'section-lg': '3rem'
+        section: '3rem',
+        'section-lg': '5rem'
       },
       animation: {
         float: 'float 6s ease-in-out infinite',

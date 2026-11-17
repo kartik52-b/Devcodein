@@ -269,7 +269,7 @@ function ComplexityAnalyzerPage() {
       </div>
 
       {/* Header Block */}
-      <div className="glass rounded-2xl border border-white/10 p-6 md:p-8 lg:p-10 mb-8 shadow-2xl relative">
+      <div className="glass rounded-2xl border border-white/10 p-6 md:p-8 lg:p-12 mb-8 shadow-2xl relative">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-indigo-400/20 bg-indigo-500/10 px-3 py-1 text-xs md:text-sm text-indigo-300 mb-4">
@@ -301,7 +301,7 @@ function ComplexityAnalyzerPage() {
       <div className="grid gap-8 grid-cols-1 lg:grid-cols-[1.25fr_0.75fr] mb-8">
         
         {/* Editor block */}
-        <div className="glass rounded-2xl border border-white/10 p-5 md:p-6 shadow-xl relative overflow-hidden flex flex-col justify-between">
+        <div className="glass rounded-2xl border border-white/10 p-6 md:p-6 shadow-xl relative overflow-hidden flex flex-col justify-between">
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 to-teal-500" />
           
           <div>
@@ -580,26 +580,26 @@ function ComplexityAnalyzerPage() {
       <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mb-8">
         
         {/* Estimated complexities */}
-        <div className="glass rounded-lg border border-white/10 p-5">
+        <div className="glass rounded-lg border border-white/10 p-6">
           <span className="text-[10px] text-slate-400 font-bold tracking-label block">Estimated Time Complexity</span>
           <p className="mt-2 text-2xl font-bold text-cyan-300 font-mono">{analysis.timeComplexity}</p>
           <span className="text-[10px] text-slate-400 block mt-1">Growth rate of instruction cycles.</span>
         </div>
 
-        <div className="glass rounded-lg border border-white/10 p-5">
+        <div className="glass rounded-lg border border-white/10 p-6">
           <span className="text-[10px] text-slate-400 font-bold tracking-label block">Estimated Space Complexity</span>
           <p className="mt-2 text-2xl font-bold text-indigo-300 font-mono">{analysis.spaceComplexity}</p>
           <span className="text-[10px] text-slate-400 block mt-1">Auxiliary memory allocation metrics.</span>
         </div>
 
         {/* Static parses */}
-        <div className="glass rounded-lg border border-white/10 p-5">
+        <div className="glass rounded-lg border border-white/10 p-6">
           <span className="text-[10px] text-slate-400 font-bold tracking-label block">Loops Detected</span>
           <p className="mt-2 text-2xl font-bold text-white font-mono">{analysis.loopCount}</p>
           <span className="text-[10px] text-slate-400 block mt-1">Maximum nesting: depth {analysis.maxLoopDepth}.</span>
         </div>
 
-        <div className="glass rounded-lg border border-white/10 p-5">
+        <div className="glass rounded-lg border border-white/10 p-6">
           <span className="text-[10px] text-slate-400 font-bold tracking-label block">Recursion Detected</span>
           <p className={`mt-2 text-2xl font-bold font-mono ${analysis.recursion === 'Detected' ? 'text-amber-300' : 'text-slate-400'}`}>
             {analysis.recursion}
@@ -611,7 +611,7 @@ function ComplexityAnalyzerPage() {
 
       {/* Optimization Recommendations Block */}
       <div className="glass rounded-2xl border border-white/10 p-6 md:p-8 shadow-xl">
-        <h2 className="text-xl font-semibold text-white mb-5 flex items-center gap-2">
+        <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
           <svg className="h-5 w-5 text-emerald-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
           </svg>
@@ -620,7 +620,7 @@ function ComplexityAnalyzerPage() {
         
         <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {analysis.suggestions.map((suggestion, i) => (
-            <div key={i} className="bg-slate-950/40 border border-white/5 rounded-lg p-5 flex items-start gap-3">
+            <div key={i} className="bg-slate-950/40 border border-white/5 rounded-lg p-6 flex items-start gap-3">
               <span className="h-6 w-6 rounded-full bg-indigo-500/15 border border-indigo-400/20 text-indigo-300 flex items-center justify-center font-bold text-xs flex-shrink-0">
                 {i + 1}
               </span>

@@ -51,8 +51,8 @@ function ProgrammingLanguageExplorerPage() {
   };
 
   return (
-    <div className="mx-auto max-w-7xl px-6 py-8 text-slate-200 lg:px-8 lg:py-10">
-      <section className="glass rounded-2xl border border-white/10 p-8 shadow-2xl shadow-indigo-950/40 lg:p-10">
+    <div className="mx-auto max-w-7xl px-6 py-8 text-slate-200 lg:px-8 lg:py-12">
+      <section className="glass rounded-2xl border border-white/10 p-8 shadow-2xl shadow-indigo-950/40 lg:p-12">
         <div className="mb-8">
           <p className="eyebrow">Programming Language Explorer</p>
           <h1 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">Compare syntax, trade-offs, and performance in one focused workspace.</h1>

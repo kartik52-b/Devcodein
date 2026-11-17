@@ -4,6 +4,7 @@ import LandingPage from './pages/LandingPage';
 import ModuleRoutes from './pages/ModuleRoutes';
 import AuthPage from './pages/AuthPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
+import ProductExperiencePage from './pages/ProductExperiencePage';
 import SiteHeader from './components/SiteHeader';
 import SiteFooter from './components/SiteFooter';
 import { PublicOnly, RequireAuth } from './components/RequireAuth';
@@ -57,6 +58,7 @@ function App() {
               visitors must be allowed through, so this route is outside
               <PublicOnly>. */}
           <Route path="/reset-password" element={<ResetPasswordPage />} />
+          <Route path="/product-experience" element={<ProductExperiencePage />} />
 
           {/* --------------------------------------- protected area */}
           <Route

@@ -70,7 +70,7 @@ function LanguageExplorerPage() {
       </div>
 
       {/* Header Block */}
-      <div className="glass rounded-2xl border border-white/10 p-6 md:p-8 lg:p-10 mb-8 shadow-2xl">
+      <div className="glass rounded-2xl border border-white/10 p-6 md:p-8 lg:p-12 mb-8 shadow-2xl">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-indigo-400/20 bg-indigo-500/10 px-3 py-1 text-xs md:text-sm text-indigo-300 mb-4">
@@ -102,7 +102,7 @@ function LanguageExplorerPage() {
       <div className="grid gap-8 grid-cols-1 lg:grid-cols-2 mb-8">
         
         {/* Editor A Panel */}
-        <div className="glass rounded-2xl border border-white/10 p-5 md:p-6 shadow-xl flex flex-col relative overflow-hidden">
+        <div className="glass rounded-2xl border border-white/10 p-6 md:p-6 shadow-xl flex flex-col relative overflow-hidden">
           {/* Subtle indicator bar matching language A accent */}
           <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${selectedLangAObj.accent}`} />
           
@@ -120,7 +120,7 @@ function LanguageExplorerPage() {
                       setLangB(langA); // automatically swap if selected same
                     }
                   }}
- className="bg-slate-900 border border-white/10 text-white rounded-md px-4 py-2 text-sm font-medium pr-10 focus:outline-none focus:border-indigo-500 transition-colors appearance-none cursor-pointer"
+ className="bg-slate-900 border border-white/10 text-white rounded-md px-4 py-2 text-sm font-medium pr-12 focus:outline-none focus:border-indigo-500 transition-colors appearance-none cursor-pointer"
                 >
                   {languages.map(l => (
                     <option key={l.id} value={l.id}>{l.name}</option>
@@ -202,7 +202,7 @@ function LanguageExplorerPage() {
         </div>
 
         {/* Editor B Panel */}
-        <div className="glass rounded-2xl border border-white/10 p-5 md:p-6 shadow-xl flex flex-col relative overflow-hidden">
+        <div className="glass rounded-2xl border border-white/10 p-6 md:p-6 shadow-xl flex flex-col relative overflow-hidden">
           {/* Subtle indicator bar matching language B accent */}
           <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${selectedLangBObj.accent}`} />
           
@@ -220,7 +220,7 @@ function LanguageExplorerPage() {
                       setLangA(langB); // automatically swap if selected same
                     }
                   }}
- className="bg-slate-900 border border-white/10 text-white rounded-md px-4 py-2 text-sm font-medium pr-10 focus:outline-none focus:border-indigo-500 transition-colors appearance-none cursor-pointer"
+ className="bg-slate-900 border border-white/10 text-white rounded-md px-4 py-2 text-sm font-medium pr-12 focus:outline-none focus:border-indigo-500 transition-colors appearance-none cursor-pointer"
                 >
                   {languages.map(l => (
                     <option key={l.id} value={l.id}>{l.name}</option>
@@ -318,7 +318,7 @@ function LanguageExplorerPage() {
       </div>
 
       {/* Preset Example Programs Selection Block */}
-      <div className="glass rounded-2xl border border-white/10 p-5 md:p-6 mb-8 shadow-xl">
+      <div className="glass rounded-2xl border border-white/10 p-6 md:p-6 mb-8 shadow-xl">
         <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
           <svg className="h-5 w-5 text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
@@ -348,7 +348,7 @@ function LanguageExplorerPage() {
         {/* Paradigm & General Syntax Explanation Card */}
         <div className="glass rounded-2xl border border-white/10 p-6 md:p-8 shadow-xl flex flex-col justify-between">
           <div>
-            <div className="flex items-center justify-between mb-5">
+            <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-semibold text-white flex items-center gap-2">
                 <svg className="h-5 w-5 text-cyan-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
@@ -608,7 +608,7 @@ function LanguageExplorerPage() {
         <div className="grid gap-6 grid-cols-1 md:grid-cols-3">
           
           {/* TIOBE ranks */}
-          <div className="bg-slate-950/40 border border-white/5 rounded-lg p-5 relative overflow-hidden flex flex-col justify-between">
+          <div className="bg-slate-950/40 border border-white/5 rounded-lg p-6 relative overflow-hidden flex flex-col justify-between">
             <div>
               <span className="text-xs font-semibold tracking-label text-slate-400 block mb-1">TIOBE Index Rank (Overall)</span>
               <p className="text-xs text-slate-400 leading-relaxed mb-4">Official industry rank based on developer search volumes globally.</p>
@@ -627,7 +627,7 @@ function LanguageExplorerPage() {
           </div>
 
           {/* Stack Overflow Survey preference */}
-          <div className="bg-slate-950/40 border border-white/5 rounded-lg p-5 relative overflow-hidden flex flex-col justify-between">
+          <div className="bg-slate-950/40 border border-white/5 rounded-lg p-6 relative overflow-hidden flex flex-col justify-between">
             <div>
               <span className="text-xs font-semibold tracking-label text-slate-400 block mb-1">StackOverflow Usage %</span>
               <p className="text-xs text-slate-400 leading-relaxed mb-4">Percentage of developers using this language in production surveys.</p>
@@ -655,7 +655,7 @@ function LanguageExplorerPage() {
           </div>
 
           {/* GitHub PR volumes */}
-          <div className="bg-slate-950/40 border border-white/5 rounded-lg p-5 relative overflow-hidden flex flex-col justify-between">
+          <div className="bg-slate-950/40 border border-white/5 rounded-lg p-6 relative overflow-hidden flex flex-col justify-between">
             <div>
               <span className="text-xs font-semibold tracking-label text-slate-400 block mb-1">GitHub Pull Request Share %</span>
               <p className="text-xs text-slate-400 leading-relaxed mb-4">Total active codebase growth index based on submitted PR metrics.</p>
@@ -699,11 +699,11 @@ function LanguageExplorerPage() {
           <table className="min-w-full text-left text-sm text-slate-300 border-collapse">
             <thead>
               <tr className="bg-slate-950/80 text-slate-200 border-b border-white/10">
-                <th className="px-5 py-4 font-semibold text-xs tracking-label w-1/4">Construct Feature</th>
-                <th className="px-5 py-4 font-semibold text-xs tracking-label w-[37.5%] border-l border-white/10">
+                <th className="px-6 py-4 font-semibold text-xs tracking-label w-1/4">Construct Feature</th>
+                <th className="px-6 py-4 font-semibold text-xs tracking-label w-[37.5%] border-l border-white/10">
                   {selectedLangAObj.name} Syntax
                 </th>
-                <th className="px-5 py-4 font-semibold text-xs tracking-label w-[37.5%] border-l border-white/10">
+                <th className="px-6 py-4 font-semibold text-xs tracking-label w-[37.5%] border-l border-white/10">
                   {selectedLangBObj.name} Syntax
                 </th>
               </tr>
@@ -716,14 +716,14 @@ function LanguageExplorerPage() {
                     idx % 2 === 0 ? 'bg-slate-900/30' : 'bg-transparent'
                   }`}
                 >
-                  <td className="px-5 py-4 font-medium text-white align-top">
+                  <td className="px-6 py-4 font-medium text-white align-top">
                     <span className="block text-sm">{row.feature}</span>
                     <span className="block text-xs text-slate-400 mt-1 font-normal leading-relaxed">{row.description}</span>
                   </td>
-                  <td className="px-5 py-4 font-mono text-xs border-l border-white/10 align-top text-indigo-300 whitespace-pre bg-slate-950/20">
+                  <td className="px-6 py-4 font-mono text-xs border-l border-white/10 align-top text-indigo-300 whitespace-pre bg-slate-950/20">
                     {row[langA] || '// N/A'}
                   </td>
-                  <td className="px-5 py-4 font-mono text-xs border-l border-white/10 align-top text-cyan-300 whitespace-pre bg-slate-950/20">
+                  <td className="px-6 py-4 font-mono text-xs border-l border-white/10 align-top text-cyan-300 whitespace-pre bg-slate-950/20">
                     {row[langB] || '// N/A'}
                   </td>
                 </tr>
@@ -745,7 +745,7 @@ function LanguageExplorerPage() {
         <div className="grid gap-6 grid-cols-1 md:grid-cols-2">
           
           {/* Tutorials for A */}
-          <div className="bg-slate-950/40 border border-white/5 rounded-lg p-5">
+          <div className="bg-slate-950/40 border border-white/5 rounded-lg p-6">
             <div className="flex items-center gap-2 mb-4">
               <span className={`h-2.5 w-2.5 rounded-full bg-gradient-to-r ${selectedLangAObj.accent}`} />
               <h4 className="font-semibold text-white text-base">Study {selectedLangAObj.name}</h4>
@@ -776,7 +776,7 @@ function LanguageExplorerPage() {
           </div>
 
           {/* Tutorials for B */}
-          <div className="bg-slate-950/40 border border-white/5 rounded-lg p-5">
+          <div className="bg-slate-950/40 border border-white/5 rounded-lg p-6">
             <div className="flex items-center gap-2 mb-4">
               <span className={`h-2.5 w-2.5 rounded-full bg-gradient-to-r ${selectedLangBObj.accent}`} />
               <h4 className="font-semibold text-white text-base">Study {selectedLangBObj.name}</h4>

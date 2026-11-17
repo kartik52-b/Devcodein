@@ -40,7 +40,7 @@ function NavigationShell({ children }) {
 
   return (
     <div className="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-6 lg:flex-row lg:px-8">
-      <aside className="glass w-full rounded-2xl border border-white/10 p-5 lg:w-72 lg:sticky lg:top-6 lg:h-fit">
+      <aside className="glass w-full rounded-2xl border border-white/10 p-6 lg:w-72 lg:sticky lg:top-6 lg:h-fit">
         <div className="mb-6">
           <p className="eyebrow">DevVerse</p>
           <h3 className="mt-2 text-xl font-semibold text-white">Learning Navigation</h3>

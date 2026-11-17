@@ -143,7 +143,7 @@ function AICodingMentorPage() {
               </div>
               <BrainCircuit size={18} className="text-emerald-300" />
             </div>
-            <div className="mt-5 flex flex-wrap gap-2">
+            <div className="mt-6 flex flex-wrap gap-2">
               {quickActions.map((action) => (
                 <button key={action.label} onClick={() => handleQuickAction(action)} className="btn btn-tertiary btn-sm">
                   {action.label}

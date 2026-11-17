@@ -797,7 +797,7 @@ function AlgorithmVisualizerPage() {
       </div>
 
       {/* Header Block */}
-      <div className="glass rounded-2xl border border-white/10 p-6 md:p-8 lg:p-10 mb-8 shadow-2xl relative">
+      <div className="glass rounded-2xl border border-white/10 p-6 md:p-8 lg:p-12 mb-8 shadow-2xl relative">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-500/10 px-3 py-1 text-xs md:text-sm text-cyan-300 mb-4">
@@ -829,7 +829,7 @@ function AlgorithmVisualizerPage() {
       <div className="grid gap-8 grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] mb-8">
         
         {/* Left Side: Canvas & Controls */}
-        <div className="glass rounded-2xl border border-white/10 p-5 md:p-6 shadow-xl flex flex-col justify-between">
+        <div className="glass rounded-2xl border border-white/10 p-6 md:p-6 shadow-xl flex flex-col justify-between">
           <div>
             
             {/* Top row controls */}
@@ -840,7 +840,7 @@ function AlgorithmVisualizerPage() {
                   <select
                     value={selectedAlgo}
                     onChange={(e) => setSelectedAlgo(e.target.value)}
- className="bg-slate-900 border border-white/10 text-white rounded-md px-4 py-2 text-sm font-semibold pr-10 focus:outline-none focus:border-indigo-500 appearance-none cursor-pointer"
+ className="bg-slate-900 border border-white/10 text-white rounded-md px-4 py-2 text-sm font-semibold pr-12 focus:outline-none focus:border-indigo-500 appearance-none cursor-pointer"
                   >
                     {algorithms.map(a => (
                       <option key={a.id} value={a.id}>{a.name} ({a.type})</option>

@@ -129,7 +129,7 @@ function AlgorithmVisualizer() {
             </div>
           </div>
 
-          <div className="mt-6 rounded-xl border border-white/10 bg-slate-950/70 p-5">
+          <div className="mt-6 rounded-xl border border-white/10 bg-slate-950/70 p-6">
             <div className="mb-4 flex items-center justify-between">
               <p className="text-sm text-slate-400">Playback speed</p>
               <select value={playbackSpeed} onChange={(event) => setPlaybackSpeed(Number(event.target.value))} className="rounded-full border border-white/10 bg-slate-900 px-3 py-2 text-sm text-slate-200">
@@ -160,7 +160,7 @@ function AlgorithmVisualizer() {
           <div className="glass rounded-2xl border border-white/10 p-6">
             <p className="text-sm text-slate-400">Explanation panel</p>
             <p className="mt-3 leading-7 text-slate-300">{current.description}</p>
-            <div className="mt-5 space-y-3">
+            <div className="mt-6 space-y-3">
               {current.steps.map((step) => (
                 <div key={step} className="rounded-lg border border-white/10 bg-slate-950/60 p-3 text-sm text-slate-300">
                   {step}

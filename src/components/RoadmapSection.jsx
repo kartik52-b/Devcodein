@@ -162,7 +162,7 @@ function RoadmapSection() {
 
   return (
     <section id="roadmaps" className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-      <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+      <div className="mb-12 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <p className="eyebrow">Roadmaps</p>
           <h2 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">Choose a path and follow the signal from beginner to builder.</h2>
@@ -198,7 +198,7 @@ function RoadmapSection() {
           </div>
         </div>
 
-        <div className="glass rounded-2xl border border-white/10 p-7">
+        <div className="glass rounded-2xl border border-white/10 p-8">
           <div className={`rounded-xl border border-white/10 bg-gradient-to-br ${activeRoadmap.accent} p-[1px]`}>
             <div className="rounded-xl bg-slate-950/80 p-6">
               <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">

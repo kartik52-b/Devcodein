@@ -88,7 +88,7 @@ function AchievementsPage() {
 
   const Badge = ({ item, isUnlocked }) => (
     <li
-      className={`rounded-lg border p-5 ${
+      className={`rounded-lg border p-6 ${
         isUnlocked
           ? 'border-amber-400/25 bg-amber-400/5'
           : 'border-white/10 bg-slate-950/60 opacity-80'

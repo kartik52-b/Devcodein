@@ -47,7 +47,7 @@ function ResetPasswordPage() {
   };
 
   return (
-    <div className="min-h-[70vh] px-4 py-10 md:px-6 lg:px-8">
+    <div className="min-h-[70vh] px-4 py-12 md:px-6 lg:px-8">
       <div className="mx-auto max-w-lg">
         <div className="glass rounded-2xl border border-white/10 p-6 md:p-8">
           <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs font-semibold tracking-label text-cyan-300">
@@ -68,7 +68,7 @@ function ResetPasswordPage() {
               {error ? (
                 <p
                   role="alert"
-                  className="mt-5 rounded-lg border border-rose-400/20 bg-rose-400/10 px-3 py-2 text-sm text-rose-300"
+                  className="mt-6 rounded-lg border border-rose-400/20 bg-rose-400/10 px-3 py-2 text-sm text-rose-300"
                 >
                   {error}
                 </p>
@@ -76,7 +76,7 @@ function ResetPasswordPage() {
               {success ? (
                 <p
                   role="status"
-                  className="mt-5 flex items-center gap-2 rounded-lg border border-emerald-400/20 bg-emerald-400/10 px-3 py-2 text-sm text-emerald-300"
+                  className="mt-6 flex items-center gap-2 rounded-lg border border-emerald-400/20 bg-emerald-400/10 px-3 py-2 text-sm text-emerald-300"
                 >
                   <CheckCircle2 size={16} aria-hidden="true" /> {success}
                 </p>
@@ -163,12 +163,12 @@ function ResetPasswordPage() {
               </form>
             </>
           ) : (
-            <div className="mt-6 rounded-xl border border-amber-400/20 bg-amber-400/10 p-5">
+            <div className="mt-6 rounded-xl border border-amber-400/20 bg-amber-400/10 p-6">
               <p className="text-sm leading-7 text-amber-300">
                 This reset link is invalid or has expired. Reset links can only be used once and expire after
                 an hour.
               </p>
-              <Link to="/auth?mode=forgot" className="btn btn-primary mt-5 w-full">
+              <Link to="/auth?mode=forgot" className="btn btn-primary mt-6 w-full">
                 Request a new link
               </Link>
               <Link to="/auth" className="btn btn-ghost mt-2 w-full">

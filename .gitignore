@@ -1,15 +1,39 @@
-node_modules
-dist
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+.next/
 
 # FrameRef cache directory
 /.frameref
 
-# Server build output & environment
+# Server build output
 server/public/
-server/.env
 
-# Local environment files (never commit real credentials)
+# Environment files — never commit real credentials
 .env
 .env.local
+.env.production
+.env.development
 .env.*.local
+server/.env
+server/.env.*
 !.env.example
+!server/.env.example
+
+# Keys, certificates and credentials
+*.pem
+*.p12
+*.key
+id_rsa*
+*.crt
+
+# Logs and OS/IDE noise
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
